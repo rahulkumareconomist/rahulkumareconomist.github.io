@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantumFeed: An Interactive Exploration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Academic Slate & Amber -->
+    <!-- Application Structure Plan: The SPA is designed as a narrative journey, starting with the core problem and solution, then allowing users to progressively dive deeper into the technicals. A new 'Simulator in Action' section is added upfront to provide an immediate visual hook. The structure is thematic: 1) Abstract & Intro. 2) The animated dashboard. 3) Interactive System Architecture diagram. 4) Tabbed interface for Data Generation Models. 5) Interactive card grid for Validation. 6) A step-by-step timeline for the Flash Crash Case Study. This non-linear, interactive structure enhances understanding and engagement. -->
+    <!-- Visualization & Content Choices: A new animated dashboard is added. GOAL: Demonstrate -> VIZ: Animated HTML/CSS/JS dashboard -> INTERACTION: Passive observation (like a video) -> JUSTIFICATION: Shows the core mechanics in a dynamic, easily digestible format without user input. Other choices remain: Interactive diagrams, tabbed content, modal charts (Chart.js), and an animated timeline (Chart.js), all adhering to the NO SVG/Mermaid rule. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link.active, .nav-link:hover {
+            color: #f59e0b; /* amber-500 */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #f59e0b; /* amber-500 */
+            transition: width 0.3s;
+        }
+        .nav-link.active::after {
+            width: 100%;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline-item.active .timeline-dot {
+            background-color: #f59e0b; /* amber-500 */
+            transform: scale(1.5);
+        }
+        .timeline-item.active .timeline-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+       
+        #inaction {
+             font-family: 'Space Mono', monospace;
+        }
+        #inaction .price-bid { color: #2fb56a; }
+        #inaction .price-ask { color: #f44336; }
+        #inaction .header { color: #58a6ff; border-bottom: 1px solid #30363d; }
+        #inaction .data-box { background-color: #161b22; border: 1px solid #30363d; border-radius: 6px; }
+        #inaction .scrollable-book { height: 280px; overflow-y: auto; }
+        
+        @keyframes flash-dark { 0% { background-color: #30363d; } 100% { background-color: inherit; } }
+        #inaction .flash-update { animation: flash-dark 0.5s ease-out; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="bg-slate-800 text-white sticky top-0 z-50 shadow-md">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-amber-400">QuantumFeed Explorer</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#problem" class="nav-link">Problem</a>
+                <a href="#inaction" class="nav-link">In Action</a>
+                <a href="#architecture" class="nav-link">Architecture</a>
+                <a href="#models" class="nav-link">Models</a>
+                <a href="#validation" class="nav-link">Validation</a>
+                <a href="#casestudy" class="nav-link">Case Study</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-2xl">☰</button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-700">
+            <a href="#problem" class="block text-center py-2 nav-link">Problem</a>
+            <a href="#inaction" class="block text-center py-2 nav-link">In Action</a>
+            <a href="#architecture" class="block text-center py-2 nav-link">Architecture</a>
+            <a href="#models" class="block text-center py-2 nav-link">Models</a>
+            <a href="#validation" class="block text-center py-2 nav-link">Validation</a>
+            <a href="#casestudy" class="block text-center py-2 nav-link">Case Study</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+        <section id="intro" class="text-center mb-20">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-900">QuantumFeed Simulator</h2>
+            <p class="text-xl text-slate-600 max-w-4xl mx-auto">An interactive exploration of the high-fidelity, agent-based simulator for replicating and analyzing market microstructure dynamics.</p>
+            <p class="mt-6 bg-amber-100 border-l-4 border-amber-500 text-amber-800 p-4 rounded-r-lg text-left max-w-4xl mx-auto">
+                <strong>Abstract:</strong> High-frequency trading (HFT) research is hampered by a "realism gap" in existing simulators. This paper introduces QuantumFeed, a novel, open-source, agent-based simulator designed to bridge this gap. It combines a high-performance C++ matching engine with a flexible Python agent framework, uses sophisticated stochastic models to generate realistic data, and is validated against the canonical stylized facts of financial time series.
+            </p>
+        </section>
+
+        <section id="problem" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-900">The Core Challenge in HFT Research</h3>
+                <p class="text-lg text-slate-500 mt-2">Understanding the gap QuantumFeed was designed to fill.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-3 text-red-600">The Simulation Gap</h4>
+                    <p class="text-slate-600">Existing simulators often fail to model the sub-second phenomena defining HFT. Many abstract away the core mechanics of price formation, like the Limit Order Book (LOB), which "significantly undermines the realism of the simulator" as HFT strategies exploit these very microstructures. This leads to a "microstructure fidelity gap," preventing accurate replication of emergent market events like flash crashes.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h4 class="text-2xl font-semibold mb-3 text-green-600">The QuantumFeed Contribution</h4>
+                    <p class="text-slate-600">QuantumFeed addresses this gap with a fourfold contribution: <strong>1)</strong> A novel, open-source, distributed architecture for scalability and performance. <strong>2)</strong> A high-fidelity microstructure model with a full-depth LOB. <strong>3)</strong> A verifiable data generation process using sophisticated stochastic models. <strong>4)</strong> A demonstration of scientific utility by replicating the 2010 Flash Crash.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="inaction" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-900">Simulator in Action</h3>
+                <p class="text-lg text-slate-500 mt-2">A live, animated visualization of the QuantumFeed matching engine at work.</p>
+            </div>
+            <div class="bg-[#0d1117] text-[#c9d1d9] p-4 sm:p-6 rounded-xl shadow-2xl">
+                <div class="flex items-center justify-center space-x-6 mb-6">
+                     <div id="sim-trend-indicator" class="px-3 py-1 text-sm font-semibold rounded-full hidden">
+                        MARKET TREND: <span id="sim-trend-text">NEUTRAL</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="lg:col-span-2 data-box p-4">
+                        <h2 class="text-xl font-bold header pb-2 mb-2">QFEED-SIM</h2>
+                        <div id="sim-internals" class="text-xs mb-2"></div>
+                        <div class="grid grid-cols-2 gap-4 text-center text-sm">
+                            <div>
+                                <h3 class="font-semibold text-green-400">BIDS</h3>
+                                <div class="scrollable-book" id="sim-bids-book"></div>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-red-400">ASKS</h3>
+                                <div class="scrollable-book" id="sim-asks-book"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="data-box p-4">
+                        <h2 class="text-xl font-bold header pb-2 mb-2">Recent Trades</h2>
+                        <div id="sim-trades-log" class="scrollable-book h-[340px] space-y-1 text-sm"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="architecture" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-900">Interactive System Architecture</h3>
+                <p class="text-lg text-slate-500 mt-2">Click on components to learn more about the distributed, multi-tier system.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center bg-white p-8 rounded-lg shadow-lg">
+                <div id="arch-display" class="md:col-span-1 bg-slate-100 p-6 rounded-lg min-h-[200px] flex items-center justify-center text-center text-slate-500">
+                    <p>Select a component to see details.</p>
+                </div>
+                <div class="md:col-span-2 grid grid-cols-2 grid-rows-2 gap-4">
+                    <div class="arch-component cursor-pointer bg-sky-100 hover:bg-sky-200 p-4 rounded-lg text-center transition" data-title="Market Service" data-text="The heart of microstructural realism. Each instance encapsulates a complete market with a continuous double-auction matching engine operating on a full-depth Limit Order Book (LOB) with strict price/time priority.">
+                        <h5 class="font-bold text-sky-800">Market Service (C++)</h5>
+                        <p class="text-sm text-sky-600">Matching Engine & LOB</p>
+                    </div>
+                    <div class="arch-component cursor-pointer bg-emerald-100 hover:bg-emerald-200 p-4 rounded-lg text-center transition" data-title="Agent Service" data-text="Manages the lifecycle of the trading agent population. It's a flexible container in Python for running heterogeneous agent 'personas' (e.g., Noise Traders, Market Makers) and can be scaled horizontally.">
+                        <h5 class="font-bold text-emerald-800">Agent Service (Python)</h5>
+                        <p class="text-sm text-emerald-600">Agent Personas & Logic</p>
+                    </div>
+                    <div class="arch-component cursor-pointer bg-amber-100 hover:bg-amber-200 p-4 rounded-lg text-center transition" data-title="Simulation Orchestrator" data-text="The central nervous system. It manages experiment configuration, lifecycle (start/stop), time synchronization, and aggregates results for post-simulation analysis.">
+                        <h5 class="font-bold text-amber-800">Orchestrator</h5>
+                        <p class="text-sm text-amber-600">Control & Configuration</p>
+                    </div>
+                    <div class="arch-component cursor-pointer bg-indigo-100 hover:bg-indigo-200 p-4 rounded-lg text-center transition" data-title="Communication Layer" data-text="Inter-service communication uses Google's Protocol Buffers (Protobuf). This high-performance binary format is language-agnostic, enabling seamless, low-latency communication between the C++ engine and Python agents.">
+                        <h5 class="font-bold text-indigo-800">Communication</h5>
+                        <p class="text-sm text-indigo-600">Protobuf over TCP</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="models" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-900">High-Fidelity Data Generation Models</h3>
+                <p class="text-lg text-slate-500 mt-2">The stochastic processes that drive market dynamics.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <div class="border-b border-slate-200 mb-4">
+                    <nav class="flex space-x-4" aria-label="Tabs">
+                        <button class="model-tab active font-semibold py-2 px-4 border-b-2 border-amber-500 text-amber-600" data-model="gbm">Geometric Brownian Motion</button>
+                        <button class="model-tab font-medium py-2 px-4 text-slate-500 hover:text-amber-600" data-model="hawkes">Hawkes Process</button>
+                        <button class="model-tab font-medium py-2 px-4 text-slate-500 hover:text-amber-600" data-model="ou">Ornstein-Uhlenbeck</button>
+                    </nav>
+                </div>
+                <div id="model-content-container" class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                </div>
+            </div>
+        </section>
+
+        <section id="validation" class="mb-20 scroll-mt-20">
+             <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-900">Validation: Replicating Stylized Facts</h3>
+                <p class="text-lg text-slate-500 mt-2">QuantumFeed's output is validated against empirical properties of real financial markets.</p>
+            </div>
+            <div id="stylized-facts-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            </div>
+        </section>
+        
+        <div id="modal-container" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+            <div class="bg-white rounded-lg shadow-xl p-6 w-full max-w-3xl relative">
+                <button id="modal-close" class="absolute top-2 right-4 text-3xl font-bold text-slate-500 hover:text-slate-800">&times;</button>
+                <h4 id="modal-title" class="text-2xl font-bold mb-4"></h4>
+                <div id="modal-chart-container" class="chart-container">
+                    <canvas id="modal-chart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <section id="casestudy" class="mb-20 scroll-mt-20">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl font-bold text-slate-900">Case Study: The 2010 Flash Crash</h3>
+                <p class="text-lg text-slate-500 mt-2">An interactive walkthrough of how QuantumFeed simulates a systemic crisis.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-1">
+                    <div id="timeline-nav" class="space-y-4">
+                        <div class="timeline-item cursor-pointer" data-step="0">
+                            <div class="flex items-center">
+                                <div class="timeline-dot w-4 h-4 rounded-full bg-slate-300 transition-all duration-300"></div>
+                                <h5 class="ml-4 font-semibold">1. Stable Market</h5>
+                            </div>
+                        </div>
+                        <div class="timeline-item cursor-pointer" data-step="1">
+                            <div class="flex items-center">
+                                <div class="timeline-dot w-4 h-4 rounded-full bg-slate-300 transition-all duration-300"></div>
+                                <h5 class="ml-4 font-semibold">2. Initial Absorption</h5>
+                            </div>
+                        </div>
+                        <div class="timeline-item cursor-pointer" data-step="2">
+                            <div class="flex items-center">
+                                <div class="timeline-dot w-4 h-4 rounded-full bg-slate-300 transition-all duration-300"></div>
+                                <h5 class="ml-4 font-semibold">3. Liquidity Withdrawal</h5>
+                            </div>
+                        </div>
+                        <div class="timeline-item cursor-pointer" data-step="3">
+                            <div class="flex items-center">
+                                <div class="timeline-dot w-4 h-4 rounded-full bg-slate-300 transition-all duration-300"></div>
+                                <h5 class="ml-4 font-semibold">4. Feedback Cascade</h5>
+                            </div>
+                        </div>
+                         <div class="timeline-item cursor-pointer" data-step="4">
+                            <div class="flex items-center">
+                                <div class="timeline-dot w-4 h-4 rounded-full bg-slate-300 transition-all duration-300"></div>
+                                <h5 class="ml-4 font-semibold">5. Price Collapse</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-2 bg-white p-6 rounded-lg shadow-lg">
+                     <h4 id="timeline-title" class="text-2xl font-bold mb-2"></h4>
+                     <p id="timeline-text" class="text-slate-600 mb-4 min-h-[100px]"></p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="flash-crash-chart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white py-6">
+        <div class="container mx-auto text-center text-slate-400">
+            <p>QuantumFeed Interactive Report. Adapted from academic research for educational purposes.</p>
+            <p class="text-sm mt-1">A project by Rahul Kumar.</p>
+        </div>
+    </footer>
+    
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    const appState = {
+        archComponents: [
+            {
+                title: 'Market Service (C++)',
+                text: 'The heart of microstructural realism. Each instance encapsulates a complete market with a continuous double-auction matching engine operating on a full-depth Limit Order Book (LOB) with strict price/time priority.'
+            },
+            {
+                title: 'Agent Service (Python)',
+                text: 'Manages the lifecycle of the trading agent population. It\'s a flexible container in Python for running heterogeneous agent \'personas\' (e.g., Noise Traders, Market Makers) and can be scaled horizontally.'
+            },
+            {
+                title: 'Simulation Orchestrator',
+                text: 'The central nervous system. It manages experiment configuration, lifecycle (start/stop), time synchronization, and aggregates results for post-simulation analysis.'
+            },
+            {
+                title: 'Communication Layer',
+                text: 'Inter-service communication uses Google\'s Protocol Buffers (Protobuf). This high-performance binary format is language-agnostic, enabling seamless, low-latency communication between the C++ engine and Python agents.'
+            },
+        ],
+        dataModels: {
+            gbm: {
+                title: 'Geometric Brownian Motion',
+                description: 'The standard model for stock price simulation. It generates a latent "fundamental value" path with a random walk and drift. This path is not the final transaction price but an unobservable guidepost that informs agent behavior.',
+                formula: '$$\\frac{\\Delta S_t}{S_t} = \\mu \\Delta t + \\sigma \\epsilon \\sqrt{\\Delta t}$$'
+            },
+            hawkes: {
+                title: 'Multivariate Hawkes Process',
+                description: 'A self-exciting process used to model order arrivals. It captures the clustering of trades where a burst of activity triggers further activity (self-excitation) and the interplay between buy and sell orders (cross-excitation). This allows the simulator to endogenously generate realistic Order Flow Imbalance (OFI).',
+                formula: '$$\\lambda(t) = \\mu + \\sum_{t_i < t} \\alpha e^{-\\beta(t-t_i)}$$'
+            },
+            ou: {
+                title: 'Ornstein-Uhlenbeck Process',
+                description: 'A mean-reverting process ideal for modeling phenomena that tend to revert to a long-term average. It is used to build sophisticated agent personas, such as "Pairs Trading Arbitrageurs" who trade on the spread between two cointegrated assets.',
+                formula: '$$dX_t = \\theta(\\mu - X_t)dt + \\sigma dW_t$$'
+            }
+        },
+        stylizedFacts: [
+            { 
+                title: "Heavy-Tailed Returns", 
+                description: "Price returns show leptokurtosis, meaning extreme events (crashes, rallies) are more frequent than in a normal distribution.",
+                chartType: 'bar',
+                data: {
+                    labels: ['-3σ', '-2σ', '-1σ', 'Mean', '+1σ', '+2σ', '+3σ'],
+                    datasets: [
+                        {
+                            label: 'Simulated Returns Freq.',
+                            data: [15, 60, 200, 450, 200, 60, 15],
+                            backgroundColor: 'rgba(245, 158, 11, 0.6)',
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Normal Distribution Freq.',
+                            data: [2, 45, 250, 406, 250, 45, 2],
+                            backgroundColor: 'rgba(100, 116, 139, 0.6)',
+                            borderColor: 'rgba(100, 116, 139, 1)',
+                            borderWidth: 1
+                        }
+                    ]
+                }
+            },
+            { 
+                title: "Volatility Clustering", 
+                description: "Periods of high volatility tend to be followed by more high volatility, and periods of low volatility by low volatility.",
+                chartType: 'line',
+                data: {
+                    labels: Array.from({length: 100}, (_, i) => i + 1),
+                    datasets: [{
+                        label: 'Simulated Returns',
+                        data: Array.from({length: 100}, (_, i) => {
+                            let v = Math.random() * 0.5;
+                            if ((i > 20 && i < 40) || (i > 70 && i < 90)) {
+                                v = Math.random() * 2.5;
+                            }
+                            return (Math.random() > 0.5 ? 1 : -1) * v;
+                        }),
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                        borderWidth: 1,
+                        pointRadius: 0,
+                        fill: true,
+                    }]
+                }
+            },
+            {
+                title: "Absence of Linear Autocorrelation",
+                description: "Raw price returns show little to no correlation with their past values, consistent with the efficient market hypothesis.",
+                 chartType: 'bar',
+                data: {
+                    labels: ['Lag 1', 'Lag 2', 'Lag 3', 'Lag 4', 'Lag 5'],
+                    datasets: [{
+                        label: 'Autocorrelation of Returns',
+                        data: [0.03, -0.01, 0.05, -0.02, 0.01],
+                        backgroundColor: 'rgba(100, 116, 139, 0.6)',
+                        borderColor: 'rgba(100, 116, 139, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true, min: -0.1, max: 0.1 } } }
+            }
+        ],
+        flashCrash: {
+            data: [
+                { price: 100, step: 0 }, { price: 99.8, step: 1 }, { price: 99.5, step: 1 }, { price: 99.2, step: 1 },
+                { price: 99, step: 1 }, { price: 98.5, step: 2 }, { price: 97, step: 2 }, { price: 95, step: 2 },
+                { price: 94, step: 2 }, { price: 92, step: 3 }, { price: 88, step: 3 }, { price: 85, step: 3 },
+                { price: 80, step: 4 }, { price: 78, step: 4 }, { price: 75, step: 4 }
+            ],
+            steps: [
+                { title: 'Stable Market', text: 'The market is operating under normal conditions. HFT market makers are actively providing liquidity, and the bid-ask spread is tight.' },
+                { title: 'Initial Absorption', text: 'A large institutional "POV_Seller" agent begins executing its large order. HFT market makers initially absorb this selling pressure, keeping the market stable.' },
+                { title: 'Liquidity Withdrawal', text: 'As HFTs accumulate large positions, they hit risk limits. In response to persistent one-sided selling, they withdraw their bids, creating a "liquidity vacuum."' },
+                { title: 'Feedback Cascade', text: 'The POV_Seller continues to sell aggressively into a thinning market, accelerating the price decline. This triggers stop-loss orders from other agents, adding to the selling pressure.' },
+                { title: 'Price Collapse', text: 'The powerful, self-reinforcing feedback loop drives the price down precipitously as all agents attempt to sell simultaneously in a market devoid of buyers.' }
+            ]
+        }
+    };
+
+    let flashCrashChartInstance;
+    let modalChartInstance;
+
+    function initMobileMenu() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+    
+    function initNavScrollSpy() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === entry.target.id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-50% 0px -50% 0px' });
+
+        sections.forEach(section => {
+            if (section.id) {
+                observer.observe(section);
+            }
+        });
+    }
+
+    function initArchExplorer() {
+        const components = document.querySelectorAll('.arch-component');
+        const display = document.getElementById('arch-display');
+        components.forEach(component => {
+            component.addEventListener('click', () => {
+                const title = component.dataset.title;
+                const text = component.dataset.text;
+                display.innerHTML = `<h5 class="text-xl font-bold mb-2 text-slate-800">${title}</h5><p class="text-slate-600">${text}</p>`;
+            });
+        });
+    }
+
+    function initModelsSection() {
+        const tabs = document.querySelectorAll('.model-tab');
+        const contentContainer = document.getElementById('model-content-container');
+        let gbmChartInstance = null;
+        let hawkesChartInstance = null;
+        let ouChartInstance = null;
+
+        function renderModelContent(modelKey) {
+            const model = appState.dataModels[modelKey];
+            let chartHtml = '';
+            if (modelKey === 'gbm') {
+                chartHtml = `
+                    <div class="w-full">
+                         <div class="chart-container h-64">
+                            <canvas id="gbm-chart"></canvas>
+                        </div>
+                        <button id="gbm-rerun" class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded transition">
+                            Simulate New Path
+                        </button>
+                    </div>`;
+            } else if (modelKey === 'hawkes') {
+                 chartHtml = `
+                    <div class="w-full">
+                         <div class="chart-container h-64">
+                            <canvas id="hawkes-chart"></canvas>
+                        </div>
+                        <button id="hawkes-rerun" class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded transition">
+                            Simulate New Process
+                        </button>
+                    </div>`;
+            } else if (modelKey === 'ou') {
+                 chartHtml = `
+                    <div class="w-full">
+                         <div class="chart-container h-64">
+                            <canvas id="ou-chart"></canvas>
+                        </div>
+                        <button id="ou-rerun" class="mt-4 w-full bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded transition">
+                            Simulate New Process
+                        </button>
+                    </div>`;
+            }
+
+
+            contentContainer.innerHTML = `
+                <div class="prose max-w-none">
+                    <p>${model.description}</p>
+                    <div class="bg-slate-100 p-4 rounded text-center text-sm my-4">${model.formula}</div>
+                </div>
+                ${chartHtml}
+            `;
+
+            if(window.MathJax) {
+                window.MathJax.typeset();
+            }
+
+            if (modelKey === 'gbm') {
+                renderGBMChart();
+                document.getElementById('gbm-rerun').addEventListener('click', renderGBMChart);
+            } else if (modelKey === 'hawkes') {
+                renderHawkesChart();
+                 document.getElementById('hawkes-rerun').addEventListener('click', renderHawkesChart);
+            } else if (modelKey === 'ou') {
+                renderOUChart();
+                 document.getElementById('ou-rerun').addEventListener('click', renderOUChart);
+            }
+        }
+
+        function renderGBMChart() {
+            if (gbmChartInstance) gbmChartInstance.destroy();
+            const ctx = document.getElementById('gbm-chart').getContext('2d');
+            const data = {
+                labels: Array.from({length: 50}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Simulated Asset Value',
+                    data: Array.from({length: 50}).reduce((acc, _, i) => {
+                        const lastValue = acc.length > 0 ? acc[acc.length - 1] : 100;
+                        const newValue = lastValue * (1 + (Math.random() - 0.49) * 0.05);
+                        acc.push(newValue);
+                        return acc;
+                    }, []),
+                    borderColor: 'rgba(13, 110, 253, 1)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.1
+                }]
+            };
+            gbmChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { title: { display: true, text: 'Value' } } }
+                }
+            });
+        }
+
+        function simulateHawkesProcess(mu = 0.5, alpha = 0.8, beta = 0.1, steps = 100) {
+            let intensity = mu;
+            const intensityHistory = [];
+            for (let i = 0; i < steps; i++) {
+                intensity += -beta * (intensity - mu); // Exponential decay towards mu
+                if (Math.random() < intensity / (steps/10)) { // Check for an event
+                    intensity += alpha; // Jump on event
+                }
+                intensityHistory.push(intensity);
+            }
+            return intensityHistory;
+        }
+
+        function renderHawkesChart() {
+            if (hawkesChartInstance) hawkesChartInstance.destroy();
+            const ctx = document.getElementById('hawkes-chart').getContext('2d');
+            const intensityData = simulateHawkesProcess();
+            const data = {
+                labels: Array.from({length: intensityData.length}, (_, i) => i + 1),
+                datasets: [{
+                    label: 'Event Intensity λ(t)',
+                    data: intensityData,
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    backgroundColor: 'rgba(239, 68, 68, 0.2)',
+                    fill: true,
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.1
+                }]
+            };
+             hawkesChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { title: { display: true, text: 'Intensity λ(t)' } } }
+                }
+            });
+        }
+        
+        function simulateOUProcess(start_price=100, mu=100, theta=0.1, sigma=0.5, steps=100) {
+            const path = [start_price];
+            for (let i = 1; i < steps; i++) {
+                const prev = path[i-1];
+                const dW = (Math.random() - 0.5) * 2; // Approximation of Wiener process
+                const dX = theta * (mu - prev) + sigma * dW;
+                path.push(prev + dX);
+            }
+            return path;
+        }
+
+        function renderOUChart() {
+            if (ouChartInstance) ouChartInstance.destroy();
+            const ctx = document.getElementById('ou-chart').getContext('2d');
+            const mu = 100;
+            const ouData = simulateOUProcess(110, mu);
+            const data = {
+                labels: Array.from({length: ouData.length}, (_, i) => i + 1),
+                datasets: [
+                {
+                    label: 'Mean-Reverting Path',
+                    data: ouData,
+                    borderColor: 'rgba(34, 197, 94, 1)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    tension: 0.1
+                },
+                {
+                    label: 'Long-Term Mean (μ)',
+                    data: Array(ouData.length).fill(mu),
+                    borderColor: 'rgba(100, 116, 139, 1)',
+                    borderWidth: 2,
+                    pointRadius: 0,
+                    borderDash: [5, 5]
+                }]
+            };
+             ouChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: {
+                    responsive: true, maintainAspectRatio: false,
+                    plugins: { legend: { display: true, position: 'bottom', labels: { boxWidth: 12 } } },
+                    scales: { y: { title: { display: true, text: 'Value' } } }
+                }
+            });
+        }
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active', 'border-amber-500', 'text-amber-600'));
+                tab.classList.add('active', 'border-amber-500', 'text-amber-600');
+                renderModelContent(tab.dataset.model);
+            });
+        });
+
+        renderModelContent('gbm');
+    }
+
+    function initValidationSection() {
+        const grid = document.getElementById('stylized-facts-grid');
+        const modalContainer = document.getElementById('modal-container');
+        const modalClose = document.getElementById('modal-close');
+        const modalTitle = document.getElementById('modal-title');
+        
+        appState.stylizedFacts.forEach(fact => {
+            const card = document.createElement('div');
+            card.className = 'bg-white p-6 rounded-lg shadow-lg cursor-pointer hover:shadow-xl hover:-translate-y-1 transition-all duration-300';
+            card.innerHTML = `
+                <h4 class="text-xl font-semibold text-slate-800 mb-2">${fact.title}</h4>
+                <p class="text-slate-600">${fact.description}</p>
+            `;
+            card.addEventListener('click', () => {
+                modalTitle.textContent = fact.title;
+                if (modalChartInstance) modalChartInstance.destroy();
+                
+                const ctx = document.getElementById('modal-chart').getContext('2d');
+                modalChartInstance = new Chart(ctx, {
+                    type: fact.chartType,
+                    data: fact.data,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...fact.options
+                    }
+                });
+                modalContainer.classList.remove('hidden');
+                modalContainer.classList.add('flex');
+            });
+            grid.appendChild(card);
+        });
+
+        modalClose.addEventListener('click', () => {
+            modalContainer.classList.add('hidden');
+            modalContainer.classList.remove('flex');
+        });
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) {
+                 modalContainer.classList.add('hidden');
+                 modalContainer.classList.remove('flex');
+            }
+        });
+    }
+
+    function initFlashCrashSection() {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineTitle = document.getElementById('timeline-title');
+        const timelineText = document.getElementById('timeline-text');
+        const crashData = appState.flashCrash.data;
+        
+        const ctx = document.getElementById('flash-crash-chart').getContext('2d');
+        flashCrashChartInstance = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: crashData.map((d, i) => i),
+                datasets: [{
+                    label: 'S&P 500 E-mini Price',
+                    data: [],
+                    borderColor: 'rgba(220, 38, 38, 1)',
+                    backgroundColor: 'rgba(220, 38, 38, 0.2)',
+                    fill: true,
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: { 
+                    y: { title: { display: true, text: 'Price Index' }, min: 70, max: 102 },
+                    x: { display: false }
+                },
+                animation: {
+                    duration: 800,
+                    easing: 'easeInOutQuad'
+                }
+            }
+        });
+
+        function updateTimeline(stepIndex) {
+            timelineItems.forEach((item, index) => {
+                if (index <= stepIndex) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+            const stepInfo = appState.flashCrash.steps[stepIndex];
+            timelineTitle.textContent = stepInfo.title;
+            timelineText.textContent = stepInfo.text;
+
+            const newData = crashData.filter(d => d.step <= stepIndex).map(d => d.price);
+            flashCrashChartInstance.data.datasets[0].data = newData;
+            flashCrashChartInstance.data.labels = Array.from({length: newData.length}, (_, i) => i);
+            flashCrashChartInstance.update();
+        }
+
+        timelineItems.forEach(item => {
+            item.addEventListener('click', () => {
+                updateTimeline(parseInt(item.dataset.step));
+            });
+        });
+
+        updateTimeline(0);
+    }
+
+    function initSimulatorAnimation() {
+        const bidsBookEl = document.getElementById('sim-bids-book');
+        const asksBookEl = document.getElementById('sim-asks-book');
+        const tradesLogEl = document.getElementById('sim-trades-log');
+        const trendIndicatorEl = document.getElementById('sim-trend-indicator');
+        const trendTextEl = document.getElementById('sim-trend-text');
+        const internalsEl = document.getElementById('sim-internals');
+
+        let bids = [];
+        let asks = [];
+        let trend = 'NEUTRAL'; // NEUTRAL, BULLISH, BEARISH
+        let trendCounter = 0;
+
+        const updateBooks = () => {
+            bidsBookEl.innerHTML = bids.map(o => `<div class="grid grid-cols-2 gap-2 text-xs"><span class="price-bid">${o.price.toFixed(2)}</span><span>${o.size}</span></div>`).join('');
+            asksBookEl.innerHTML = asks.map(o => `<div class="grid grid-cols-2 gap-2 text-xs"><span class="price-ask">${o.price.toFixed(2)}</span><span>${o.size}</span></div>`).join('');
+        };
+        
+        const addTradeLog = (price, size, side) => {
+            const newTrade = document.createElement('div');
+            const priceClass = side === 'BUY' ? 'price-bid' : 'price-ask';
+            newTrade.className = 'grid grid-cols-[auto,1fr,1fr,1fr] gap-4 flash-update';
+            newTrade.innerHTML = `<span class="text-gray-500 whitespace-nowrap">${new Date().toLocaleTimeString()}</span><span class="font-bold">QFEED</span><span>${size}</span><span class="${priceClass} text-right">${price.toFixed(2)}</span>`;
+            tradesLogEl.prepend(newTrade);
+            if (tradesLogEl.children.length > 20) tradesLogEl.lastChild.remove();
+        };
+
+        const updateTrendIndicator = () => {
+            trendIndicatorEl.classList.remove('hidden', 'bg-green-800', 'text-green-200', 'bg-red-800', 'text-red-200', 'bg-slate-600', 'text-slate-200');
+            trendTextEl.textContent = trend;
+            if (trend === 'BULLISH') {
+                trendIndicatorEl.classList.add('bg-green-800', 'text-green-200');
+            } else if (trend === 'BEARISH') {
+                trendIndicatorEl.classList.add('bg-red-800', 'text-red-200');
+            } else {
+                trendIndicatorEl.classList.add('bg-slate-600', 'text-slate-200');
+            }
+        };
+        
+        const getImbalanceColor = (imbalance) => {
+            if (imbalance > 0.1) return 'bg-green-500';
+            if (imbalance < -0.1) return 'bg-red-500';
+            return 'bg-slate-500';
+        };
+
+        const updateInternals = () => {
+            const bestBid = bids.length > 0 ? bids[0].price : 0;
+            const bestAsk = asks.length > 0 ? asks[0].price : 0;
+            const spread = bestAsk > 0 && bestBid > 0 ? (bestAsk - bestBid) : 0;
+
+            const bidVol = bids.slice(0, 5).reduce((sum, o) => sum + o.size, 0);
+            const askVol = asks.slice(0, 5).reduce((sum, o) => sum + o.size, 0);
+            const totalVol = bidVol + askVol;
+            const imbalanceRatio = totalVol > 0 ? (bidVol - askVol) / totalVol : 0;
+            const imbalancePercent = Math.abs(imbalanceRatio * 100);
+            const imbalanceColor = getImbalanceColor(imbalanceRatio);
+            
+            internalsEl.innerHTML = `<div class="flex justify-between items-center text-slate-400"><span title="Bid-Ask Spread">Spread: $${spread.toFixed(2)}</span> <div class="w-24 h-2 bg-slate-700 rounded-full"><div class="${imbalanceColor} h-2 rounded-full" style="width: ${imbalancePercent}%; margin-left: ${imbalanceRatio > 0 ? '50%' : (50-imbalancePercent)+'%'}"></div></div></div>`;
+        };
+
+        const simulationTick = () => {
+            trendCounter++;
+            if (trendCounter > 20) { // Change trend every ~30s
+                const rand = Math.random();
+                if (rand < 0.33) trend = 'BULLISH';
+                else if (rand < 0.66) trend = 'BEARISH';
+                else trend = 'NEUTRAL';
+                updateTrendIndicator();
+                trendCounter = 0;
+            }
+            
+            let buyProb = 0.5;
+            if(trend === 'BULLISH') buyProb = 0.7;
+            if(trend === 'BEARISH') buyProb = 0.3;
+
+            const isBuy = Math.random() < buyProb;
+            const size = Math.floor(Math.random() * 91) + 10;
+            const lastPrice = asks.length > 0 ? asks[0].price : 100.01;
+            const price = lastPrice + (Math.random() - 0.5) * 0.15;
+
+            if (isBuy) {
+                bids.push({ price, size });
+                bids.sort((a, b) => b.price - a.price);
+            } else {
+                asks.push({ price, size });
+                asks.sort((a, b) => a.price - b.price);
+            }
+
+            if (bids.length > 0 && asks.length > 0 && bids[0].price >= asks[0].price) {
+                const tradePrice = asks[0].price;
+                const tradeSize = Math.min(bids[0].size, asks[0].size);
+                
+                addTradeLog(tradePrice, tradeSize, Math.random() < buyProb ? 'BUY' : 'SELL');
+
+                bids[0].size -= tradeSize;
+                asks[0].size -= tradeSize;
+
+                if (bids[0].size <= 0) bids.shift();
+                if (asks[0].size <= 0) asks.shift();
+            }
+            
+            while (bids.length > 15) bids.pop();
+            while (asks.length > 15) asks.shift();
+
+            updateBooks();
+            updateInternals();
+        };
+
+        const tradesHeader = '<div class="grid grid-cols-[auto,1fr,1fr,1fr] gap-4 font-bold header pb-1 mb-1 text-xs"><span>TIME</span><span>TICKER</span><span>QTY</span><span class="text-right">PRICE</span></div>';
+        tradesLogEl.innerHTML = tradesHeader;
+        for(let i=0; i<15; i++) {
+            bids.push({price: 99.9 - i*0.02, size: Math.floor(Math.random() * 150) + 20});
+            asks.push({price: 100.1 + i*0.02, size: Math.floor(Math.random() * 150) + 20});
+        }
+        bids.sort((a,b) => b.price - a.price);
+        asks.sort((a,b) => a.price - b.price);
+        updateBooks();
+        updateTrendIndicator();
+        updateInternals();
+        setInterval(simulationTick, 750);
+    }
+
+    initMobileMenu();
+    initNavScrollSpy();
+    initArchExplorer();
+    initSimulatorAnimation();
+    initModelsSection();
+    initValidationSection();
+    initFlashCrashSection();
+});
+
+</script>
+</body>
+</html>
