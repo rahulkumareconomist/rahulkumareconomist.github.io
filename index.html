@@ -39,6 +39,9 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
+        #ai-summary-modal {
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-700">
@@ -51,6 +54,7 @@
                 <a href="#home" class="nav-link nav-link-active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#research" class="nav-link">Research</a>
+                <a href="#workshops" class="nav-link">Workshops</a>
                 <a href="#collaborate" class="nav-link">Collaborate</a>
             </div>
         </nav>
@@ -136,10 +140,15 @@
                     <p class="text-sm text-gray-500 mb-2">
                         Working Paper (2025). 
                     </p>
-                    <p class="text-gray-600 mb-3">
+                    <p class="text-gray-600 mb-3 publication-abstract">
                         This project introduces a novel, open-source simulator for high-frequency trading research. It combines a high-performance C++ matching engine with a flexible Python agent framework to model complex market dynamics with high fidelity. The paper details its distributed architecture, sophisticated data generation models, and validation against the stylized facts of financial markets. The work culminates in a successful replication of the 2010 Flash Crash, demonstrating its utility as a powerful digital laboratory.
                     </p>
-                    <a href="quantumfeed_report.html" target="_blank" class="text-blue-600 font-semibold hover:underline">Explore the Interactive Report &rarr;</a>
+                    <div class="flex items-center space-x-4 mt-4">
+                        <a href="quantumfeed_report.html" target="_blank" class="text-blue-600 font-semibold hover:underline">Explore the Interactive Report &rarr;</a>
+                        <button onclick="handleSummaryClick(this)" class="bg-indigo-100 text-indigo-700 font-semibold px-4 py-2 rounded-lg shadow-sm hover:bg-indigo-200 transition-colors duration-300">
+                            ✨ Summarize for Layman
+                        </button>
+                    </div>
                 </div>
 
                 <div class="bg-white p-6 rounded-xl shadow-md">
@@ -149,16 +158,67 @@
                         <em class="italic">Transnational Corporations Review</em>, 
                         Volume 6, Issue 2, 147-170.
                     </p>
-                    <p class="text-gray-600 mb-3">
+                    <p class="text-gray-600 mb-3 publication-abstract">
                         The integration of India with the global financial system has expose Indian economy's external sectors to a harsh reality of capital flows. Among the capital flows, many are a global unaccounted risk and uncertainties. Systematic study to understand real and nominal impact of the flows in the economy has not been much looked upon. The paper uses a model of Australian Open Economy used by LBP (Lal, Berry and Pant) to understand the significance of sterilized capital flows with respect to its absorption in the economy, contributing to economic growth in India. The paper also examines the extent to which the policy measures are a cushion to hedge on the stress and crisis.
                     </p>
-                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=8LwxXBQAAAAJ&citation_for_view=8LwxXBQAAAAJ:u5HHmVD_uO8C" target="_blank" class="text-blue-600 font-semibold hover:underline">View on Google Scholar &rarr;</a>
+                    <div class="flex items-center space-x-4 mt-4">
+                        <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=8LwxXBQAAAAJ&citation_for_view=8LwxXBQAAAAJ:u5HHmVD_uO8C" target="_blank" class="text-blue-600 font-semibold hover:underline">View on Google Scholar &rarr;</a>
+                        <button onclick="handleSummaryClick(this)" class="bg-indigo-100 text-indigo-700 font-semibold px-4 py-2 rounded-lg shadow-sm hover:bg-indigo-200 transition-colors duration-300">
+                            ✨ Summarize for Layman
+                        </button>
+                    </div>
                 </div>
                 
             </div> <div class="text-center mt-12">
                 <a href="https://scholar.google.com/citations?user=8LwxXBQAAAAJ&hl=en" class="bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300">
                     View All Publications
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops & Professional Development Section -->
+    <section id="workshops" class="py-16 md:py-24">
+        <div class="container mx-auto px-6">
+            <h2 class="section-title">Workshops & Professional Development</h2>
+            <div class="space-y-10">
+                <ul class="space-y-8 list-disc list-inside text-gray-700">
+                    <li>
+                        Participated in the 6-day <strong>"Workshop on Open Economy Macroeconomics and Economic Integration in Emerging Market Economies"</strong>.
+                        <br>
+                        <span class="text-sm text-gray-600 ml-6">Organized by Centre for Development Studies (CDS) & Reserve Bank of India (RBI). (13-18 March 2025)</span>
+                        <div class="pl-10 mt-2 space-y-1">
+                            <p class="text-gray-700">Presented a paper titled: <em class="italic">“Bond Yields, Macroeconomic Variables, and Exchange Rates: A Dynamic Interaction for Price Stability.”</em></p>
+                            <p class="text-sm text-gray-600 pl-4">- Exploring the Interrelationship Between Inflation, Economic Growth, and Exchange Rate Movements to Understand Long-Term Price Stability.</p>
+                        </div>
+                        <div class="mt-2 ml-6">
+                            <a href="https://cds.edu/event/rbi-conference/" target="_blank" class="text-blue-600 hover:underline">[Workshop Details]</a>
+                            <a href="files/BondYeildMacroREER_conference.pdf" target="_blank" class="text-blue-600 hover:underline ml-2">[View Paper]</a>
+                            <a href="files/CDS_open_macroeconomy_certitificate.jpg" target="_blank" class="text-blue-600 hover:underline ml-2">[View Certificate]</a>
+                        </div>
+                    </li>
+                    <li>
+                        Participated in the Training Programme on <strong>“BIG Data Analysis Through Theory and Application”</strong>.
+                        <br>
+                        <span class="text-sm text-gray-600 ml-6">Organized by Centre for Development Studies (CDS), Thiruvananthapuram, India. (28 April 2025 – 02 May 2025)</span>
+                        <div class="pl-10 mt-2">
+                            <p class="text-gray-700">Presented a paper titled: <em class="italic">“Rare Earth Elements Scarcity under Trade Restrictions: An Econometric and Machine Learning Approach.”</em></p>
+                        </div>
+                        <div class="mt-2 ml-6">
+                            <a href="https://cds.edu/events/training-programmes/bigdata/" target="_blank" class="text-blue-600 hover:underline">[Workshop Details]</a>
+                            <a href="files/CDS_big_data_Presentation_final.pdf" target="_blank" class="text-blue-600 hover:underline ml-2">[View Presentation]</a>
+                            <a href="files/big_data_certificate.jpg" target="_blank" class="text-blue-600 hover:underline ml-2">[View Certificate]</a>
+                        </div>
+                    </li>
+                    <li>
+                        Participated in the 5-Day Workshop on <strong>“Quantum Computing, Machine Learning (ML) and Artificial Intelligence (AI)”</strong>.
+                        <br>
+                        <span class="text-sm text-gray-600 ml-6">Organized by Department of Physics, School of Advanced Sciences (SAS), VIT-AP University, India. (20th May 2025 - 24th May 2025)</span>
+                        <div class="mt-2 ml-6">
+                           <a href="files/External Participations-61.pdf" target="_blank" class="text-blue-600 hover:underline">[View Certificate]</a>
+                        </div>
+                    </li>
+                 </ul>
             </div>
         </div>
     </section>
@@ -199,6 +259,26 @@
         </div>
     </footer>
 
+    <!-- AI Summary Modal -->
+    <div id="ai-summary-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full mx-auto transform transition-all duration-300 scale-95 opacity-0" id="modal-panel">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800 flex items-center">
+                        <span class="text-indigo-500 mr-3">✨</span> AI-Generated Summary
+                    </h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                <div id="summary-content" class="text-gray-700 space-y-3 prose lg:prose-lg max-w-none">
+                    <!-- Loading spinner will be shown here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
@@ -223,6 +303,107 @@
                 }
             });
         });
+
+        // --- Gemini AI Summary Feature ---
+
+        const modal = document.getElementById('ai-summary-modal');
+        const modalPanel = document.getElementById('modal-panel');
+        const summaryContent = document.getElementById('summary-content');
+
+        // Function to show the modal
+        function showModal() {
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                modalPanel.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            modalPanel.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300); // Wait for transition to finish
+        }
+
+        // Close modal if backdrop is clicked
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Main function to handle the button click
+        function handleSummaryClick(buttonElement) {
+            const publicationCard = buttonElement.closest('.bg-white');
+            const abstractElement = publicationCard.querySelector('.publication-abstract');
+            
+            if (abstractElement) {
+                const abstractText = abstractElement.innerText;
+                showModal();
+                setLoadingState();
+                getAiSummary(abstractText);
+            } else {
+                console.error("Could not find the abstract for this publication.");
+                summaryContent.innerHTML = `<p class="text-red-500">Error: Could not find the abstract for this publication.</p>`;
+            }
+        }
+
+        // Sets the loading state in the modal
+        function setLoadingState() {
+            summaryContent.innerHTML = `
+                <div class="flex justify-center items-center py-8">
+                    <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-500"></div>
+                    <p class="ml-4 text-gray-600">Generating summary...</p>
+                </div>
+            `;
+        }
+
+        // Function to call the Gemini API
+        async function getAiSummary(abstractText) {
+            const prompt = `Summarize the following research abstract for a non-expert audience, highlighting its key contributions in 3 simple bullet points. Use clear, accessible language.
+
+Abstract:
+---
+${abstractText}
+---
+Summary:
+`;
+
+            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // Canvas provides this
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts.length > 0) {
+                    const summaryText = result.candidates[0].content.parts[0].text;
+                    // Basic formatting to convert markdown-like lists to HTML
+                    const formattedSummary = summaryText
+                        .replace(/\*\s?/g, '<li>') // Replace asterisks with list item tags
+                        .replace(/\n/g, '</li>');    // Replace newlines with closing list item tags
+                    summaryContent.innerHTML = `<ul class="list-disc list-inside space-y-2">${formattedSummary}</ul>`;
+                } else {
+                    throw new Error("Invalid response structure from API.");
+                }
+            } catch (error) {
+                console.error("Error fetching AI summary:", error);
+                summaryContent.innerHTML = `<p class="text-red-500">Sorry, there was an error generating the summary. Please try again later.</p>`;
+            }
+        }
+
     </script>
 
 </body>
