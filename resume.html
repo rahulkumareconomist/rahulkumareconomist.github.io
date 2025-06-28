@@ -87,6 +87,24 @@
             margin: 0 0 5px 0; /* Adjust paragraph spacing within skills */
             font-size: 0.9em;
         }
+        /* Style for education line with left/right alignment */
+        .education-title-line {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-top: 15px; /* Adjusted top margin for consistency */
+            margin-bottom: 3px;
+        }
+        .education-title-line h3 {
+            margin: 0; /* Remove default h3 margins */
+            flex-grow: 1; /* Allow h3 to take available space */
+        }
+        .education-title-line .date-range {
+            float: none; /* Override float from general date-range */
+            margin-left: 10px; /* Add some space between text and date */
+            white-space: nowrap; /* Prevent date from wrapping */
+        }
+
         .date-range {
             float: right;
             font-style: italic;
@@ -127,6 +145,45 @@
             text-align: right;
         }
 
+        /* Styles for the download popup message */
+        .download-prompt {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            opacity: 0; /* Start hidden */
+            transition: opacity 0.5s ease-in-out;
+            z-index: 1000; /* Ensure it's on top */
+        }
+        .download-prompt.show {
+            opacity: 1;
+        }
+        .download-prompt .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            line-height: 1;
+            margin-left: 5px;
+        }
+        .download-prompt .arrow {
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white; /* Pointing upwards by default */
+            margin-right: 5px;
+            transform: rotate(45deg); /* Adjust arrow direction */
+        }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
@@ -161,6 +218,19 @@
             .resume-footer .right-align {
                 text-align: left; /* Ensure right-aligned content also aligns left when stacked */
                 margin-top: 5px; /* Add some space when stacked */
+            }
+            .education-title-line {
+                flex-direction: column; /* Stack on small screens */
+                align-items: flex-start;
+            }
+            .education-title-line .date-range {
+                margin-left: 0; /* Remove margin when stacked */
+            }
+            .download-prompt {
+                bottom: 10px;
+                right: 10px;
+                font-size: 0.8em;
+                padding: 8px 12px;
             }
         }
     </style>
@@ -208,7 +278,7 @@
                 <li>Architected the Discretionary Mandate Haircut model for security-backed lending in Europe and APAC, employing VaR and time series modeling.</li>
                 <li>Introduced new Key Model Performance Indicators (KMPI) for Premium Lending Value Models to address remediation.</li>
                 <li>Contributed to equity lending value models using GARCH with Maximum Likelihood Estimation (MLE) and Student-t distribution.</li>
-                <li>Executed pricing for equity derivatives, exotics, and structured products using analytical and minimal approaches.</li>
+                <li>Executed pricing for equity derivatives, exotics, and structured products under analytical and minimal approaches.</li>
                 <li>Optimized model running environments for high performance and large data handling using distributed/parallel computing.</li>
                 <li>Streamlined Lombard haircut model workflows (data, processing, publication), enhancing back-testing efficiency and reducing processing time by 50% to prevent system crashes.</li>
             </ul>
@@ -288,22 +358,25 @@
 
         <h2>Academic Records -</h2>
         <div class="education-item">
-            <h3>Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
-            <span class="date-range">Jan 2024 - Ongoing</span>
-            <div class="clear-float"></div>
+            <div class="education-title-line">
+                <h3>Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
+                <span class="date-range">Jan 2024 - Ongoing</span>
+            </div>
             <ul>
                 <li>Research Focus: Global Macroeconomy, International Finance, Global Capital & Trade Flow, Central Banking, Econometrics.</li>
             </ul>
         </div>
         <div class="education-item">
-            <h3>MA Applied Economics, Christ University, Bangalore</h3>
-            <span class="date-range">June 2012 - May 2014</span>
-            <div class="clear-float"></div>
+            <div class="education-title-line">
+                <h3>MA Applied Economics, Christ University, Bangalore</h3>
+                <span class="date-range">June 2012 - May 2014</span>
+            </div>
         </div>
         <div class="education-item">
-            <h3>Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
-            <span class="date-range">May 2011 April 2012</span>
-            <div class="clear-float"></div>
+            <div class="education-title-line">
+                <h3>Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
+                <span class="date-range">May 2011 April 2012</span>
+            </div>
         </div>
 
         <h2>Publication and Academic Project -</h2>
@@ -313,12 +386,7 @@
             <div class="clear-float"></div>
             <p>The paper examines the impact of sterilized capital flows on India's economic growth, using an Australian Open Economy model to evaluate their absorption and the effectiveness of policy measures in mitigating associated risks and crises.</p>
         </div>
-        <div class="publication-item">
-            <h3>Academic Project titled - "A Macroeconomic Perspective on External Sector Vulnerability"</h3>
-            <span class="date-range">June, 2013-Mar, 2014</span>
-            <div class="clear-float"></div>
-            <p>Submitted in partial fulfillment of the requirements for the Degree of Master of Arts in Applied Economics.</p>
-        </div>
+        
 
         <div class="resume-footer">
             <div class="left-align">Mumbai, Maharashtra</div>
@@ -326,5 +394,21 @@
         </div>
 
     </div>
+
+    <!-- Download Prompt Message -->
+    <div id="downloadPrompt" class="download-prompt">
+        <div class="arrow"></div>
+        <span>To download this resume as PDF, go to **File > Print > Save as PDF**.</span>
+        <button class="close-btn" onclick="document.getElementById('downloadPrompt').style.display='none';">&times;</button>
+    </div>
+
+    <script>
+        // Show the download prompt after a short delay
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('downloadPrompt').classList.add('show');
+            }, 3000); // Show after 3 seconds
+        };
+    </script>
 </body>
 </html>
