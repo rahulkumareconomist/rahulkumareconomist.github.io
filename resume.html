@@ -87,19 +87,22 @@
             margin: 0 0 5px 0; /* Adjust paragraph spacing within skills */
             font-size: 0.9em;
         }
-        /* Style for education line with left/right alignment */
-        .education-title-line {
+        /* Style for titles with left/right alignment (job titles and education titles) */
+        .title-line {
             display: flex;
             justify-content: space-between;
             align-items: baseline;
             margin-top: 15px; /* Adjusted top margin for consistency */
             margin-bottom: 3px;
+            background-color: #f9f9f9; /* Light grey background for highlighting */
+            padding: 5px 10px; /* Add some padding for better visual appearance */
+            border-radius: 4px; /* Slightly rounded corners */
         }
-        .education-title-line h3 {
+        .title-line h3 {
             margin: 0; /* Remove default h3 margins */
             flex-grow: 1; /* Allow h3 to take available space */
         }
-        .education-title-line .date-range {
+        .title-line .date-range {
             float: none; /* Override float from general date-range */
             margin-left: 10px; /* Add some space between text and date */
             white-space: nowrap; /* Prevent date from wrapping */
@@ -219,11 +222,12 @@
                 text-align: left; /* Ensure right-aligned content also aligns left when stacked */
                 margin-top: 5px; /* Add some space when stacked */
             }
-            .education-title-line {
+            .title-line { /* Applies to both experience and education titles */
                 flex-direction: column; /* Stack on small screens */
                 align-items: flex-start;
+                padding: 5px; /* Adjust padding for small screens */
             }
-            .education-title-line .date-range {
+            .title-line .date-range {
                 margin-left: 0; /* Remove margin when stacked */
             }
             .download-prompt {
@@ -256,9 +260,10 @@
         <h2>Research and Professional Experience -</h2>
 
         <div class="experience-item">
-            <h3>Quantitative Analyst - Associate Director, UBS - Navi Mumbai, India</h3>
-            <span class="date-range">March 2021 - Present</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Quantitative Analyst - Associate Director, UBS - Navi Mumbai, India</h3>
+                <span class="date-range">March 2021 - Present</span>
+            </div>
             <ul>
                 <li>Led quantitative research, team leadership, and model development for PD, LGD, & Valuation Models across Corporate, Sovereign, and Investment Banking portfolios.</li>
                 <li>Managed $240+ billion Sovereign portfolio, conducting periodic reviews and re-estimating/recalibrating parameters using multivariate regression and tail loss modeling (Pluto & Tasche).</li>
@@ -270,9 +275,10 @@
         </div>
 
         <div class="experience-item">
-            <h3>Quantitative Analyst - Authorized Officer, UBS - Navi Mumbai, India</h3>
-            <span class="date-range">March 2019 - March 2021</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Quantitative Analyst - Authorized Officer, UBS - Navi Mumbai, India</h3>
+                <span class="date-range">March 2019 - March 2021</span>
+            </div>
             <ul>
                 <li>Developed and managed BAU tasks for Lombard multi-asset portfolio models, overseeing $1,300+ billion in combined lending value.</li>
                 <li>Architected the Discretionary Mandate Haircut model for security-backed lending in Europe and APAC, employing VaR and time series modeling.</li>
@@ -285,9 +291,10 @@
         </div>
 
         <div class="experience-item">
-            <h3>Senior Research Analyst, CRISIL Ltd. - Pune, India.</h3>
-            <span class="date-range">January 2017-March 2019</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Senior Research Analyst, CRISIL Ltd. - Pune, India.</h3>
+                <span class="date-range">January 2017-March 2019</span>
+            </div>
             <ul>
                 <li>Developed quantitative models for buy-side multi-asset investment strategies, primarily in R.</li>
                 <li>Constructed models to estimate the term structure of German Bonds using Nelson and Siegel (1987) method with weighted constrained optimization.</li>
@@ -301,9 +308,10 @@
         </div>
 
         <div class="experience-item">
-            <h3>Analytics & Modeling Analyst, Accenture Services Pvt. Ltd. - Bangalore, India.</h3>
-            <span class="date-range">January 2016-January 2017</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Analytics & Modeling Analyst, Accenture Services Pvt. Ltd. - Bangalore, India.</h3>
+                <span class="date-range">January 2016-January 2017</span>
+            </div>
             <ul>
                 <li>Built predictive models for trade, transaction, and sales volumes for Fortune 500 companies, focusing on short-term and long-term forecasts.</li>
                 <li>Modeled arrival patterns and tick-by-tick data flow at granular intervals (1-min, 15-min, 30-min, 60-min) using SETAR, VAR, and SVD methods on market data.</li>
@@ -311,36 +319,40 @@
         </div>
 
         <div class="experience-item">
-            <h3>Research Assistant, Institute for Social and Economic Change - Bangalore, India.</h3>
-            <span class="date-range">June, 2015 – December, 2015</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Research Assistant, Institute for Social and Economic Change - Bangalore, India.</h3>
+                <span class="date-range">June, 2015 – December, 2015</span>
+            </div>
             <ul>
                 <li>Researched with Center for Social and Economic Policy (CESP), on Reserve Bank of India, Government of Karnataka, Norway Government sponsored projects of regional, national and international importance; in the area of Credit, Finance, Macroeconomics and Development Economics; exploring the inter-linkages for the purpose of public policy making and evaluation purposes using statistical and logistic regression models.</li>
             </ul>
         </div>
 
         <div class="experience-item">
-            <h3>Gandhi Fellow, Piramal Foundation for Education Leadership, Rajasthan, India</h3>
-            <span class="date-range">July, 2014 - December, 2014</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Gandhi Fellow, Piramal Foundation for Education Leadership, Rajasthan, India</h3>
+                <span class="date-range">July, 2014 - December, 2014</span>
+            </div>
             <ul>
                 <li>Consulted a team of primary school headmasters on strategies to improve student learning outcome (SLO).</li>
             </ul>
         </div>
 
         <div class="experience-item">
-            <h3>Intern, Institute for Social and Economic Change (ISEC), Bangalore, India</h3>
-            <span class="date-range">April 2013-June 2013</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Intern, Institute for Social and Economic Change (ISEC), Bangalore, India</h3>
+                <span class="date-range">April 2013-June 2013</span>
+            </div>
             <ul>
                 <li>Interned with Centre for Economic Studies and Policy (CESP) on Financial Exclusion on the project title - "Financial Exclusion in Urban Regions: A Case Study of Karnataka". A Project Funded by CAFRAL, Mumbai.</li>
             </ul>
         </div>
 
         <div class="experience-item">
-            <h3>Associate, Fidelity Investments Ltd., Bangalore, India.</h3>
-            <span class="date-range">November, 2010 - May, 2012</span>
-            <div class="clear-float"></div>
+            <div class="title-line">
+                <h3>Associate, Fidelity Investments Ltd., Bangalore, India.</h3>
+                <span class="date-range">November, 2010 - May, 2012</span>
+            </div>
             <ul>
                 <li>Review Financial Models and calculations related to pension funds (US Defined Benefit). Published excel based reports periodically. Performed data validation exercises with SQL while maintaining accuracy in processing files (on a day-to-day basis). Researched the discrepancy related to data and resolved issues before bringing it to notice.</li>
             </ul>
@@ -358,7 +370,7 @@
 
         <h2>Academic Records -</h2>
         <div class="education-item">
-            <div class="education-title-line">
+            <div class="title-line">
                 <h3>Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
                 <span class="date-range">Jan 2024 - Ongoing</span>
             </div>
@@ -367,13 +379,13 @@
             </ul>
         </div>
         <div class="education-item">
-            <div class="education-title-line">
+            <div class="title-line">
                 <h3>MA Applied Economics, Christ University, Bangalore</h3>
                 <span class="date-range">June 2012 - May 2014</span>
             </div>
         </div>
         <div class="education-item">
-            <div class="education-title-line">
+            <div class="title-line">
                 <h3>Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
                 <span class="date-range">May 2011 April 2012</span>
             </div>
