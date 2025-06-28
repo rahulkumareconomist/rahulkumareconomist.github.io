@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahul Kumar - Resume</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif; /* A common, clean font for general resumes */
+            line-height: 1.5; /* Slightly tighter line height to match PDF density */
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            margin-bottom: 5px; /* Reduced margin to match PDF's tighter spacing */
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.2em; /* Adjusted to be closer to PDF's appearance */
+            margin-bottom: 5px;
+        }
+        h2 {
+            font-size: 1.5em; /* Adjusted to be closer to PDF's appearance */
+            border-bottom: 1px solid #eee; /* Lighter border for section separation */
+            padding-bottom: 3px; /* Smaller padding */
+            margin-top: 25px; /* Adjusted top margin for sections */
+        }
+        h3 {
+            font-size: 1.1em; /* Adjusted for subtler headings */
+            margin-top: 15px; /* Adjusted top margin for sub-sections */
+            margin-bottom: 3px; /* Reduced margin */
+        }
+        .header-contact {
+            text-align: center;
+            font-size: 0.95em; /* Slightly smaller font */
+            margin-bottom: 20px;
+        }
+        .header-contact a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 5px; /* Tighter spacing for contacts */
+        }
+        .header-contact a:hover {
+            text-decoration: underline;
+        }
+        .profile-summary {
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+        .experience-item, .education-item, .publication-item {
+            margin-bottom: 15px; /* Tighter spacing between items */
+        }
+        .experience-item ul, .education-item ul {
+            list-style: none; /* Remove default bullets */
+            padding-left: 0;
+            margin-top: 5px; /* Tighter margin from heading */
+        }
+        .experience-item ul li, .education-item ul li {
+            position: relative;
+            margin-bottom: 3px; /* Tighter line spacing for bullets */
+            padding-left: 15px; /* Space for custom bullet */
+            font-size: 0.9em; /* Smaller font size for bullet points */
+        }
+        .experience-item ul li:before, .education-item ul li:before {
+            content: 'O'; /* Custom bullet point */
+            position: absolute;
+            left: 0;
+            color: #555; /* Color of the bullet */
+            font-weight: bold;
+        }
+        .skills-section h3 {
+            margin-top: 20px; /* Specific margin for skills heading */
+            margin-bottom: 5px;
+        }
+        .skills-list p {
+            margin: 0 0 5px 0; /* Adjust paragraph spacing within skills */
+            font-size: 0.9em;
+        }
+        .date-range {
+            float: right;
+            font-style: italic;
+            color: #555;
+            font-size: 0.9em; /* Smaller date font */
+        }
+        .location {
+            float: right;
+            font-style: normal;
+            color: #555;
+            font-size: 0.9em; /* Smaller location font */
+            margin-left: 10px; /* Space between location and date */
+        }
+        .clear-float {
+            clear: both;
+        }
+        .bold-text {
+            font-weight: bold;
+        }
+        /* New style for the footer signature */
+        .resume-footer {
+            display: flex; /* Use flexbox for alignment */
+            justify-content: space-between; /* Pushes items to ends */
+            align-items: flex-end; /* Aligns items at the bottom of the line */
+            margin-top: 30px;
+            padding-top: 10px; /* Space above the border */
+            border-top: 1px solid #eee; /* Added top border */
+            font-size: 0.9em;
+            color: #555;
+        }
+        .resume-footer div {
+            flex: 1; /* Allow divs to take equal space */
+        }
+        .resume-footer .left-align {
+            text-align: left;
+        }
+        .resume-footer .right-align {
+            text-align: right;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 15px;
+            }
+            .date-range, .location {
+                float: none;
+                display: block;
+                margin-top: 5px;
+                text-align: left;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            h3 {
+                font-size: 1.1em;
+            }
+            .experience-item ul li, .education-item ul li, .skills-list p {
+                font-size: 0.85em;
+            }
+            .resume-footer {
+                flex-direction: column; /* Stack elements vertically on small screens */
+                align-items: flex-start; /* Align all to start */
+            }
+            .resume-footer .right-align {
+                text-align: left; /* Ensure right-aligned content also aligns left when stacked */
+                margin-top: 5px; /* Add some space when stacked */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>RAHUL KUMAR</h1>
+        <div class="header-contact">
+            <a href="mailto:rahulkumar_rk@live.in">rahulkumar_rk@live.in</a> |
+            <span>+91 9740871055</span> |
+            <a href="https://www.linkedin.com/in/rahulkumarrk" target="_blank">https://www.linkedin.com/in/rahulkumarrk</a>
+        </div>
+
+        <h2>Profile Summary -</h2>
+        <p class="profile-summary">
+            Ph.D. scholar in Economics and quantitative researcher with over 12+ years of experience in econometric modelling,
+            macroeconomic research, and investment strategy development. Highly proficient in R programming, with extensive
+            experience designing and implementing advanced models for forecasting, risk management, and multi-asset portfolio
+            optimization. Proven ability to enhance computational efficiency and performance, crucial for low-latency financial
+            environments, and actively leveraging AI tools for accelerated development and analytical insights.
+        </p>
+
+        <h2>Research and Professional Experience -</h2>
+
+        <div class="experience-item">
+            <h3>Quantitative Analyst - Associate Director, UBS - Navi Mumbai, India</h3>
+            <span class="date-range">March 2021 - Present</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Led quantitative research, team leadership, and model development for PD, LGD, & Valuation Models across Corporate, Sovereign, and Investment Banking portfolios.</li>
+                <li>Managed $240+ billion Sovereign portfolio, conducting periodic reviews and re-estimating/recalibrating parameters using multivariate regression and tail loss modeling (Pluto & Tasche).</li>
+                <li>Remediated methodological issues in Aircraft Leasing Financing and Industrial Goods Leasing models (logistic regression) through rigorous KMPI testing.</li>
+                <li>Conducted Stress Testing & Benchmarking Analysis for Swiss National Bank regulatory submissions, analyzing stress loss evolution.</li>
+                <li>Spearheaded submission of 44 AIRB, Pillar I models to FINMA, ensuring regulatory compliance and process efficiency.</li>
+                <li>Utilized AI-powered tools (e.g., Copilot) within MS Office and VS Code to enhance productivity, automate code generation, and expedite data analysis and research tasks.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Quantitative Analyst - Authorized Officer, UBS - Navi Mumbai, India</h3>
+            <span class="date-range">March 2019 - March 2021</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Developed and managed BAU tasks for Lombard multi-asset portfolio models, overseeing $1,300+ billion in combined lending value.</li>
+                <li>Architected the Discretionary Mandate Haircut model for security-backed lending in Europe and APAC, employing VaR and time series modeling.</li>
+                <li>Introduced new Key Model Performance Indicators (KMPI) for Premium Lending Value Models to address remediation.</li>
+                <li>Contributed to equity lending value models using GARCH with Maximum Likelihood Estimation (MLE) and Student-t distribution.</li>
+                <li>Executed pricing for equity derivatives, exotics, and structured products using analytical and minimal approaches.</li>
+                <li>Optimized model running environments for high performance and large data handling using distributed/parallel computing.</li>
+                <li>Streamlined Lombard haircut model workflows (data, processing, publication), enhancing back-testing efficiency and reducing processing time by 50% to prevent system crashes.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Senior Research Analyst, CRISIL Ltd. - Pune, India.</h3>
+            <span class="date-range">January 2017-March 2019</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Developed quantitative models for buy-side multi-asset investment strategies, primarily in R.</li>
+                <li>Constructed models to estimate the term structure of German Bonds using Nelson and Siegel (1987) method with weighted constrained optimization.</li>
+                <li>Replicated "Determinants of intra-euro area government bond spreads" via panel data regression.</li>
+                <li>Developed "Nowcasting GDP" model integrating Principal Component Analysis, Vector Autoregression, and Kalman Filter Smoother.</li>
+                <li>Created an R package for rectangular cartograms of world maps, visualizing macro data as heat maps by GDP size.</li>
+                <li>Designed a Leading Economic Indicator model for major economies using Machine Learning to identify optimal leading properties.</li>
+                <li>Developed "Investment Clock/Business Cycle" and models on "Credit Impulse," "Sector Rotation Strategy."</li>
+                <li>Designed and developed an NLP and text mining algorithm for sentiment-based stock price prediction from Fortune 500 US company reports.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Analytics & Modeling Analyst, Accenture Services Pvt. Ltd. - Bangalore, India.</h3>
+            <span class="date-range">January 2016-January 2017</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Built predictive models for trade, transaction, and sales volumes for Fortune 500 companies, focusing on short-term and long-term forecasts.</li>
+                <li>Modeled arrival patterns and tick-by-tick data flow at granular intervals (1-min, 15-min, 30-min, 60-min) using SETAR, VAR, and SVD methods on market data.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Research Assistant, Institute for Social and Economic Change - Bangalore, India.</h3>
+            <span class="date-range">June, 2015 – December, 2015</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Researched with Center for Social and Economic Policy (CESP), on Reserve Bank of India, Government of Karnataka, Norway Government sponsored projects of regional, national and international importance; in the area of Credit, Finance, Macroeconomics and Development Economics; exploring the inter-linkages for the purpose of public policy making and evaluation purposes using statistical and logistic regression models.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Gandhi Fellow, Piramal Foundation for Education Leadership, Rajasthan, India</h3>
+            <span class="date-range">July, 2014 - December, 2014</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Consulted a team of primary school headmasters on strategies to improve student learning outcome (SLO).</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Intern, Institute for Social and Economic Change (ISEC), Bangalore, India</h3>
+            <span class="date-range">April 2013-June 2013</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Interned with Centre for Economic Studies and Policy (CESP) on Financial Exclusion on the project title - "Financial Exclusion in Urban Regions: A Case Study of Karnataka". A Project Funded by CAFRAL, Mumbai.</li>
+            </ul>
+        </div>
+
+        <div class="experience-item">
+            <h3>Associate, Fidelity Investments Ltd., Bangalore, India.</h3>
+            <span class="date-range">November, 2010 - May, 2012</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Review Financial Models and calculations related to pension funds (US Defined Benefit). Published excel based reports periodically. Performed data validation exercises with SQL while maintaining accuracy in processing files (on a day-to-day basis). Researched the discrepancy related to data and resolved issues before bringing it to notice.</li>
+            </ul>
+        </div>
+
+        <h2>Technical/Programming Skills -</h2>
+        <div class="skills-list">
+            <p><strong>Programming:</strong> R (Expert), Python, SQL, SAS, C++</p>
+            <p><strong>Modeling & Statistics:</strong> Econometric Modeling, Time Series Analysis (VAR, GARCH, SETAR), VaR, Logistic Regression, Multivariate Regression, Tail Loss Modeling, PCA, Kalman Filter, Machine Learning, MLE, Panel Data.</p>
+            <p><strong>AI & Productivity Tools:</strong> GitHub Copilot (VS Code for auto code generation, code upgrades), AI in MS Office applications (Word, Excel, PowerPoint), AI-driven research & data analysis.</p>
+            <p><strong>Computational Efficiency:</strong> Distributed/Parallel Computing, Performance Optimization, Low-Latency Data Processing.</p>
+            <p><strong>Financial Domain:</strong> Risk Management, Portfolio Optimization, Macroeconomic Analysis, Regulatory Compliance (FINMA, Swiss National Bank).</p>
+            <p><strong>Tools & Concepts:</strong> Backtesting, Model Validation, Data Cleaning & Aggregation, NLP & Text Mining.</p>
+        </div>
+
+        <h2>Academic Records -</h2>
+        <div class="education-item">
+            <h3>Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
+            <span class="date-range">Jan 2024 - Ongoing</span>
+            <div class="clear-float"></div>
+            <ul>
+                <li>Research Focus: Global Macroeconomy, International Finance, Global Capital & Trade Flow, Central Banking, Econometrics.</li>
+            </ul>
+        </div>
+        <div class="education-item">
+            <h3>MA Applied Economics, Christ University, Bangalore</h3>
+            <span class="date-range">June 2012 - May 2014</span>
+            <div class="clear-float"></div>
+        </div>
+        <div class="education-item">
+            <h3>Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
+            <span class="date-range">May 2011 April 2012</span>
+            <div class="clear-float"></div>
+        </div>
+
+        <h2>Publication and Academic Project -</h2>
+        <div class="publication-item">
+            <h3>International Publication: Kumar, Rahul (2014). "India's Challenge on Managing the External Sector, with the Sterilization of Capital Flows," Transnational Corporations Review, 6(2):147-170.</h3>
+            <span class="date-range">June, 2014</span>
+            <div class="clear-float"></div>
+            <p>The paper examines the impact of sterilized capital flows on India's economic growth, using an Australian Open Economy model to evaluate their absorption and the effectiveness of policy measures in mitigating associated risks and crises.</p>
+        </div>
+        <div class="publication-item">
+            <h3>Academic Project titled - "A Macroeconomic Perspective on External Sector Vulnerability"</h3>
+            <span class="date-range">June, 2013-Mar, 2014</span>
+            <div class="clear-float"></div>
+            <p>Submitted in partial fulfillment of the requirements for the Degree of Master of Arts in Applied Economics.</p>
+        </div>
+
+        <div class="resume-footer">
+            <div class="left-align">Mumbai, Maharashtra</div>
+            <div class="right-align">Rahul Kumar</div>
+        </div>
+
+    </div>
+</body>
+</html>
