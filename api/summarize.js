@@ -1,5 +1,5 @@
 // This is a Vercel serverless function.
-// It will be accessible at YOUR_SITE_URL/api/summarize
+// It includes CORS headers and correctly parses the request body.
 
 export default async function handler(request, response) {
   // Set CORS headers to allow requests from your specific Vercel domain
@@ -7,21 +7,23 @@ export default async function handler(request, response) {
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  // Handle preflight OPTIONS requests for CORS
+  // Handle the browser's preflight "OPTIONS" request for CORS
   if (request.method === 'OPTIONS') {
     return response.status(200).end();
   }
   
-  // Only allow POST requests
+  // We only want to handle POST requests for the actual summary
   if (request.method !== 'POST') {
     return response.status(405).json({ error: 'Only POST requests are allowed' });
   }
 
   try {
-    // FIX: Correctly parse the JSON body from the request
-    const { abstractText } = await request.json();
+    // *** THE FIX IS HERE ***
+    // In Vercel's environment, the parsed JSON body is on `request.body`.
+    const { abstractText } = request.body;
+
     if (!abstractText) {
-      return response.status(400).json({ error: 'Abstract text is required.' });
+      return response.status(400).json({ error: 'Abstract text is required in the request body.' });
     }
 
     // Get your secret API key from environment variables on Vercel
@@ -55,11 +57,13 @@ Summary:
 
     const result = await geminiResponse.json();
     
+    // Check if the API call itself was not successful
     if (!geminiResponse.ok) {
         console.error("Gemini API Error:", result);
         throw new Error(result.error?.message || 'Failed to get a valid response from the AI service.');
     }
 
+    // Check if the response contains the expected summary data
     if (result.candidates && result.candidates.length > 0) {
       const summary = result.candidates[0].content.parts[0].text;
       return response.status(200).json({ summary: summary });
@@ -68,6 +72,7 @@ Summary:
     }
 
   } catch (error) {
+    // Log the detailed error on the server side (visible in Vercel logs)
     console.error('Internal Server Error:', error);
     return response.status(500).json({ error: error.message || 'An internal server error occurred.' });
   }
