@@ -1,5 +1,4 @@
-// This Vercel serverless function now sends a single, comprehensive notification
-// to the site owner, containing the token for them to forward.
+// This Vercel serverless function includes robust checking of the Resend API call.
 import { Resend } from 'resend';
 import { createClient } from '@vercel/kv';
 
@@ -24,11 +23,11 @@ export default async function handler(request, response) {
     return response.status(405).json({ error: 'Only POST requests are allowed' });
   }
 
-  // Check for all required Environment Variables
+  // Check for all required Environment Variables FIRST
   const { RESEND_API_KEY, NOTIFICATION_EMAIL, KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
   if (!RESEND_API_KEY || !NOTIFICATION_EMAIL || !KV_REST_API_URL || !KV_REST_API_TOKEN) {
       console.error("Server Configuration Error: Missing one or more environment variables.");
-      return response.status(500).json({ error: 'Server is not configured correctly.' });
+      return response.status(500).json({ error: 'Server is not configured correctly. Please contact the administrator.' });
   }
 
   try {
@@ -43,9 +42,9 @@ export default async function handler(request, response) {
       url: KV_REST_API_URL,
       token: KV_REST_API_TOKEN,
     });
-    await kv.set(token, 'valid', { ex: 86400 }); // Token expires in 24 hours
+    await kv.set(token, 'valid', { ex: 86400 });
 
-    // --- Email Notification Logic (Single Email to You) ---
+    // --- Email Notification Logic ---
     const resend = new Resend(RESEND_API_KEY);
     const ip = request.headers['x-forwarded-for'] || request.socket.remoteAddress;
 
@@ -64,15 +63,22 @@ export default async function handler(request, response) {
       <p style="font-size: 20px; font-weight: bold; letter-spacing: 2px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; text-align: center;">${token}</p>
     `;
 
-    // Send the single, comprehensive email to yourself
-    await resend.emails.send({
+    // Send the single, comprehensive email to yourself and check the response
+    const { data, error } = await resend.emails.send({
         from: 'Portfolio Notifier <onboarding@resend.dev>',
         to: NOTIFICATION_EMAIL,
         subject: subject,
         html: body,
     });
 
-    console.log(`Token ${token} generated for ${email} and notification sent.`);
+    // **CRITICAL CHECK:** If there's an error from Resend, throw an error to be caught by the catch block.
+    if (error) {
+      console.error("Resend API Error:", error);
+      throw new Error("Failed to send notification email via Resend.");
+    }
+    
+    // Only if there is no error, log success and return a success response
+    console.log(`Token ${token} generated for ${email} and notification sent successfully. Message ID: ${data.id}`);
     return response.status(200).json({ success: true });
 
   } catch (error) {
