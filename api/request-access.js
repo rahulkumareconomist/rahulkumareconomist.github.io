@@ -1,4 +1,5 @@
-// This Vercel serverless function includes robust error checking.
+// This Vercel serverless function now sends a single, comprehensive notification
+// to the site owner, containing the token for them to forward.
 import { Resend } from 'resend';
 import { createClient } from '@vercel/kv';
 
@@ -23,11 +24,11 @@ export default async function handler(request, response) {
     return response.status(405).json({ error: 'Only POST requests are allowed' });
   }
 
-  // --- Check for all required Environment Variables FIRST ---
+  // Check for all required Environment Variables
   const { RESEND_API_KEY, NOTIFICATION_EMAIL, KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
   if (!RESEND_API_KEY || !NOTIFICATION_EMAIL || !KV_REST_API_URL || !KV_REST_API_TOKEN) {
       console.error("Server Configuration Error: Missing one or more environment variables.");
-      return response.status(500).json({ error: 'Server is not configured correctly. Please contact the administrator.' });
+      return response.status(500).json({ error: 'Server is not configured correctly.' });
   }
 
   try {
@@ -42,33 +43,36 @@ export default async function handler(request, response) {
       url: KV_REST_API_URL,
       token: KV_REST_API_TOKEN,
     });
-    await kv.set(token, 'valid', { ex: 86400 });
+    await kv.set(token, 'valid', { ex: 86400 }); // Token expires in 24 hours
 
-    // --- Email Notification Logic ---
+    // --- Email Notification Logic (Single Email to You) ---
     const resend = new Resend(RESEND_API_KEY);
     const ip = request.headers['x-forwarded-for'] || request.socket.remoteAddress;
 
-    // A. Email the token to the recruiter
-    const recruiterSubject = `Access Token for Rahul Kumar Thakur's Resume`;
-    const recruiterBody = `<p>Hello ${name},</p><p>Thank you for your interest. Please use the following single-use access token to view the confidential details on my resume. This token is valid for 24 hours.</p><p style="font-size: 20px; font-weight: bold; letter-spacing: 2px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; text-align: center;">${token}</p><p>You can enter this token on the resume page: <a href="https://rahulkumareconomist-github-io.vercel.app/resume.html">https://rahulkumareconomist-github-io.vercel.app/resume.html</a></p><p>Best regards,<br>Rahul Kumar Thakur</p>`;
-    await resend.emails.send({
-        from: 'Portfolio Notifier <onboarding@resend.dev>',
-        to: email,
-        subject: recruiterSubject,
-        html: recruiterBody,
-    });
+    const subject = `[Action Required] Resume Access Request from ${name}`;
+    const body = `
+      <p>You have received a new request to access confidential details on your resume.</p>
+      <h3 style="color:#333;">Requester Details:</h3>
+      <ul>
+        <li><strong>Name:</strong> ${name}</li>
+        <li><strong>Company:</strong> ${company}</li>
+        <li><strong>Email:</strong> <a href="mailto:${email}">${email}</a></li>
+        <li><strong>IP Address:</strong> ${ip}</li>
+      </ul>
+      <h3 style="color:#333;">Single-Use Access Token:</h3>
+      <p>If you approve this request, please forward the following token to them. It is valid for 24 hours and can only be used once.</p>
+      <p style="font-size: 20px; font-weight: bold; letter-spacing: 2px; background-color: #f0f0f0; padding: 10px; border-radius: 5px; text-align: center;">${token}</p>
+    `;
 
-    // B. Email a notification to yourself
-    const selfSubject = `New Resume Access Request from ${name} at ${company}`;
-    const selfBody = `<p>A new access token was generated and sent to ${name} at ${email}.</p><p>IP: ${ip}</p>`;
+    // Send the single, comprehensive email to yourself
     await resend.emails.send({
         from: 'Portfolio Notifier <onboarding@resend.dev>',
         to: NOTIFICATION_EMAIL,
-        subject: selfSubject,
-        html: selfBody,
+        subject: subject,
+        html: body,
     });
 
-    console.log(`Token ${token} generated for ${email}`);
+    console.log(`Token ${token} generated for ${email} and notification sent.`);
     return response.status(200).json({ success: true });
 
   } catch (error) {
