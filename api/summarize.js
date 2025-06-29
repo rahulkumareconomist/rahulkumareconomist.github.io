@@ -1,9 +1,20 @@
 // This is a Vercel serverless function.
-// It includes CORS headers and correctly parses the request body.
+// It includes a dynamic CORS policy to allow requests from specific domains.
 
 export default async function handler(request, response) {
-  // Set CORS headers to allow requests from your specific Vercel domain
-  response.setHeader('Access-Control-Allow-Origin', 'https://rahulkumareconomist-github-io.vercel.app');
+  // Define the list of allowed website origins
+  const allowedOrigins = [
+    'https://rahulkumareconomist-github-io.vercel.app',
+    'https://rahulkumareconomist.github.io'
+  ];
+
+  const origin = request.headers.get('origin');
+  
+  // If the request's origin is in our allowed list, set the CORS header
+  if (allowedOrigins.includes(origin)) {
+    response.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  
   response.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -18,7 +29,6 @@ export default async function handler(request, response) {
   }
 
   try {
-    // *** THE FIX IS HERE ***
     // In Vercel's environment, the parsed JSON body is on `request.body`.
     const { abstractText } = request.body;
 
