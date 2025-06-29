@@ -3,153 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rahul Kumar - Resume</title>
+    <title>Resume - Rahul Kumar Thakur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Arial', sans-serif; /* A common, clean font for general resumes */
-            line-height: 1.5; /* Slightly tighter line height to match PDF density */
-            margin: 0;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
             background-color: #f4f4f4;
             color: #333;
         }
         .container {
             max-width: 900px;
-            margin: 20px auto;
-            background: #fff;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
         }
-        h1, h2, h3 {
-            color: #2c3e50;
-            margin-bottom: 5px; /* Reduced margin to match PDF's tighter spacing */
-        }
-        h1 {
-            text-align: center;
-            font-size: 2.2em; /* Adjusted to be closer to PDF's appearance */
-            margin-bottom: 5px;
-        }
-        h2 {
-            font-size: 1.5em; /* Adjusted to be closer to PDF's appearance */
-            border-bottom: 1px solid #eee; /* Lighter border for section separation */
-            padding-bottom: 3px; /* Smaller padding */
-            margin-top: 25px; /* Adjusted top margin for sections */
-        }
-        h3 {
-            font-size: 1.1em; /* Adjusted for subtler headings */
-            margin-top: 15px; /* Adjusted top margin for sub-sections */
-            margin-bottom: 3px; /* Reduced margin */
-        }
-        .header-contact {
-            text-align: center;
-            font-size: 0.95em; /* Slightly smaller font */
-            margin-bottom: 20px;
-        }
-        .header-contact a {
-            color: #007bff;
-            text-decoration: none;
-            margin: 0 5px; /* Tighter spacing for contacts */
-        }
-        .header-contact a:hover {
-            text-decoration: underline;
-        }
-        .profile-summary {
-            margin-bottom: 20px;
-            font-size: 0.95em;
-        }
-        .experience-item, .education-item, .publication-item {
-            margin-bottom: 15px; /* Tighter spacing between items */
-        }
-        .experience-item ul, .education-item ul {
-            list-style: none; /* Remove default bullets */
-            padding-left: 0;
-            margin-top: 5px; /* Tighter margin from heading */
-        }
-        .experience-item ul li, .education-item ul li {
-            position: relative;
-            margin-bottom: 3px; /* Tighter line spacing for bullets */
-            padding-left: 15px; /* Space for custom bullet */
-            font-size: 0.9em; /* Smaller font size for bullet points */
-        }
-        .experience-item ul li:before, .education-item ul li:before {
-            content: 'O'; /* Custom bullet point */
-            position: absolute;
-            left: 0;
-            color: #555; /* Color of the bullet */
-            font-weight: bold;
-        }
-        .skills-section h3 {
-            margin-top: 20px; /* Specific margin for skills heading */
-            margin-bottom: 5px;
-        }
-        .skills-list p {
-            margin: 0 0 5px 0; /* Adjust paragraph spacing within skills */
-            font-size: 0.9em;
-        }
-        /* Style for titles with left/right alignment (job titles and education titles) */
-        .title-line {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            margin-top: 15px; /* Adjusted top margin for consistency */
-            margin-bottom: 3px;
-            background-color: #f9f9f9; /* Light grey background for highlighting */
-            padding: 5px 10px; /* Add some padding for better visual appearance */
-            border-radius: 4px; /* Slightly rounded corners */
-        }
-        .title-line h3 {
-            margin: 0; /* Remove default h3 margins */
-            flex-grow: 1; /* Allow h3 to take available space */
-        }
-        .title-line .date-range {
-            float: none; /* Override float from general date-range */
-            margin-left: 10px; /* Add some space between text and date */
-            white-space: nowrap; /* Prevent date from wrapping */
-        }
-
-        .date-range {
-            float: right;
+        .confidential {
+            background-color: #e9ecef;
+            color: #6c757d;
+            padding: 0 0.4em;
+            border-radius: 4px;
             font-style: italic;
-            color: #555;
-            font-size: 0.9em; /* Smaller date font */
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
         }
-        .location {
-            float: right;
+        .confidential.revealed {
+            background-color: transparent;
+            color: inherit;
             font-style: normal;
-            color: #555;
-            font-size: 0.9em; /* Smaller location font */
-            margin-left: 10px; /* Space between location and date */
+            font-weight: 600;
         }
-        .clear-float {
-            clear: both;
+        #token-modal, #request-access-modal {
+            display: none;
         }
-        .bold-text {
-            font-weight: bold;
-        }
-        /* New style for the footer signature */
-        .resume-footer {
-            display: flex; /* Use flexbox for alignment */
-            justify-content: space-between; /* Pushes items to ends */
-            align-items: flex-end; /* Aligns items at the bottom of the line */
-            margin-top: 30px;
-            padding-top: 10px; /* Space above the border */
-            border-top: 1px solid #eee; /* Added top border */
-            font-size: 0.9em;
-            color: #555;
-        }
-        .resume-footer div {
-            flex: 1; /* Allow divs to take equal space */
-        }
-        .resume-footer .left-align {
-            text-align: left;
-        }
-        .resume-footer .right-align {
-            text-align: right;
-        }
-
-        /* Styles for the download popup message */
         .download-prompt {
+            display: none; /* Initially hidden */
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -159,268 +45,413 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             font-size: 0.9em;
-            display: flex;
             align-items: center;
             gap: 10px;
-            opacity: 0; /* Start hidden */
+            opacity: 0;
             transition: opacity 0.5s ease-in-out;
-            z-index: 1000; /* Ensure it's on top */
+            z-index: 1000;
         }
         .download-prompt.show {
+            display: flex;
             opacity: 1;
         }
         .download-prompt .close-btn {
             background: none;
             border: none;
             color: white;
-            font-size: 1.2em;
+            font-size: 1.5em;
             cursor: pointer;
             line-height: 1;
-            margin-left: 5px;
         }
-        .download-prompt .arrow {
-            width: 0;
-            height: 0;
-            border-left: 8px solid transparent;
-            border-right: 8px solid transparent;
-            border-bottom: 8px solid white; /* Pointing upwards by default */
-            margin-right: 5px;
-            transform: rotate(45deg); /* Adjust arrow direction */
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
+        
+        @media print {
             body {
-                padding: 10px;
+                background-color: #fff;
             }
             .container {
-                padding: 15px;
+                box-shadow: none;
+                margin: 0;
+                max-width: 100%;
             }
-            .date-range, .location {
-                float: none;
-                display: block;
-                margin-top: 5px;
-                text-align: left;
+            .flex.justify-end, #request-access-modal, #token-modal, .download-prompt {
+                display: none !important;
             }
-            h1 {
-                font-size: 1.8em;
+            .confidential.revealed {
+                color: transparent !important;
+                background-color: #e9ecef !important;
             }
-            h2 {
-                font-size: 1.4em;
-            }
-            h3 {
-                font-size: 1.1em;
-            }
-            .experience-item ul li, .education-item ul li, .skills-list p {
-                font-size: 0.85em;
-            }
-            .resume-footer {
-                flex-direction: column; /* Stack elements vertically on small screens */
-                align-items: flex-start; /* Align all to start */
-            }
-            .resume-footer .right-align {
-                text-align: left; /* Ensure right-aligned content also aligns left when stacked */
-                margin-top: 5px; /* Add some space when stacked */
-            }
-            .title-line { /* Applies to both experience and education titles */
-                flex-direction: column; /* Stack on small screens */
-                align-items: flex-start;
-                padding: 5px; /* Adjust padding for small screens */
-            }
-            .title-line .date-range {
-                margin-left: 0; /* Remove margin when stacked */
-            }
-            .download-prompt {
-                bottom: 10px;
-                right: 10px;
-                font-size: 0.8em;
-                padding: 8px 12px;
+            .confidential.revealed::after {
+                content: '[Request Access]';
+                color: #6c757d !important;
+                font-style: italic;
+                font-weight: normal;
             }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>RAHUL KUMAR</h1>
-        <div class="header-contact">
-            <a href="mailto:rahulkumar_rk@live.in">rahulkumar_rk@live.in</a> |
-            <span>+91 9740871055</span> |
-            <a href="https://www.linkedin.com/in/rahulkumarrk" target="_blank">https://www.linkedin.com/in/rahulkumarrk</a>
-        </div>
+<body class="bg-gray-100">
 
-        <h2>Profile Summary -</h2>
-        <p class="profile-summary">
-            Ph.D. scholar in Economics and quantitative researcher with over 12+ years of experience in econometric modelling,
-            macroeconomic research, and investment strategy development. Highly proficient in R programming, with extensive
-            experience designing and implementing advanced models for forecasting, risk management, and multi-asset portfolio
-            optimization. Proven ability to enhance computational efficiency and performance, crucial for low-latency financial
-            environments, and actively leveraging AI tools for accelerated development and analytical insights.
-        </p>
+    <div class="container mx-auto my-8 p-6 sm:p-10 bg-white shadow-lg rounded-md">
 
-        <h2>Research and Professional Experience -</h2>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Quantitative Analyst - Associate Director, UBS - Navi Mumbai, India</h3>
-                <span class="date-range">March 2021 - Present</span>
+        <header class="text-center mb-8 pb-4 border-b">
+            <h1 class="text-4xl font-bold text-gray-800">RAHUL KUMAR</h1>
+            <div class="header-contact text-gray-600 mt-2">
+                <a href="mailto:rahulkumar_rk@live.in" class="text-blue-600 hover:underline">rahulkumar_rk@live.in</a> |
+                <span>+91 9740871055</span> |
+                <a href="https://www.linkedin.com/in/rahulkumarrk" target="_blank" class="text-blue-600 hover:underline">linkedin.com/in/rahulkumarrk</a>
             </div>
-            <ul>
-                <li>Led quantitative research, team leadership, and model development for PD, LGD, & Valuation Models across Corporate, Sovereign, and Investment Banking portfolios.</li>
-                <li>Managed ******** USD billion Sovereign portfolio, conducting periodic reviews and re-estimating/recalibrating parameters using multivariate regression and tail loss modeling (Pluto & Tasche).</li>
-                <li>Remediated methodological issues in Aircraft Leasing Financing and Industrial Goods Leasing models (logistic regression) through rigorous KMPI testing.</li>
-                <li>Conducted Stress Testing & Benchmarking Analysis for Swiss National Bank regulatory submissions, analyzing stress loss evolution.</li>
-                <li>Spearheaded submission of 44 AIRB, Pillar I models to FINMA, ensuring regulatory compliance and process efficiency.</li>
-                <li>Utilized AI-powered tools (e.g., Copilot) within MS Office and VS Code to enhance productivity, automate code generation, and expedite data analysis and research tasks.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Quantitative Analyst - Authorized Officer, UBS - Navi Mumbai, India</h3>
-                <span class="date-range">March 2019 - March 2021</span>
-            </div>
-            <ul>
-                <li>Developed and managed BAU tasks for Lombard multi-asset portfolio models, overseeing ******** USD billion in combined lending value.</li>
-                <li>Architected the Discretionary Mandate Haircut model for security-backed lending in Europe and APAC, employing VaR and time series modeling.</li>
-                <li>Introduced new Key Model Performance Indicators (KMPI) for Premium Lending Value Models to address remediation.</li>
-                <li>Contributed to equity lending value models using GARCH with Maximum Likelihood Estimation (MLE) and Student-t distribution.</li>
-                <li>Executed pricing for equity derivatives, exotics, and structured products under analytical and minimal approaches.</li>
-                <li>Optimized model running environments for high performance and large data handling using distributed/parallel computing.</li>
-                <li>Streamlined Lombard haircut model workflows (data, processing, publication), enhancing back-testing efficiency and reducing processing time by 50% to prevent system crashes.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Senior Research Analyst, CRISIL Ltd. - Pune, India.</h3>
-                <span class="date-range">January 2017-March 2019</span>
-            </div>
-            <ul>
-                <li>Developed quantitative models for buy-side multi-asset investment strategies, primarily in R.</li>
-                <li>Constructed models to estimate the term structure of German Bonds using Nelson and Siegel (1987) method with weighted constrained optimization.</li>
-                <li>Replicated "Determinants of intra-euro area government bond spreads" via panel data regression.</li>
-                <li>Developed "Nowcasting GDP" model integrating Principal Component Analysis, Vector Autoregression, and Kalman Filter Smoother.</li>
-                <li>Created an R package for rectangular cartograms of world maps, visualizing macro data as heat maps by GDP size.</li>
-                <li>Designed a Leading Economic Indicator model for major economies using Machine Learning to identify optimal leading properties.</li>
-                <li>Developed "Investment Clock/Business Cycle" and models on "Credit Impulse," "Sector Rotation Strategy."</li>
-                <li>Designed and developed an NLP and text mining algorithm for sentiment-based stock price prediction from Fortune 500 US company reports.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Analytics & Modeling Analyst, Accenture Services Pvt. Ltd. - Bangalore, India.</h3>
-                <span class="date-range">January 2016-January 2017</span>
-            </div>
-            <ul>
-                <li>Built predictive models for trade, transaction, and sales volumes for Fortune 500 companies, focusing on short-term and long-term forecasts.</li>
-                <li>Modeled arrival patterns and tick-by-tick data flow at granular intervals (1-min, 15-min, 30-min, 60-min) using SETAR, VAR, and SVD methods on market data.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Research Assistant, Institute for Social and Economic Change - Bangalore, India.</h3>
-                <span class="date-range">June, 2015 – December, 2015</span>
-            </div>
-            <ul>
-                <li>Researched with Center for Social and Economic Policy (CESP), on Reserve Bank of India, Government of Karnataka, Norway Government sponsored projects of regional, national and international importance; in the area of Credit, Finance, Macroeconomics and Development Economics; exploring the inter-linkages for the purpose of public policy making and evaluation purposes using statistical and logistic regression models.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Gandhi Fellow, Piramal Foundation for Education Leadership, Rajasthan, India</h3>
-                <span class="date-range">July, 2014 - December, 2014</span>
-            </div>
-            <ul>
-                <li>Consulted a team of primary school headmasters on strategies to improve student learning outcome (SLO).</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Intern, Institute for Social and Economic Change (ISEC), Bangalore, India</h3>
-                <span class="date-range">April 2013-June 2013</span>
-            </div>
-            <ul>
-                <li>Interned with Centre for Economic Studies and Policy (CESP) on Financial Exclusion on the project title - "Financial Exclusion in Urban Regions: A Case Study of Karnataka". A Project Funded by CAFRAL, Mumbai.</li>
-            </ul>
-        </div>
-
-        <div class="experience-item">
-            <div class="title-line">
-                <h3>Associate, Fidelity Investments Ltd., Bangalore, India.</h3>
-                <span class="date-range">November, 2010 - May, 2012</span>
-            </div>
-            <ul>
-                <li>Review Financial Models and calculations related to pension funds (US Defined Benefit). Published excel based reports periodically. Performed data validation exercises with SQL while maintaining accuracy in processing files (on a day-to-day basis). Researched the discrepancy related to data and resolved issues before bringing it to notice.</li>
-            </ul>
-        </div>
-
-        <h2>Technical/Programming Skills -</h2>
-        <div class="skills-list">
-            <p><strong>Programming:</strong> R (Expert), Python, SQL, SAS, C++</p>
-            <p><strong>Modeling & Statistics:</strong> Econometric Modeling, Time Series Analysis (VAR, GARCH, SETAR), VaR, Logistic Regression, Multivariate Regression, Tail Loss Modeling, PCA, Kalman Filter, Machine Learning, MLE, Panel Data.</p>
-            <p><strong>AI & Productivity Tools:</strong> GitHub Copilot (VS Code for auto code generation, code upgrades), AI in MS Office applications (Word, Excel, PowerPoint), AI-driven research & data analysis.</p>
-            <p><strong>Computational Efficiency:</strong> Distributed/Parallel Computing, Performance Optimization, Low-Latency Data Processing.</p>
-            <p><strong>Financial Domain:</strong> Risk Management, Portfolio Optimization, Macroeconomic Analysis, Regulatory Compliance (FINMA, Swiss National Bank).</p>
-            <p><strong>Tools & Concepts:</strong> Backtesting, Model Validation, Data Cleaning & Aggregation, NLP & Text Mining.</p>
-        </div>
-
-        <h2>Academic Records -</h2>
-        <div class="education-item">
-            <div class="title-line">
-                <h3>Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
-                <span class="date-range">Jan 2024 - Ongoing</span>
-            </div>
-            <ul>
-                <li>Research Focus: Global Macroeconomy, International Finance, Global Capital & Trade Flow, Central Banking, Econometrics.</li>
-            </ul>
-        </div>
-        <div class="education-item">
-            <div class="title-line">
-                <h3>MA Applied Economics, Christ University, Bangalore</h3>
-                <span class="date-range">June 2012 - May 2014</span>
-            </div>
-        </div>
-        <div class="education-item">
-            <div class="title-line">
-                <h3>Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
-                <span class="date-range">May 2011 April 2012</span>
-            </div>
-        </div>
-
-        <h2>Publication and Academic Project -</h2>
-        <div class="publication-item">
-            <h3>International Publication: Kumar, Rahul (2014). "India's Challenge on Managing the External Sector, with the Sterilization of Capital Flows," Transnational Corporations Review, 6(2):147-170.</h3>
-            <span class="date-range">June, 2014</span>
-            <div class="clear-float"></div>
-            <p>The paper examines the impact of sterilized capital flows on India's economic growth, using an Australian Open Economy model to evaluate their absorption and the effectiveness of policy measures in mitigating associated risks and crises.</p>
-        </div>
+        </header>
         
-
-        <div class="resume-footer">
-            <div class="left-align">Mumbai, Maharashtra</div>
-            <div class="right-align">Rahul Kumar</div>
+        <div class="flex justify-end gap-x-4 mb-6">
+             <button id="request-btn" onclick="openRequestModal()" class="bg-green-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-green-700 transition-colors duration-300 text-sm">
+                Request Access
+            </button>
+            <button id="reveal-btn" onclick="openTokenModal()" class="bg-blue-600 text-white font-semibold px-4 py-2 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300 text-sm">
+                <span class="lock-icon">🔒</span> Enter Access Token
+            </button>
         </div>
+
+
+        <main>
+            <section class="mb-6">
+                <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Profile Summary</h2>
+                <p>
+                    Ph.D. scholar in Economics and quantitative researcher with over 12+ years of experience in econometric modelling, macroeconomic research, and investment strategy development. Highly proficient in R programming, with extensive experience designing and implementing advanced models for forecasting, risk management, and multi-asset portfolio optimization. Proven ability to enhance computational efficiency and performance, crucial for low-latency financial environments, and actively leveraging AI tools for accelerated development and analytical insights.
+                </p>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Research and Professional Experience</h2>
+                
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Quantitative Analyst - Associate Director, UBS</h3>
+                        <p class="text-sm text-gray-600 italic">March 2021 - Present</p>
+                    </div>
+                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                        <li>Led quantitative research, team leadership, and model development for PD, LGD, & Valuation Models across Corporate, Sovereign, and Investment Banking portfolios.</li>
+                        <li>Managed a <span class="confidential" data-confidential-info="multi-billion USD">[Request Access]</span> Sovereign portfolio, conducting periodic reviews and re-estimating/recalibrating parameters using multivariate regression and tail loss modeling (Pluto & Tasche).</li>
+                        <li>Remediated methodological issues in Aircraft Leasing Financing and Industrial Goods Leasing models (logistic regression) through rigorous KMPI testing.</li>
+                        <li>Conducted Stress Testing & Benchmarking Analysis for Swiss National Bank regulatory submissions, analyzing stress loss evolution.</li>
+                        <li>Spearheaded submission of 44 AIRB, Pillar I models to FINMA, ensuring regulatory compliance and process efficiency.</li>
+                        <li>Utilized AI-powered tools (e.g., Copilot) within MS Office and VS Code to enhance productivity, automate code generation, and expedite data analysis and research tasks.</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Quantitative Analyst - Authorized Officer, UBS</h3>
+                        <p class="text-sm text-gray-600 italic">March 2019 - March 2021</p>
+                    </div>
+                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                        <li>Developed and managed BAU tasks for Lombard multi-asset portfolio models, overseeing a <span class="confidential" data-confidential-info="multi-billion USD">[Request Access]</span> portfolio in combined lending value.</li>
+                        <li>Architected the Discretionary Mandate Haircut model for security-backed lending in Europe and APAC, employing VaR and time series modeling.</li>
+                        <li>Introduced new Key Model Performance Indicators (KMPI) for Premium Lending Value Models to address remediation.</li>
+                        <li>Contributed to equity lending value models using GARCH with Maximum Likelihood Estimation (MLE) and Student-t distribution.</li>
+                        <li>Executed pricing for equity derivatives, exotics, and structured products under analytical and minimal approaches.</li>
+                        <li>Optimized model running environments for high performance and large data handling using distributed/parallel computing.</li>
+                        <li>Streamlined Lombard haircut model workflows (data, processing, publication), enhancing back-testing efficiency and reducing processing time by 50% to prevent system crashes.</li>
+                    </ul>
+                </div>
+
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Senior Research Analyst, CRISIL Ltd.</h3>
+                         <p class="text-sm text-gray-600 italic">January 2017 - March 2019</p>
+                    </div>
+                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                         <li>Developed quantitative models for buy-side multi-asset investment strategies, primarily in R.</li>
+                         <li>Constructed models to estimate the term structure of German Bonds using Nelson and Siegel (1987) method with weighted constrained optimization.</li>
+                         <li>Replicated "Determinants of intra-euro area government bond spreads" via panel data regression.</li>
+                         <li>Developed "Nowcasting GDP" model integrating Principal Component Analysis, Vector Autoregression, and Kalman Filter Smoother.</li>
+                         <li>Created an R package for rectangular cartograms of world maps, visualizing macro data as heat maps by GDP size.</li>
+                         <li>Designed a Leading Economic Indicator model for major economies using Machine Learning to identify optimal leading properties.</li>
+                         <li>Developed "Investment Clock/Business Cycle" and models on "Credit Impulse," "Sector Rotation Strategy."</li>
+                         <li>Designed and developed an NLP and text mining algorithm for sentiment-based stock price prediction from Fortune 500 US company reports.</li>
+                    </ul>
+                </div>
+                
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Analytics & Modeling Analyst, Accenture Services Pvt. Ltd.</h3>
+                         <p class="text-sm text-gray-600 italic">January 2016 - January 2017</p>
+                    </div>
+                     <ul class="list-disc pl-6 mt-1 space-y-1">
+                        <li>Built predictive models for trade, transaction, and sales volumes for Fortune 500 companies, focusing on short-term and long-term forecasts.</li>
+                        <li>Modeled arrival patterns and tick-by-tick data flow at granular intervals (1-min, 15-min, 30-min, 60-min) using SETAR, VAR, and SVD methods on market data.</li>
+                    </ul>
+                </div>
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Research Assistant, Institute for Social and Economic Change</h3>
+                         <p class="text-sm text-gray-600 italic">June 2015 - December 2015</p>
+                    </div>
+                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                        <li>Researched with Center for Social and Economic Policy (CESP), on Reserve Bank of India, Government of Karnataka, Norway Government sponsored projects of regional, national and international importance; in the area of Credit, Finance, Macroeconomics and Development Economics; exploring the inter-linkages for the purpose of public policy making and evaluation purposes using statistical and logistic regression models.</li>
+                    </ul>
+                </div>
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Gandhi Fellow, Piramal Foundation for Education Leadership</h3>
+                         <p class="text-sm text-gray-600 italic">July 2014 - December 2014</p>
+                    </div>
+                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                        <li>Consulted a team of primary school headmasters on strategies to improve student learning outcome (SLO).</li>
+                    </ul>
+                </div>
+                <div class="mb-5">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold text-gray-800">Associate, Fidelity Investments Ltd.</h3>
+                         <p class="text-sm text-gray-600 italic">November 2010 - May 2012</p>
+                    </div>
+                    <ul class="list-disc pl-6 mt-1 space-y-1">
+                        <li>Review Financial Models and calculations related to pension funds (US Defined Benefit). Published excel based reports periodically. Performed data validation exercises with SQL while maintaining accuracy in processing files (on a day-to-day basis). Researched the discrepancy related to data and resolved issues before bringing it to notice.</li>
+                    </ul>
+                </div>
+
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Technical/Programming Skills</h2>
+                <div class="skills-list text-sm space-y-1">
+                    <p><strong class="font-semibold">Programming:</strong> R (Expert), Python, SQL, SAS, C++</p>
+                    <p><strong class="font-semibold">Modeling & Statistics:</strong> Econometric Modeling, Time Series Analysis (VAR, GARCH, SETAR), VaR, Logistic Regression, Multivariate Regression, Tail Loss Modeling, PCA, Kalman Filter, Machine Learning, MLE, Panel Data.</p>
+                    <p><strong class="font-semibold">AI & Productivity Tools:</strong> GitHub Copilot (VS Code), AI in MS Office, AI-driven research & data analysis.</p>
+                </div>
+            </section>
+
+            <section class="mb-6">
+                <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Academic Records</h2>
+                <div class="mb-4">
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold">Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
+                        <p class="text-sm italic text-gray-600">Jan 2024 - Ongoing</p>
+                    </div>
+                    <p class="mt-1">Research Focus: Global Macroeconomy, International Finance, Global Capital & Trade Flow, Central Banking, Econometrics.</p>
+                </div>
+                <div class="mb-4">
+                     <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold">MA Applied Economics, Christ University, Bangalore</h3>
+                        <p class="text-sm italic text-gray-600">June 2012 - May 2014</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex justify-between items-baseline flex-wrap">
+                        <h3 class="text-lg font-semibold">Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
+                        <p class="text-sm italic text-gray-600">May 2011 - April 2012</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section>
+                <h2 class="text-2xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Publication and Academic Project</h2>
+                 <div class="publication-item">
+                    <h3 class="text-lg font-semibold">International Publication: Kumar, Rahul (2014). "India's Challenge on Managing the External Sector, with the Sterilization of Capital Flows," Transnational Corporations Review, 6(2):147-170.</h3>
+                    <p class="text-sm italic text-gray-600">June, 2014</p>
+                    <p class="mt-1">The paper examines the impact of sterilized capital flows on India's economic growth, using an Australian Open Economy model to evaluate their absorption and the effectiveness of policy measures in mitigating associated risks and crises.</p>
+                </div>
+            </section>
+
+        </main>
+        
+        <footer class="flex justify-between items-end mt-10 pt-4 border-t-2 border-gray-200 text-sm text-gray-600">
+             <p>Mumbai, Maharashtra</p>
+             <p>Rahul Kumar</p>
+        </footer>
 
     </div>
 
+    <!-- Request Access Modal -->
+    <div id="request-access-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-auto p-8">
+            <div id="request-form-view">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">Request Access</h3>
+                <p class="text-gray-600 mb-6">To view confidential details, please submit a request. A single-use access token will be sent to your email if the request is processed.</p>
+                <div class="space-y-4">
+                    <input type="text" id="request-name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Name">
+                    <input type="text" id="request-company" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Company">
+                    <input type="email" id="request-email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="Your Professional Email">
+                </div>
+                <p id="request-error-message" class="text-red-500 text-sm mt-2 h-5"></p>
+                <div class="flex justify-end space-x-4 mt-6">
+                    <button onclick="closeRequestModal()" class="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Cancel</button>
+                    <button id="submit-request-btn" onclick="submitAccessRequest()" class="px-4 py-2 text-white bg-green-600 rounded-lg hover:bg-green-700">Submit Request</button>
+                </div>
+            </div>
+            <div id="request-success-view" class="hidden text-center">
+                 <h3 class="text-xl font-bold text-green-600 mb-4">Request Sent!</h3>
+                 <p class="text-gray-600 mb-6">Thank you. Please check your email for a single-use access token. It may take a minute to arrive.</p>
+                 <button onclick="closeRequestModal()" class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Token Modal -->
+    <div id="token-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-sm w-full mx-auto p-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">Access Confidential Information</h3>
+            <p class="text-gray-600 mb-6">Please enter the access token you received via email.</p>
+            <input type="text" id="token-input" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" placeholder="e.g., a1b2-c3d4-e5f6">
+            <p id="token-error-message" class="text-red-500 text-sm mt-2 h-5"></p>
+            <div class="flex justify-end space-x-4 mt-6">
+                <button onclick="closeTokenModal()" class="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200">Cancel</button>
+                <button onclick="verifyToken()" class="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Submit</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- Download Prompt Message -->
-    <div id="downloadPrompt" class="download-prompt">
-        <div class="arrow"></div>
-        <span>To download this resume as PDF, go to **File > Print > Save as PDF**.</span>
-        <button class="close-btn" onclick="document.getElementById('downloadPrompt').style.display='none';">&times;</button>
+    <div id="download-prompt" class="download-prompt">
+        <span>To download a PDF, go to File > Print > Save as PDF.</span>
+        <button class="close-btn" onclick="document.getElementById('download-prompt').style.display='none';">&times;</button>
     </div>
 
     <script>
-        // Show the download prompt after a short delay
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('downloadPrompt').classList.add('show');
-            }, 3000); // Show after 3 seconds
-        };
+        const tokenModal = document.getElementById('token-modal');
+        const tokenInput = document.getElementById('token-input');
+        const tokenErrorMessage = document.getElementById('token-error-message');
+        
+        const requestModal = document.getElementById('request-access-modal');
+        const requestNameInput = document.getElementById('request-name');
+        const requestCompanyInput = document.getElementById('request-company');
+        const requestEmailInput = document.getElementById('request-email');
+        const requestErrorMessage = document.getElementById('request-error-message');
+        const requestFormView = document.getElementById('request-form-view');
+        const requestSuccessView = document.getElementById('request-success-view');
+
+        const revealBtn = document.getElementById('reveal-btn');
+        let isRevealed = false;
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(() => {
+                const downloadPrompt = document.getElementById('download-prompt');
+                if(downloadPrompt) {
+                    downloadPrompt.classList.add('show');
+                }
+            }, 3000);
+        });
+        
+        function openTokenModal() {
+            if (isRevealed) return;
+            tokenModal.style.display = 'flex';
+            tokenInput.focus();
+        }
+
+        function closeTokenModal() {
+            tokenModal.style.display = 'none';
+            tokenErrorMessage.textContent = '';
+            tokenInput.value = '';
+        }
+        
+        function openRequestModal() {
+            requestFormView.style.display = 'block';
+            requestSuccessView.style.display = 'none';
+            requestModal.style.display = 'flex';
+            requestNameInput.focus();
+        }
+
+        function closeRequestModal() {
+            requestModal.style.display = 'none';
+            requestErrorMessage.textContent = '';
+            requestNameInput.value = '';
+            requestCompanyInput.value = '';
+            requestEmailInput.value = '';
+        }
+
+        async function submitAccessRequest() {
+            const name = requestNameInput.value.trim();
+            const company = requestCompanyInput.value.trim();
+            const email = requestEmailInput.value.trim();
+
+            if (!name || !company || !email) {
+                requestErrorMessage.textContent = 'All fields are required.';
+                return;
+            }
+
+            const submitBtn = document.getElementById('submit-request-btn');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            requestErrorMessage.textContent = '';
+
+            try {
+                const vercelProjectUrl = 'https://rahulkumareconomist-github-io.vercel.app';
+                const apiUrl = `${vercelProjectUrl}/api/request-access`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, company, email })
+                });
+
+                if (response.ok) {
+                    requestFormView.style.display = 'none';
+                    requestSuccessView.style.display = 'block';
+                } else {
+                    const result = await response.json();
+                    throw new Error(result.error || 'Failed to submit request.');
+                }
+
+            } catch (error) {
+                console.error("Access request error:", error);
+                requestErrorMessage.textContent = error.message;
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Request';
+            }
+        }
+
+        async function verifyToken() {
+            const token = tokenInput.value.trim();
+            if (!token) {
+                tokenErrorMessage.textContent = 'Token cannot be empty.';
+                return;
+            }
+            
+            tokenErrorMessage.textContent = 'Verifying...';
+
+            try {
+                const vercelProjectUrl = 'https://rahulkumareconomist-github-io.vercel.app';
+                const apiUrl = `${vercelProjectUrl}/api/verify-token`;
+
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ token: token })
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    revealConfidentialInfo();
+                    closeTokenModal();
+                } else {
+                    tokenErrorMessage.textContent = result.error || 'Incorrect token.';
+                    tokenInput.value = '';
+                }
+            } catch (error) {
+                console.error("Verification error:", error);
+                tokenErrorMessage.textContent = 'Verification failed. Please try again.';
+            }
+        }
+
+        function revealConfidentialInfo() {
+            const confidentialElements = document.querySelectorAll('.confidential');
+            confidentialElements.forEach(el => {
+                el.textContent = el.getAttribute('data-confidential-info');
+                el.classList.add('revealed');
+            });
+            isRevealed = true;
+            revealBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            revealBtn.innerHTML = `<span class="lock-icon">🔓</span> Details Revealed`;
+            document.getElementById('request-btn').style.display = 'none';
+        }
+        
+        tokenInput.addEventListener('keyup', function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                verifyToken();
+            }
+        });
     </script>
 </body>
 </html>
