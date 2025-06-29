@@ -362,15 +362,8 @@
         // Function to call the secure serverless function
         async function getAiSummary(abstractText) {
             try {
-                // --- FIX: Use the full URL of your deployed Vercel function ---
-                // Replace 'YOUR_VERCEL_PROJECT_URL' with your actual Vercel project URL.
-                // For example: 'https://my-portfolio-site.vercel.app/api/summarize'
-                const apiUrl = 'https://YOUR_VERCEL_PROJECT_URL/api/summarize'; 
-
-                if (apiUrl.includes('YOUR_VERCEL_PROJECT_URL')) {
-                     summaryContent.innerHTML = `<p class="text-orange-500">Please update the \`apiUrl\` in the script with your Vercel project URL.</p>`;
-                     return;
-                }
+                const vercelProjectUrl = 'https://rahulkumareconomist-github-io.vercel.app'; 
+                const apiUrl = `${vercelProjectUrl}/api/summarize`;
 
                 const response = await fetch(apiUrl, {
                     method: 'POST',
@@ -379,7 +372,8 @@
                 });
 
                 if (!response.ok) {
-                    throw new Error(`API request failed with status ${response.status}`);
+                    const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response.' }));
+                    throw new Error(errorData.error || `API request failed with status ${response.status}`);
                 }
                 
                 const result = await response.json();
@@ -387,9 +381,9 @@
                 if (result.summary) {
                     const summaryText = result.summary;
                     // Robust formatting for markdown-like lists
-                    const summaryItems = summaryText.split('\n').filter(item => item.trim() !== '' && item.trim().startsWith('*'));
+                    const summaryItems = summaryText.split('\n').filter(item => item.trim() !== '' && (item.trim().startsWith('*') || item.trim().startsWith('-')));
                     const formattedSummary = summaryItems
-                        .map(item => `<li>${item.replace(/^\*\s*/, '')}</li>`) // Remove leading asterisk and wrap in <li>
+                        .map(item => `<li>${item.replace(/^[\*\-]\s*/, '')}</li>`) // Remove leading asterisk or dash and wrap in <li>
                         .join('');
                     summaryContent.innerHTML = `<ul class="list-disc list-inside space-y-2">${formattedSummary}</ul>`;
                 } else {
@@ -397,8 +391,12 @@
                 }
 
             } catch (error) {
-                console.error("Error fetching AI summary:", error);
-                summaryContent.innerHTML = `<p class="text-red-500">Sorry, there was an error generating the summary. Please try again later.</p>`;
+                 console.error("Error fetching AI summary:", error);
+                 if (window.location.protocol === 'file:') {
+                     summaryContent.innerHTML = `<p class="text-orange-500 font-semibold">Local Testing Notice</p><p>This AI feature cannot run when the HTML file is opened directly from your computer. Please test it using your live Vercel URL: <a href="https://rahulkumareconomist-github-io.vercel.app" target="_blank" class="text-blue-600 underline">rahulkumareconomist-github-io.vercel.app</a></p>`;
+                 } else {
+                    summaryContent.innerHTML = `<p class="text-red-500">Sorry, an error occurred: ${error.message}</p><p class="text-sm text-gray-500 mt-2">This might be a temporary issue with the backend service. Please try again in a moment.</p>`;
+                 }
             }
         }
 
