@@ -176,7 +176,7 @@
             </div>
         </div>
     </section>
-
+    
     <!-- Workshops & Professional Development Section -->
     <section id="workshops" class="py-16 md:py-24">
         <div class="container mx-auto px-6">
@@ -359,45 +359,43 @@
             `;
         }
 
-        // Function to call the Gemini API
+        // Function to call the secure serverless function
         async function getAiSummary(abstractText) {
-            const prompt = `Summarize the following research abstract for a non-expert audience, highlighting its key contributions in 3 simple bullet points. Use clear, accessible language.
-
-Abstract:
----
-${abstractText}
----
-Summary:
-`;
-
-            let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-            const payload = { contents: chatHistory };
-            const apiKey = ""; // Canvas provides this
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
             try {
+                // --- FIX: Use the full URL of your deployed Vercel function ---
+                // Replace 'YOUR_VERCEL_PROJECT_URL' with your actual Vercel project URL.
+                // For example: 'https://my-portfolio-site.vercel.app/api/summarize'
+                const apiUrl = 'https://YOUR_VERCEL_PROJECT_URL/api/summarize'; 
+
+                if (apiUrl.includes('YOUR_VERCEL_PROJECT_URL')) {
+                     summaryContent.innerHTML = `<p class="text-orange-500">Please update the \`apiUrl\` in the script with your Vercel project URL.</p>`;
+                     return;
+                }
+
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({ abstractText: abstractText }) 
                 });
 
                 if (!response.ok) {
                     throw new Error(`API request failed with status ${response.status}`);
                 }
-
+                
                 const result = await response.json();
 
-                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts.length > 0) {
-                    const summaryText = result.candidates[0].content.parts[0].text;
-                    // Basic formatting to convert markdown-like lists to HTML
-                    const formattedSummary = summaryText
-                        .replace(/\*\s?/g, '<li>') // Replace asterisks with list item tags
-                        .replace(/\n/g, '</li>');    // Replace newlines with closing list item tags
+                if (result.summary) {
+                    const summaryText = result.summary;
+                    // Robust formatting for markdown-like lists
+                    const summaryItems = summaryText.split('\n').filter(item => item.trim() !== '' && item.trim().startsWith('*'));
+                    const formattedSummary = summaryItems
+                        .map(item => `<li>${item.replace(/^\*\s*/, '')}</li>`) // Remove leading asterisk and wrap in <li>
+                        .join('');
                     summaryContent.innerHTML = `<ul class="list-disc list-inside space-y-2">${formattedSummary}</ul>`;
                 } else {
-                    throw new Error("Invalid response structure from API.");
+                    throw new Error("Invalid response structure from serverless function.");
                 }
+
             } catch (error) {
                 console.error("Error fetching AI summary:", error);
                 summaryContent.innerHTML = `<p class="text-red-500">Sorry, there was an error generating the summary. Please try again later.</p>`;
