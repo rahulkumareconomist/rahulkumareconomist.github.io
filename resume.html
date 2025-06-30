@@ -117,7 +117,6 @@
                 font-style: italic;
                 font-weight: normal;
             }
-            /* MODIFIED: Removed unnecessary print style for header */
         }
     </style>
 </head>
@@ -160,14 +159,14 @@
                 <h2 class="text-xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Research and Professional Experience</h2>
                 
                 <div class="mb-5">
-                    <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Quantitative Analyst - Associate Director, UBS</h3>
                         <p class="text-sm text-gray-600 italic">March 2021 - Present</p>
                     </div>
                     <ul class="list-disc pl-6 mt-2 space-y-1">
                         <li class="text-justify">Led quantitative research, team leadership, and model development for PD, LGD, & Valuation Models across Corporate, Sovereign, and Investment Banking portfolios.</li>
-                        <li class="text-justify">Managed a <span class="confidential" data-confidential-info="240+ billion USD">[Request Access]</span> Sovereign portfolio, conducting periodic reviews and re-estimating/recalibrating parameters using multivariate regression and tail loss modeling (Pluto & Tasche).</li>
+                        <!-- MODIFIED: Removed data-confidential-info and added unique ID -->
+                        <li class="text-justify">Managed a <span id="confidential-sovereign-portfolio" class="confidential">[Request Access]</span> Sovereign portfolio, conducting periodic reviews and re-estimating/recalibrating parameters using multivariate regression and tail loss modeling (Pluto & Tasche).</li>
                         <li class="text-justify">Remediated methodological issues in Aircraft Leasing Financing and Industrial Goods Leasing models (logistic regression) through rigorous KMPI testing.</li>
                         <li class="text-justify">Conducted Stress Testing & Benchmarking Analysis for Swiss National Bank regulatory submissions, analyzing stress loss evolution.</li>
                         <li class="text-justify">Spearheaded submission of 44 AIRB, Pillar I models to FINMA, ensuring regulatory compliance and process efficiency.</li>
@@ -176,13 +175,13 @@
                 </div>
                 
                 <div class="mb-5">
-                     <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Quantitative Analyst - Authorized Officer, UBS</h3>
                         <p class="text-sm text-gray-600 italic">March 2019 - March 2021</p>
                     </div>
                     <ul class="list-disc pl-6 mt-2 space-y-1">
-                        <li class="text-justify">Developed and managed BAU tasks for Lombard multi-asset portfolio models, overseeing a <span class="confidential" data-confidential-info="1300+ billion USD">[Request Access]</span> portfolio in combined lending value.</li>
+                        <!-- MODIFIED: Removed data-confidential-info and added unique ID -->
+                        <li class="text-justify">Developed and managed BAU tasks for Lombard multi-asset portfolio models, overseeing a <span id="confidential-lombard-portfolio" class="confidential">[Request Access]</span> portfolio in combined lending value.</li>
                         <li class="text-justify">Architected the Discretionary Mandate Haircut model for security-backed lending in Europe and APAC, employing VaR and time series modeling.</li>
                         <li class="text-justify">Introduced new Key Model Performance Indicators (KMPI) for Premium Lending Value Models to address remediation.</li>
                         <li class="text-justify">Contributed to equity lending value models using GARCH with Maximum Likelihood Estimation (MLE) and Student-t distribution.</li>
@@ -193,7 +192,6 @@
                 </div>
 
                 <div class="mb-5">
-                     <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Senior Research Analyst, CRISIL Ltd.</h3>
                          <p class="text-sm text-gray-600 italic">January 2017 - March 2019</p>
@@ -211,7 +209,6 @@
                 </div>
                 
                 <div class="mb-5">
-                     <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Analytics & Modeling Analyst, Accenture Services Pvt. Ltd.</h3>
                          <p class="text-sm text-gray-600 italic">January 2016 - January 2017</p>
@@ -222,7 +219,6 @@
                     </ul>
                 </div>
                 <div class="mb-5">
-                     <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Research Assistant, Institute for Social and Economic Change</h3>
                          <p class="text-sm text-gray-600 italic">June 2015 - December 2015</p>
@@ -232,7 +228,6 @@
                     </ul>
                 </div>
                 <div class="mb-5">
-                     <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Gandhi Fellow, Piramal Foundation for Education Leadership</h3>
                          <p class="text-sm text-gray-600 italic">July 2014 - December 2014</p>
@@ -242,7 +237,6 @@
                     </ul>
                 </div>
                 <div class="mb-5">
-                     <!-- MODIFIED: Changed highlight to a bottom border -->
                     <div class="flex justify-between items-baseline flex-wrap pb-1 border-b border-gray-200">
                         <h3 class="text-base font-semibold text-gray-800">Associate, Fidelity Investments Ltd.</h3>
                          <p class="text-sm text-gray-600 italic">November 2010 - May 2012</p>
@@ -255,7 +249,6 @@
             </section>
 
             <section class="mb-6">
-                <!-- MODIFIED: Reduced heading size -->
                 <h2 class="text-xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Technical/Programming Skills</h2>
                 <div class="skills-list space-y-1">
                     <p><strong class="font-semibold">Programming:</strong> R (Expert), Python, SQL, SAS, C++</p>
@@ -265,11 +258,9 @@
             </section>
 
             <section class="mb-6">
-                <!-- MODIFIED: Reduced heading size -->
                 <h2 class="text-xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Academic Records</h2>
                 <div class="mb-4">
                     <div class="flex justify-between items-baseline flex-wrap">
-                        <!-- MODIFIED: Reduced heading size -->
                         <h3 class="text-base font-semibold">Ph.D. in Economics (undergoing), BITS, Pilani - Hyderabad</h3>
                         <p class="text-sm italic text-gray-600">Jan 2024 - Ongoing</p>
                     </div>
@@ -277,14 +268,12 @@
                 </div>
                 <div class="mb-4">
                      <div class="flex justify-between items-baseline flex-wrap">
-                        <!-- MODIFIED: Reduced heading size -->
                         <h3 class="text-base font-semibold">MA Applied Economics, Christ University, Bangalore</h3>
                         <p class="text-sm italic text-gray-600">June 2012 - May 2014</p>
                     </div>
                 </div>
                 <div>
                     <div class="flex justify-between items-baseline flex-wrap">
-                        <!-- MODIFIED: Reduced heading size -->
                         <h3 class="text-base font-semibold">Executive Program in Global Economics for Manager (EPGEM), IIM Calcutta</h3>
                         <p class="text-sm italic text-gray-600">May 2011 - April 2012</p>
                     </div>
@@ -292,10 +281,8 @@
             </section>
             
             <section>
-                <!-- MODIFIED: Reduced heading size -->
                 <h2 class="text-xl font-bold border-b-2 border-gray-200 pb-2 mb-3 text-gray-700">Publication and Academic Project</h2>
                  <div class="publication-item">
-                    <!-- MODIFIED: Reduced heading size -->
                     <h3 class="text-base font-semibold">International Publication: Kumar, Rahul (2014). "India's Challenge on Managing the External Sector, with the Sterilization of Capital Flows," Transnational Corporations Review, 6(2):147-170.</h3>
                     <p class="text-sm italic text-gray-600">June, 2014</p>
                     <p class="mt-1 text-justify">The paper examines the impact of sterilized capital flows on India's economic growth, using an Australian Open Economy model to evaluate their absorption and the effectiveness of policy measures in mitigating associated risks and crises.</p>
@@ -330,7 +317,6 @@
             </div>
             <div id="request-success-view" class="hidden text-center">
                  <h3 class="text-xl font-bold text-green-600 mb-4">Request Sent!</h3>
-                 <!-- MODIFIED: Updated the success message text -->
                  <p class="text-gray-600 mb-6">I have received your request for an access token. Please allow me some time to send it to you as soon as possible.</p>
                  <button onclick="closeRequestModal()" class="w-full px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700">Close</button>
             </div>
@@ -442,7 +428,6 @@
             requestErrorMessage.textContent = '';
 
             try {
-                // IMPORTANT: Replace this with your actual Vercel project URL
                 const vercelProjectUrl = 'https://rahulkumareconomist-github-io.vercel.app';
                 const apiUrl = `${vercelProjectUrl}/api/request-access`;
 
@@ -453,7 +438,6 @@
                 });
 
                 if (response.ok) {
-                    // Switch to success view
                     requestFormView.style.display = 'none';
                     requestSuccessView.style.display = 'block';
                 } else {
@@ -465,12 +449,12 @@
                 console.error("Access request error:", error);
                 requestErrorMessage.textContent = error.message;
             } finally {
-                // Re-enable the button
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Submit Request';
             }
         }
 
+        // MODIFIED: Securely verify token and fetch data from backend
         async function verifyToken() {
             const token = tokenInput.value.trim();
             if (!token) {
@@ -481,7 +465,7 @@
             tokenErrorMessage.textContent = 'Verifying...';
 
             try {
-                // IMPORTANT: Replace this with your actual Vercel project URL
+                // MODIFIED: This URL now correctly points to the verify-token endpoint.
                 const vercelProjectUrl = 'https://rahulkumareconomist-github-io.vercel.app';
                 const apiUrl = `${vercelProjectUrl}/api/verify-token`;
 
@@ -494,7 +478,8 @@
                 const result = await response.json();
 
                 if (response.ok && result.success) {
-                    revealConfidentialInfo();
+                    // If successful, the server sends back the data to be displayed.
+                    revealConfidentialInfo(result.data);
                     closeTokenModal();
                 } else {
                     tokenErrorMessage.textContent = result.error || 'Incorrect token.';
@@ -506,16 +491,20 @@
             }
         }
 
-        // --- Core Application Logic ---
-
-        function revealConfidentialInfo() {
-            const confidentialElements = document.querySelectorAll('.confidential');
-            confidentialElements.forEach(el => {
-                el.textContent = el.getAttribute('data-confidential-info');
-                el.classList.add('revealed');
-            });
+        // MODIFIED: This function now receives the data from the server
+        function revealConfidentialInfo(data) {
+            // Loop through the data received from the server
+            for (const key in data) {
+                // Find the element with the corresponding ID
+                const el = document.getElementById(key);
+                if (el) {
+                    // Update its content and styling
+                    el.textContent = data[key];
+                    el.classList.add('revealed');
+                }
+            }
+            
             isRevealed = true;
-            // Update UI to reflect revealed state
             revealBtn.classList.add('opacity-50', 'cursor-not-allowed');
             revealBtn.innerHTML = `<span class="lock-icon">🔓</span> Details Revealed`;
             document.getElementById('request-btn').style.display = 'none';
