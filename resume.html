@@ -91,14 +91,16 @@
         @media print {
             body {
                 background-color: #fff;
+                margin: 0;
             }
             .paper-container {
                 box-shadow: none;
-                margin: 0;
-                /* MODIFIED: Further reduced padding for print */
-                padding: 0.25in;
                 border-radius: 0;
-                max-width: 100%;
+                /* MODIFIED: Changed from padding to margin for better print reliability */
+                margin: 0.25in;
+                padding: 0;
+                width: auto;
+                max-width: none;
             }
             /* Hide interactive elements when printing */
             .flex.justify-end, #request-access-modal, #token-modal, .download-prompt {
