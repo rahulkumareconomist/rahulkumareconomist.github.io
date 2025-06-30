@@ -1,6 +1,6 @@
 // This function verifies a single-use token from the Vercel KV store
-// and returns the confidential data if the token is valid.
-// File path: /api/get-confidential-data.js
+// and returns the confidential data, which is securely loaded from environment variables.
+// File path: /api/verify-token.js
 
 import { createClient } from '@vercel/kv';
 
@@ -38,20 +38,20 @@ export default async function handler(request, response) {
       token: process.env.KV_REST_API_TOKEN,
     });
     
-    // --- NEW: Securely define your confidential data ---
-    // This data is NOT public and only lives on the server.
+    // --- FINAL & SECURE: Load confidential data from Environment Variables ---
+    // The actual values are stored in your Vercel Project Settings, NOT in the code.
     const CONFIDENTIAL_DATA = {
-        "confidential-sovereign-portfolio": "multi-billion USD",
-        "confidential-lombard-portfolio": "multi-billion USD"
-        // You can add more key-value pairs here.
-        // The key must match the 'id' of the span in your resume.html
+        "confidential-sovereign-portfolio": process.env.SOVEREIGN_PORTFOLIO_VALUE,
+        "confidential-lombard-portfolio": process.env.LOMBARD_PORTFOLIO_VALUE
+        // The key (e.g., "confidential-sovereign-portfolio") must match the ID in resume.html.
+        // The value (e.g., process.env.SOVEREIGN_PORTFOLIO_VALUE) is the name of the
+        // environment variable you will create in the Vercel dashboard.
     };
 
     // Check if the token exists in the KV store.
     const storedToken = await kv.get(token);
 
     if (storedToken) {
-      // --- MODIFIED: Return data on success ---
       // Success! Token is valid.
       // Now, delete the token to make it single-use.
       await kv.del(token);
