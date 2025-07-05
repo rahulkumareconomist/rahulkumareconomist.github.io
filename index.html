@@ -10,9 +10,6 @@
         body {
             font-family: 'Inter', sans-serif;
         }
-        .section-title {
-            @apply text-3xl font-bold text-center mb-12 text-gray-800;
-        }
         .card {
             @apply bg-white rounded-xl shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105;
         }
@@ -65,7 +62,7 @@
         <div class="container mx-auto px-6 text-center">
             <img src="images/QVZqMEV5Y0ZLbjZ5OVJlSEQwbFAyZVY1.jpeg" alt="Mr. Rahul Kumar Thakur" class="w-36 h-36 md:w-48 md:h-48 rounded-full mx-auto mb-8 border-4 border-white shadow-xl" onerror="this.onerror=null; this.src='https://placehold.co/150x150/ffffff/3B82F6?text=RKT';">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Mr. Rahul Kumar Thakur</h1>
-            <p class="text-xl md:text-2xl mb-2">PhD Scholar | Quantitative Researcher | Global Collaborator</p>
+            <p class="text-xl md:text-2xl mb-2">PhD Scholar | Quantitative Researcher | Economist</p>
             <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
                 Bridging 12 years of quantitative industry expertise with cutting-edge academic research to drive innovation and solve complex global challenges.
             </p>
@@ -78,27 +75,49 @@
     <!-- About Section -->
     <section id="about" class="py-16 md:py-24">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">About Me</h2>
-            <div class="grid md:grid-cols-3 gap-8 items-center">
-                <div class="md:col-span-1">
-                     <img src="images/rahul-pic2.jpeg" alt="About Mr. Rahul Kumar Thakur" class="rounded-xl shadow-lg w-full" onerror="this.onerror=null; this.src='https://placehold.co/400x500/E0E7FF/3B82F6?text=About+RKT';">
+            <div class="grid md:grid-cols-5 gap-12 items-start">
+                <div class="md:col-span-2">
+                     <img src="images/rahul-pic2.jpeg" alt="About Mr. Rahul Kumar Thakur" class="rounded-xl shadow-2xl w-full sticky top-28" onerror="this.onerror=null; this.src='https://placehold.co/400x500/E0E7FF/3B82F6?text=About+RKT';">
                 </div>
-                <div class="md:col-span-2 space-y-6 text-lg">
-                    <p>
-                        I am a PhD Scholar with over 12 years of experience in the quantitative finance industry, where I have consistently integrated deep academic inquiry with real-world application in financial markets. My doctoral research centers on global macroeconomics and international finance, with a particular focus on understanding the complex dynamics of international capital flows and exchange rate movements within an increasingly fragmented geopolitical and economic landscape. I examine how monetary policy, interest rate volatility, and rising debt burdens interact to influence global financial stability and the allocation of cross-border capital. Central to this inquiry is the evolving role of safe haven assets, sovereign debt, and global bond markets in shaping the international monetary system. Additionally, I analyze the use and effectiveness of capital flow management policies during times of economic stress, exploring their interaction with broader macroeconomic and regulatory frameworks.
-                    </p>
-                    <p>
-                        In my current role at UBS, I work as a Quantitative Analyst specializing in credit risk modeling. My responsibilities include developing and validating sovereign credit risk models that estimate Probability of Default (PD) and Loss Given Default (LGD), as well as Lombard haircut models that determine the lending value of multi-asset security classes. These models are essential for accurate risk measurement, capital allocation, and lending valuation across diverse portfolios.
-                    </p>
-                    <p>
-                        Previously, I worked as a buy-side quantitative model developer and researcher, where my primary responsibilities involved building models and conducting macroeconomics-driven multi-asset investment research to support both strategic and tactical asset allocation decisions. These models synthesize macro-financial indicators to support systematic asset allocation and global macro risk assessment.
-                    </p>
-                    <p>
-                        My professional expertise spans financial econometrics, algorithmic trading, risk management, and the design of large-scale, data-driven investment systems. I am passionate about bridging academic research with policy and practice, and I actively seek opportunities to collaborate with universities, research institutions, think tanks, and policy-making bodies worldwide. My goal is to contribute to the advancement of knowledge and practice at the intersection of international finance, macroeconomic policy, and quantitative modeling.
-                    </p>
-                    <a href="resume.html" class="inline-block bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-colors duration-300">
-    View My Online Resume
-</a>
+                <div class="md:col-span-3 space-y-8">
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                           <svg class="w-8 h-8 text-blue-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            About Me
+                        </h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            For over 12 years, I have operated at the intersection of quantitative research, financial markets, and economic theory. My passion is to translate deep academic inquiry into robust, data-driven models that solve real-world financial challenges. As a Senior Quantitative Researcher, my focus is on the entire lifecycle of systematic strategy development—from initial alpha signal research and factor modeling to rigorous backtesting and institutional-grade validation.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <svg class="w-8 h-8 text-blue-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            Professional Philosophy & Experience
+                        </h3>
+                        <div class="space-y-4 text-gray-600 border-l-4 border-blue-100 pl-6 leading-relaxed">
+                            <p>My professional work is built on a dual foundation: generating alpha and managing risk.</p>
+                            <p>On the buy-side at CRISIL, I led research into developing novel alpha-generating signals and systematic investment strategies. My work focused on creating factor-based and macro-driven models for strategic and tactical asset allocation, directly influencing client portfolio performance across the globe.</p>
+                            <p>At the top-tier global investment bank, UBS, I apply this quantitative rigor at an institutional scale. As an Associate Director, I develop and validate the complex models that underpin the bank's multi-billion dollar portfolios. This includes architecting Value at Risk (VaR) based models for the bank's securities-backed lending business serving High-Net-Worth Individual (HNI) clients, as well as developing regulatory-critical Pillar 1 credit risk models (PD/LGD) for the firm's Sovereign and corporate portfolios.</p>
+                            <p>This unique blend of experience ensures that the strategies and models I build are not only innovative but also robust and ready for real-world, high-stakes deployment.</p>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg transition-shadow duration-300 hover:shadow-xl">
+                         <h3 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                            <svg class="w-8 h-8 text-blue-500 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-5.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222 4 2.222V20M1 12l5.373 2.846M23 12l-5.373 2.846"></path></svg>
+                            Doctoral Research & Academic Interests
+                        </h3>
+                        <div class="space-y-4 text-gray-600 border-l-4 border-blue-100 pl-6 leading-relaxed">
+                            <p>My professional work is continually informed by my academic research as a Ph.D. Scholar. My doctoral research centers on the complex dynamics of international finance and global macroeconomics. I investigate how monetary policy, interest rate volatility, and sovereign debt interact to influence global financial stability and cross-border capital flows. I am particularly interested in the evolving role of safe-haven assets and the effectiveness of capital flow management policies in today's economic landscape.</p>
+                            <p>I am always seeking opportunities to collaborate with universities, research institutions, and policy-making bodies to bridge the gap between academic theory and financial practice.</p>
+                        </div>
+                    </div>
+                    <div class="pl-6">
+                        <a href="resume.html" class="inline-block bg-blue-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-blue-700 transition-all duration-300 hover:scale-105">
+                            View My Online Resume
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -107,7 +126,7 @@
     <!-- Areas of Expertise Section -->
     <section class="py-16 md:py-24 bg-gray-100">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Areas of Expertise</h2>
+            <h2 class="text-4xl font-bold text-center mb-16"><span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">Areas of Expertise</span></h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                 <div class="bg-white p-6 rounded-xl shadow-md text-center hover:shadow-xl transition-shadow duration-300">
                     <svg class="w-12 h-12 text-blue-600 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
@@ -130,9 +149,9 @@
     </section>
 
     <!-- Research & Publications Section -->
-    <section id="research" class="py-16 md:py-24 bg-gray-100">
+    <section id="research" class="py-16 md:py-24">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Research & Publications</h2>
+            <h2 class="text-4xl font-bold text-center mb-16"><span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">Research & Publications</span></h2>
             <div class="space-y-8">
                 
                 <div class="bg-white p-6 rounded-xl shadow-md">
@@ -178,47 +197,66 @@
     </section>
     
     <!-- Workshops & Professional Development Section -->
-    <section id="workshops" class="py-16 md:py-24">
+    <section id="workshops" class="py-16 md:py-24 bg-gray-100">
         <div class="container mx-auto px-6">
-            <h2 class="section-title">Workshops & Professional Development</h2>
-            <div class="space-y-10">
-                <ul class="space-y-8 list-disc list-inside text-gray-700">
-                    <li>
-                        Participated in the 6-day <strong>"Workshop on Open Economy Macroeconomics and Economic Integration in Emerging Market Economies"</strong>.
-                        <br>
-                        <span class="text-sm text-gray-600 ml-6">Organized by Centre for Development Studies (CDS) & Reserve Bank of India (RBI). (13-18 March 2025)</span>
-                        <div class="pl-10 mt-2 space-y-1">
-                            <p class="text-gray-700">Presented a paper titled: <em class="italic">“Bond Yields, Macroeconomic Variables, and Exchange Rates: A Dynamic Interaction for Price Stability.”</em></p>
-                            <p class="text-sm text-gray-600 pl-4">- Exploring the Interrelationship Between Inflation, Economic Growth, and Exchange Rate Movements to Understand Long-Term Price Stability.</p>
+            <h2 class="text-4xl font-bold text-center mb-16"><span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-600">Workshops & Professional Development</span></h2>
+            <div class="max-w-3xl mx-auto">
+                <div class="relative border-l-2 border-blue-200">
+                    <!-- Timeline Item 1 -->
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-12 h-12 bg-white rounded-full -left-6 ring-8 ring-white">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9V3m0 9a9 9 0 000 18c4.97 0 9-4.03 9-9s-4.03-9-9-9z"></path></svg>
+                        </span>
+                        <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400">13-18 March 2025</time>
+                            <h3 class="text-xl font-semibold text-gray-900">Workshop on Open Economy Macroeconomics</h3>
+                            <p class="text-sm text-gray-600 mb-3">Organized by Centre for Development Studies (CDS) & Reserve Bank of India (RBI)</p>
+                            <div class="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                                <p class="font-semibold text-gray-800">Presented Paper:</p>
+                                <p class="italic text-gray-700">“Bond Yields, Macroeconomic Variables, and Exchange Rates: A Dynamic Interaction for Price Stability.”</p>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a href="https://cds.edu/event/rbi-conference/" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">Workshop Details</a>
+                                <a href="files/BondYeildMacroREER_conference.pdf" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">View Paper</a>
+                                <a href="files/CDS_open_macroeconomy_certitificate.jpg" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">View Certificate</a>
+                            </div>
                         </div>
-                        <div class="mt-2 ml-6">
-                            <a href="https://cds.edu/event/rbi-conference/" target="_blank" class="text-blue-600 hover:underline">[Workshop Details]</a>
-                            <a href="files/BondYeildMacroREER_conference.pdf" target="_blank" class="text-blue-600 hover:underline ml-2">[View Paper]</a>
-                            <a href="files/CDS_open_macroeconomy_certitificate.jpg" target="_blank" class="text-blue-600 hover:underline ml-2">[View Certificate]</a>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="mb-10 ml-10">
+                        <span class="absolute flex items-center justify-center w-12 h-12 bg-white rounded-full -left-6 ring-8 ring-white">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                        </span>
+                         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400">28 April – 02 May 2025</time>
+                            <h3 class="text-xl font-semibold text-gray-900">BIG Data Analysis Through Theory and Application</h3>
+                            <p class="text-sm text-gray-600 mb-3">Organized by Centre for Development Studies (CDS), Thiruvananthapuram</p>
+                             <div class="p-4 rounded-lg bg-blue-50 border border-blue-200">
+                                <p class="font-semibold text-gray-800">Presented Paper:</p>
+                                <p class="italic text-gray-700">“Rare Earth Elements Scarcity under Trade Restrictions: An Econometric and Machine Learning Approach.”</p>
+                            </div>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a href="https://cds.edu/events/training-programmes/bigdata/" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">Workshop Details</a>
+                                <a href="files/CDS_big_data_Presentation_final.pdf" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">View Presentation</a>
+                                <a href="files/big_data_certificate.jpg" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">View Certificate</a>
+                            </div>
                         </div>
-                    </li>
-                    <li>
-                        Participated in the Training Programme on <strong>“BIG Data Analysis Through Theory and Application”</strong>.
-                        <br>
-                        <span class="text-sm text-gray-600 ml-6">Organized by Centre for Development Studies (CDS), Thiruvananthapuram, India. (28 April 2025 – 02 May 2025)</span>
-                        <div class="pl-10 mt-2">
-                            <p class="text-gray-700">Presented a paper titled: <em class="italic">“Rare Earth Elements Scarcity under Trade Restrictions: An Econometric and Machine Learning Approach.”</em></p>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="ml-10">
+                        <span class="absolute flex items-center justify-center w-12 h-12 bg-white rounded-full -left-6 ring-8 ring-white">
+                           <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </span>
+                         <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                            <time class="block mb-2 text-sm font-normal leading-none text-gray-400">20th – 24th May 2025</time>
+                            <h3 class="text-xl font-semibold text-gray-900">Quantum Computing, Machine Learning (ML) and AI</h3>
+                            <p class="text-sm text-gray-600 mb-3">Organized by Department of Physics, School of Advanced Sciences (SAS), VIT-AP University</p>
+                            <div class="mt-4 flex flex-wrap gap-2">
+                                <a href="files/External Participations-61.pdf" target="_blank" class="inline-block bg-gray-200 text-gray-800 text-xs font-semibold px-3 py-1 rounded-full hover:bg-gray-300">View Certificate</a>
+                            </div>
                         </div>
-                        <div class="mt-2 ml-6">
-                            <a href="https://cds.edu/events/training-programmes/bigdata/" target="_blank" class="text-blue-600 hover:underline">[Workshop Details]</a>
-                            <a href="files/CDS_big_data_Presentation_final.pdf" target="_blank" class="text-blue-600 hover:underline ml-2">[View Presentation]</a>
-                            <a href="files/big_data_certificate.jpg" target="_blank" class="text-blue-600 hover:underline ml-2">[View Certificate]</a>
-                        </div>
-                    </li>
-                    <li>
-                        Participated in the 5-Day Workshop on <strong>“Quantum Computing, Machine Learning (ML) and Artificial Intelligence (AI)”</strong>.
-                        <br>
-                        <span class="text-sm text-gray-600 ml-6">Organized by Department of Physics, School of Advanced Sciences (SAS), VIT-AP University, India. (20th May 2025 - 24th May 2025)</span>
-                        <div class="mt-2 ml-6">
-                           <a href="files/External Participations-61.pdf" target="_blank" class="text-blue-600 hover:underline">[View Certificate]</a>
-                        </div>
-                    </li>
-                 </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
