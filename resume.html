@@ -12,7 +12,6 @@
         .modal-overlay { background-color: rgba(0,0,0,0.75); display: none; }
         .modal-box, .portal-box { background: #fff; border-radius: 1rem; box-shadow: 0 10px 25px rgba(0,0,0,0.1); max-width: 400px; width: 100%; margin: 1rem; padding: 2rem; text-align: center; }
         #resume-content { display: none; }
-        /* Print styles remain the same, ensuring the content is visible for printing */
         @media print {
             body { background-color: #fff; margin: 0; }
             .access-portal, .modal-overlay { display: none !important; }
@@ -22,7 +21,6 @@
 </head>
 <body>
 
-    <!-- This is the initial portal that is visible on page load -->
     <div id="access-portal" class="access-portal">
         <div class="portal-box">
             <h3 class="text-2xl font-bold text-gray-800 mb-2">Rahul Kumar's Resume</h3>
@@ -34,7 +32,6 @@
         </div>
     </div>
 
-    <!-- Modal for Entering Token -->
     <div id="token-modal" class="modal-overlay">
         <div class="modal-box">
             <h3 class="text-xl font-bold text-gray-800 mb-4">Access Confidential Information</h3>
@@ -48,7 +45,6 @@
         </div>
     </div>
 
-    <!-- Modal for Requesting Access -->
     <div id="request-access-modal" class="modal-overlay">
         <div class="modal-box">
             <div id="request-form-view">
@@ -73,7 +69,6 @@
         </div>
     </div>
 
-    <!-- The resume content will be dynamically injected here -->
     <div id="resume-content"></div>
 
     <script>
