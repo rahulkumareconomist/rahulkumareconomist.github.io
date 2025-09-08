@@ -424,7 +424,6 @@
         async function loadDynamicBackground() {
             const bgImage = document.getElementById('dynamic-bg-image');
             const bgLoader = document.getElementById('dynamic-bg-loader');
-            const loaderText = bgLoader.querySelector('p');
             
             // 1. Reset UI for regeneration
             bgLoader.style.display = 'flex';
@@ -440,15 +439,14 @@
             const apiKey = ""; // Canvas will provide this automatically
 
             try {
-                // 2. First AI Call: Generate a prompt based on the current macro-environment
+                // 2. First AI Call: Generate a prompt based on a fictional macro-environment
                 const promptGenerationUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                 const promptPayload = {
                     contents: [{
                         parts: [{
-                            text: "Based on the latest global macroeconomic news, create a short, descriptive, and artistic prompt for an AI image generator. The prompt should capture the current economic sentiment (e.g., optimism, uncertainty, volatility, growth). Focus on themes like interest rates, inflation, trade, and market trends. The output should be only the prompt itself, without any extra text or labels."
+                            text: "Imagine and create a short, descriptive, and artistic prompt for an AI image generator. The prompt should capture a compelling, fictional macroeconomic sentiment (e.g., 'a world of cautious optimism after a global downturn', 'the silent hum of digital currency markets', 'supply chain resilience symbolized by glowing rivers'). The output should be only the prompt itself, without any extra text or labels."
                         }]
                     }],
-                    tools: [{ "google_search": {} }],
                     systemInstruction: {
                         parts: [{ text: "You are an expert economist who specializes in creating artistic prompts for AI image generators based on financial data." }]
                     },
@@ -460,7 +458,10 @@
                     body: JSON.stringify(promptPayload)
                 });
 
-                if (!promptResponse.ok) throw new Error(`Prompt generation failed with status ${promptResponse.status}`);
+                if (!promptResponse.ok) {
+                    const errorData = await promptResponse.json().catch(() => ({}));
+                    throw new Error(`Prompt generation failed: ${errorData.error?.message || promptResponse.statusText}`);
+                }
                 
                 const promptResult = await promptResponse.json();
                 const imagePrompt = promptResult.candidates?.[0]?.content?.parts?.[0]?.text;
