@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Macroeconomic Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles to render the AI analysis text correctly */
+        .prose-invert h2 {
+            font-size: 1.25rem; /* text-xl */
+            font-weight: 600; /* font-semibold */
+            color: #a78bfa; /* purple-300 */
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        .prose-invert h3 {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 500; /* font-medium */
+            color: #93c5fd; /* blue-300 */
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+        }
+         .prose-invert li {
+            margin-left: 1rem;
+            list-style-type: disc;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <!-- This is where the React App will be mounted -->
+    <div id="root"></div>
+
+    <!-- Scripts moved to the end of the body for proper loading order -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+        // Since we are using CDNs, React and Recharts are available on the window object.
+        // We destructure the required components from the global Recharts object.
+        const { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = Recharts;
+
+        // --- Helper Functions & Mock Data ---
+
+        // Helper to format large numbers for display
+        const formatNumber = (num) => {
+            if (num >= 1e12) return (num / 1e12).toFixed(2) + 'T';
+            if (num >= 1e9) return (num / 1e9).toFixed(2) + 'B';
+            if (num >= 1e6) return (num / 1e6).toFixed(2) + 'M';
+            return num.toString();
+        };
+
+        // Mock historical GDP data for India (in USD Billions)
+        const indiaGdpHistory = [
+            { year: '2020', gdp: 2667 },
+            { year: '2021', gdp: 3176 },
+            { year: '2022', gdp: 3385 },
+            { year: '2023', gdp: 3730 },
+            { year: '2024', gdp: 4110 },
+            { year: '2025', gdp: 4500, forecast: true },
+        ];
+
+        // --- SVG Icon Components ---
+        const ArrowUpIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 10l7-7m0 0l7 7m-7-7v18" />
+            </svg>
+        );
+
+        const ArrowDownIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        );
+
+        const InfoIcon = () => (
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 text-gray-400">
+                <circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line>
+            </svg>
+        );
+        
+        const GeminiIcon = () => (
+             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="gemini_gradient" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                        <stop stopColor="#4285F4"/>
+                        <stop offset="0.5" stopColor="#9B72CB"/>
+                        <stop offset="1" stopColor="#D96570"/>
+                    </linearGradient>
+                </defs>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="url(#gemini_gradient)"/>
+                <path d="M12 10.5c-1.93 0-3.5 1.57-3.5 3.5s1.57 3.5 3.5 3.5 3.5-1.57 3.5-3.5-1.57-3.5-3.5-3.5zm0 5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="url(#gemini_gradient)"/>
+                <path d="M17.5 8.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" fill="url(#gemini_gradient)"/>
+            </svg>
+        );
+
+        // --- React Components ---
+
+        const MetricCard = ({ title, value, change, changeType, onClick, detail }) => (
+            <div
+                className="bg-gray-800 border border-gray-700 p-4 rounded-xl shadow-lg hover:bg-gray-700/50 transition-all duration-300 cursor-pointer"
+                onClick={onClick}
+            >
+                <div className="flex justify-between items-center mb-1">
+                    <h3 className="text-sm font-medium text-gray-400">{title}</h3>
+                    <InfoIcon />
+                </div>
+                <p className="text-2xl font-bold text-white">{value}</p>
+                <div className="flex items-center mt-1 text-sm">
+                    {changeType === 'increase' ? <ArrowUpIcon /> : <ArrowDownIcon />}
+                    <span className={`ml-1 font-semibold ${changeType === 'increase' ? 'text-green-400' : 'text-red-400'}`}>
+                        {change}
+                    </span>
+                    <span className="ml-2 text-gray-500">{detail}</span>
+                </div>
+            </div>
+        );
+
+        const GdpChart = ({ onBarClick }) => (
+            <div className="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-lg col-span-1 md:col-span-2 lg:col-span-4">
+                <h3 className="text-lg font-semibold text-white mb-4">India - GDP Evolution (USD Billions)</h3>
+                <div style={{ width: '100%', height: 300 }}>
+                    <ResponsiveContainer>
+                        <BarChart data={indiaGdpHistory}>
+                            <CartesianGrid strokeDasharray="3 3" stroke="#4A5568" />
+                            <XAxis dataKey="year" stroke="#A0AEC0" />
+                            <YAxis stroke="#A0AEC0" tickFormatter={(val) => `$${(val / 1000).toFixed(1)}K`} />
+                            <Tooltip
+                                contentStyle={{ backgroundColor: '#1A202C', border: '1px solid #4A5568', color: '#FFFFFF', borderRadius: '0.75rem' }}
+                                cursor={{ fill: 'rgba(147, 114, 203, 0.1)' }}
+                            />
+                            <Legend wrapperStyle={{ color: '#A0AEC0' }} />
+                            <Bar
+                                dataKey="gdp"
+                                name="GDP"
+                                onClick={(data) => onBarClick(data.year, data.gdp)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {indiaGdpHistory.map((entry, index) => (
+                                    <Cell key={`cell-${index}`} fill={entry.forecast ? '#9B72CB' : '#4285F4'} />
+                                ))}
+                            </Bar>
+                        </BarChart>
+                    </ResponsiveContainer>
+                </div>
+            </div>
+        );
+
+        const AnalysisModal = ({ isOpen, onClose, analysis, isLoading }) => {
+            if (!isOpen) return null;
+
+            return (
+                <div className="fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex justify-center items-center z-50 p-4">
+                    <div className="bg-gray-800 border border-gray-700 rounded-2xl shadow-2xl w-full max-w-2xl max-h-[90vh] flex flex-col">
+                        <div className="flex justify-between items-center p-4 border-b border-gray-700 flex-shrink-0">
+                            <div className="flex items-center space-x-2">
+                                <GeminiIcon />
+                                <h2 className="text-lg font-semibold text-white">Gemini Macroeconomic Analysis</h2>
+                            </div>
+                            <button onClick={onClose} className="text-gray-400 hover:text-white text-2xl leading-none">&times;</button>
+                        </div>
+                        <div className="p-6 overflow-y-auto">
+                            {isLoading ? (
+                                <div className="flex flex-col items-center justify-center h-64">
+                                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-400"></div>
+                                    <p className="text-white mt-4">Analyzing data...</p>
+                                </div>
+                            ) : (
+                                <div className="prose prose-invert prose-sm md:prose-base max-w-none text-gray-300" dangerouslySetInnerHTML={{ __html: analysis }} />
+                            )}
+                        </div>
+                        <div className="p-4 border-t border-gray-700 text-center flex-shrink-0">
+                            <button
+                                onClick={onClose}
+                                className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-300"
+                            >
+                                Close Analysis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+
+        // --- Main App Component ---
+        function App() {
+            const [modalOpen, setModalOpen] = React.useState(false);
+            const [analysisResult, setAnalysisResult] = React.useState('');
+            const [isLoading, setIsLoading] = React.useState(false);
+            const [currentDate] = React.useState(new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
+
+            const callGeminiAPI = async (prompt) => {
+                setIsLoading(true);
+                setAnalysisResult('');
+                
+                try {
+                    const vercelProjectUrl = ''; // Keep it empty to use relative path
+                    const apiUrl = `${vercelProjectUrl}/api/analyze-macro`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt })
+                    });
+
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response.' }));
+                        throw new Error(errorData.error || `API request failed with status ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+
+                    if (result.analysis) {
+                        const formattedText = result.analysis
+                            .replace(/## (.*)/g, '<h2>$1</h2>')
+                            .replace(/### (.*)/g, '<h3>$1</h3>')
+                            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\* (.*)/g, (match, p1) => `<li>${p1.trim()}</li>`)
+                            .replace(/(\r\n|\n|\r)/g, "<br>");
+                        setAnalysisResult(formattedText);
+                    } else {
+                        throw new Error("Invalid response structure from serverless function.");
+                    }
+
+                } catch (error) {
+                     console.error("Error fetching AI analysis:", error);
+                     if (window.location.protocol === 'file:') {
+                         setAnalysisResult(`<p class="text-orange-500 font-semibold">Local Testing Notice</p><p>This AI feature cannot run when the HTML file is opened directly from your computer. Please test it using your live Vercel URL.</p>`);
+                     } else {
+                        setAnalysisResult(`<p class="text-red-500">Sorry, an error occurred: ${error.message}</p><p class=\"text-sm text-gray-500 mt-2\">This might be a temporary issue with the backend service. Please try again in a moment.</p>`);
+                     }
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            const handleCardClick = (metric, value) => {
+                setModalOpen(true);
+                const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
+                callGeminiAPI(prompt);
+            };
+            
+            const handleBarClick = (year, gdp) => {
+                setModalOpen(true);
+                const prompt = `Analyze India's GDP of $${gdp} Billion in the year ${year}. Describe the global and domestic economic climate of that year. What were the key sectors and policy decisions driving this economic performance? What were the main challenges?`;
+                callGeminiAPI(prompt);
+            };
+
+
+            return (
+                <div className="bg-gray-900 text-white min-h-screen font-sans">
+                    <div className="container mx-auto p-4 md:p-8">
+                        <header className="mb-8">
+                            <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-blue-500">
+                                Personal Macroeconomic Dashboard
+                            </h1>
+                            <p className="text-gray-400 mt-1">Last refreshed: {currentDate}</p>
+                        </header>
+
+                        <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div className="lg:col-span-4 text-lg font-semibold text-gray-300 mb-[-1rem]">
+                                <h2>Key Indicators (India)</h2>
+                            </div>
+
+                            <MetricCard
+                                title="GDP Growth (Q/Q)"
+                                value="7.8%"
+                                change="0.2%"
+                                changeType="increase"
+                                detail="vs previous quarter"
+                                onClick={() => handleCardClick("GDP Growth", "7.8%")}
+                            />
+                            <MetricCard
+                                title="Inflation Rate (CPI)"
+                                value="4.8%"
+                                change="0.3%"
+                                changeType="decrease"
+                                detail="vs previous month"
+                                onClick={() => handleCardClick("Inflation Rate", "4.8%")}
+                            />
+                            <MetricCard
+                                title="Unemployment Rate"
+                                value="7.1%"
+                                change="0.1%"
+                                changeType="increase"
+                                detail="vs previous month"
+                                onClick={() => handleCardClick("Unemployment Rate", "7.1%")}
+                            />
+                            <MetricCard
+                                title="Sensex"
+                                value="74,250"
+                                change="150 pts"
+                                changeType="increase"
+                                detail="today"
+                                onClick={() => handleCardClick("Sensex level", "74,250")}
+                            />
+                            
+                            <GdpChart onBarClick={handleBarClick} />
+
+                        </main>
+                    </div>
+                    <AnalysisModal isOpen={modalOpen} onClose={() => setModalOpen(false)} analysis={analysisResult} isLoading={isLoading} />
+                </div>
+            );
+        }
+
+        // Render the App component to the DOM
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>
+
