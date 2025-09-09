@@ -84,7 +84,7 @@
             >
                 <div className="flex justify-between items-center mb-1">
                     <h3 className="text-sm font-medium text-gray-400">{title}</h3>
-                    <InfoIcon />
+                    <div onClick={(e) => { e.stopPropagation(); onClick(); }}><InfoIcon /></div>
                 </div>
                 <p className="text-2xl font-bold text-white">{value}</p>
                 <div className="flex items-center mt-1 text-sm">
@@ -141,18 +141,20 @@
             const [isLoading, setIsLoading] = React.useState(false);
             const [currentDate] = React.useState(new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }));
 
-            const callGeminiAPI = async (prompt) => {
+            const callAPI = async (metric, value) => {
                 setIsLoading(true);
                 setAnalysisResult('');
+                setModalOpen(true);
                 
                 try {
                     const vercelProjectUrl = ''; // Keep it empty to use relative path
-                    const apiUrl = `${vercelProjectUrl}/api/analyze-macro`;
+                    const apiUrl = `${vercelProjectUrl}/api/summarize`;
+                    const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
 
                     const response = await fetch(apiUrl, {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ prompt: prompt })
+                        body: JSON.stringify({ abstractText: prompt })
                     });
 
                     if (!response.ok) {
@@ -162,8 +164,8 @@
                     
                     const result = await response.json();
 
-                    if (result.analysis) {
-                        const formattedText = result.analysis
+                    if (result.summary) {
+                        const formattedText = result.summary
                             .replace(/## (.*)/g, '<h2>$1</h2>')
                             .replace(/### (.*)/g, '<h3>$1</h3>')
                             .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
@@ -179,17 +181,11 @@
                      if (window.location.protocol === 'file:') {
                          setAnalysisResult(`<p class="text-orange-500 font-semibold">Local Testing Notice</p><p>This AI feature cannot run when the HTML file is opened directly from your computer. Please test it using your live Vercel URL.</p>`);
                      } else {
-                        setAnalysisResult(`<p class="text-red-500">Sorry, an error occurred: ${error.message}</p><p class="text-sm text-gray-500 mt-2">This might be a temporary issue with the backend service. Please try again in a moment.</p>`);
+                        setAnalysisResult(`<p class="text-red-500">Sorry, an error occurred: ${error.message}</p><p class=\"text-sm text-gray-500 mt-2\">This might be a temporary issue with the backend service. Please try again in a moment.</p>`);
                      }
                 } finally {
                     setIsLoading(false);
                 }
-            };
-
-            const handleCardClick = (metric, value) => {
-                setModalOpen(true);
-                const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
-                callGeminiAPI(prompt);
             };
 
             return (
@@ -213,7 +209,7 @@
                                 change="0.2%"
                                 changeType="increase"
                                 detail="vs previous quarter"
-                                onClick={() => handleCardClick("GDP Growth", "7.8%")}
+                                onClick={() => callAPI("GDP Growth", "7.8%")}
                             />
                             <MetricCard
                                 title="Inflation Rate (CPI)"
@@ -221,7 +217,7 @@
                                 change="0.3%"
                                 changeType="decrease"
                                 detail="vs previous month"
-                                onClick={() => handleCardClick("Inflation Rate", "4.8%")}
+                                onClick={() => callAPI("Inflation Rate", "4.8%")}
                             />
                             <MetricCard
                                 title="Unemployment Rate"
@@ -229,7 +225,7 @@
                                 change="0.1%"
                                 changeType="increase"
                                 detail="vs previous month"
-                                onClick={() => handleCardClick("Unemployment Rate", "7.1%")}
+                                onClick={() => callAPI("Unemployment Rate", "7.1%")}
                             />
                             <MetricCard
                                 title="Sensex"
@@ -237,7 +233,7 @@
                                 change="150 pts"
                                 changeType="increase"
                                 detail="today"
-                                onClick={() => handleCardClick("Sensex level", "74,250")}
+                                onClick={() => callAPI("Sensex level", "74,250")}
                             />
                         </main>
                     </div>
