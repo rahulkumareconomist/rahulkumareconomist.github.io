@@ -38,6 +38,7 @@
     <!-- Scripts moved to the end of the body for proper loading order -->
     <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
     <script type="text/babel">
@@ -97,6 +98,49 @@
             </div>
         );
 
+        const GdpChart = ({ onBarClick }) => {
+            const { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } = Recharts;
+            const indiaGdpHistory = [
+                { year: '2020', gdp: 2667 },
+                { year: '2021', gdp: 3176 },
+                { year: '2022', gdp: 3385 },
+                { year: '2023', gdp: 3730 },
+                { year: '2024', gdp: 4110 },
+                { year: '2025', gdp: 4500, forecast: true },
+            ];
+
+            return (
+                <div className="bg-gray-800 border border-gray-700 p-6 rounded-xl shadow-lg col-span-1 md:col-span-2 lg:col-span-4">
+                    <h3 className="text-lg font-semibold text-white mb-4">India - GDP Evolution (USD Billions)</h3>
+                    <div style={{ width: '100%', height: 300 }}>
+                        <ResponsiveContainer>
+                            <BarChart data={indiaGdpHistory}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="#4A5568" />
+                                <XAxis dataKey="year" stroke="#A0AEC0" />
+                                <YAxis stroke="#A0AEC0" tickFormatter={(val) => `$${(val / 1000).toFixed(1)}K`}
+                                />
+                                <Tooltip
+                                    contentStyle={{ backgroundColor: '#1A202C', border: '1px solid #4A5568', color: '#FFFFFF', borderRadius: '0.75rem' }}
+                                    cursor={{ fill: 'rgba(147, 114, 203, 0.1)' }}
+                                />
+                                <Legend wrapperStyle={{ color: '#A0AEC0' }} />
+                                <Bar
+                                    dataKey="gdp"
+                                    name="GDP"
+                                    onClick={(data) => onBarClick(data.year, data.gdp)}
+                                    style={{ cursor: 'pointer' }}
+                                >
+                                    {indiaGdpHistory.map((entry, index) => (
+                                        <Cell key={`cell-${index}`} fill={entry.forecast ? '#9B72CB' : '#4285F4'} />
+                                    ))}
+                                </Bar>
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </div>
+            );
+        };
+
         const AnalysisModal = ({ isOpen, onClose, analysis, isLoading }) => {
             if (!isOpen) return null;
 
@@ -146,21 +190,52 @@
                 setAnalysisResult('');
                 setModalOpen(true);
                 
-                const vercelProjectUrl = ''; // Keep it empty to use relative path
-                const apiUrl = `${vercelProjectUrl}/api/summarize`;
-                const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
+                try {
+                    const vercelProjectUrl = ''; // Keep it empty to use relative path
+                    const apiUrl = `${vercelProjectUrl}/api/analyze-macro`;
+                    const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
 
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ abstractText: prompt })
-                });
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ prompt: prompt })
+                    });
 
-                console.log('Response:', response);
-                const responseText = await response.text();
-                console.log('Response Text:', responseText);
-                setAnalysisResult(responseText);
-                setIsLoading(false);
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response.' }));
+                        throw new Error(errorData.error || `API request failed with status ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+
+                    if (result.analysis) {
+                        const formattedText = result.analysis
+                            .replace(/## (.*)/g, '<h2>$1</h2>')
+                            .replace(/### (.*)/g, '<h3>$1</h3>')
+                            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\* (.*)/g, (match, p1) => `<li>${p1.trim()}</li>`)
+                            .replace(/(\r\n|\n|\r)/g, "<br>");
+                        setAnalysisResult(formattedText);
+                    } else {
+                        throw new Error("Invalid response structure from serverless function.");
+                    }
+
+                } catch (error) {
+                     console.error("Error fetching AI analysis:", error);
+                     if (window.location.protocol === 'file:') {
+                         setAnalysisResult(`<p class="text-orange-500 font-semibold">Local Testing Notice</p><p>This AI feature cannot run when the HTML file is opened directly from your computer. Please test it using your live Vercel URL.</p>`);
+                     } else {
+                        setAnalysisResult(`<p class="text-red-500">Sorry, an error occurred: ${error.message}</p><p class=\"text-sm text-gray-500 mt-2\">This might be a temporary issue with the backend service. Please try again in a moment.</p>`);
+                     }
+                } finally {
+                    setIsLoading(false);
+                }
+            };
+
+            const handleBarClick = (year, gdp) => {
+                setModalOpen(true);
+                const prompt = `Analyze India's GDP of $${gdp} Billion in the year ${year}. Describe the global and domestic economic climate of that year. What were the key sectors and policy decisions driving this economic performance? What were the main challenges?`;
+                callAPI("GDP", gdp);
             };
 
             return (
@@ -210,6 +285,9 @@
                                 detail="today"
                                 onClick={() => callAPI("Sensex level", "74,250")}
                             />
+                            
+                            <GdpChart onBarClick={handleBarClick} />
+
                         </main>
                     </div>
                     <AnalysisModal isOpen={modalOpen} onClose={() => setModalOpen(false)} analysis={analysisResult} isLoading={isLoading} />
