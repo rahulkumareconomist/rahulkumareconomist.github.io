@@ -146,46 +146,21 @@
                 setAnalysisResult('');
                 setModalOpen(true);
                 
-                try {
-                    const vercelProjectUrl = ''; // Keep it empty to use relative path
-                    const apiUrl = `${vercelProjectUrl}/api/summarize`;
-                    const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
+                const vercelProjectUrl = ''; // Keep it empty to use relative path
+                const apiUrl = `${vercelProjectUrl}/api/summarize`;
+                const prompt = `Provide a detailed analysis of India's latest ${metric} which stands at ${value}. Explain its recent trend, the primary drivers, and its impact on the broader economy. Compare it briefly with other major economies.`;
 
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ abstractText: prompt })
-                    });
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ abstractText: prompt })
+                });
 
-                    if (!response.ok) {
-                        const errorData = await response.json().catch(() => ({ error: 'Failed to parse error response.' }));
-                        throw new Error(errorData.error || `API request failed with status ${response.status}`);
-                    }
-                    
-                    const result = await response.json();
-
-                    if (result.summary) {
-                        const formattedText = result.summary
-                            .replace(/## (.*)/g, '<h2>$1</h2>')
-                            .replace(/### (.*)/g, '<h3>$1</h3>')
-                            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-                            .replace(/\* (.*)/g, (match, p1) => `<li>${p1.trim()}</li>`)
-                            .replace(/(\r\n|\n|\r)/g, "<br>");
-                        setAnalysisResult(formattedText);
-                    } else {
-                        throw new Error("Invalid response structure from serverless function.");
-                    }
-
-                } catch (error) {
-                     console.error("Error fetching AI analysis:", error);
-                     if (window.location.protocol === 'file:') {
-                         setAnalysisResult(`<p class="text-orange-500 font-semibold">Local Testing Notice</p><p>This AI feature cannot run when the HTML file is opened directly from your computer. Please test it using your live Vercel URL.</p>`);
-                     } else {
-                        setAnalysisResult(`<p class="text-red-500">Sorry, an error occurred: ${error.message}</p><p class=\"text-sm text-gray-500 mt-2\">This might be a temporary issue with the backend service. Please try again in a moment.</p>`);
-                     }
-                } finally {
-                    setIsLoading(false);
-                }
+                console.log('Response:', response);
+                const responseText = await response.text();
+                console.log('Response Text:', responseText);
+                setAnalysisResult(responseText);
+                setIsLoading(false);
             };
 
             return (
