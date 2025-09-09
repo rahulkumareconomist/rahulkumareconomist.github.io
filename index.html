@@ -419,34 +419,29 @@
             const bgImage = document.getElementById('dynamic-bg-image');
             const bgLoader = document.getElementById('dynamic-bg-loader');
             
-            const apiKey = ""; // Canvas will provide this automatically
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${apiKey}`;
-            
             const yesterday = new Date();
             yesterday.setDate(yesterday.getDate() - 1);
             const dateString = yesterday.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-            const payload = {
-                instances: [{
-                    prompt: `Photorealistic, abstract, artistic visualization of the global macroeconomic environment on ${dateString}. Show interconnected data streams, market sentiment represented by light and shadow, and subtle indicators of growth or volatility. Use a sophisticated, slightly futuristic aesthetic with a palette of deep blues, digital purples, and shimmering gold accents. Cinematic, high-resolution, wide-angle shot.`
-                }],
-                parameters: { "sampleCount": 1 }
-            };
+            const prompt = `Photorealistic, abstract, artistic visualization of the global macroeconomic environment on ${dateString}. Show interconnected data streams, market sentiment represented by light and shadow, and subtle indicators of growth or volatility. Use a sophisticated, slightly futuristic aesthetic with a palette of deep blues, digital purples, and shimmering gold accents. Cinematic, high-resolution, wide-angle shot.`;
 
             try {
+                const vercelProjectUrl = ''; // Keep it empty for relative path
+                const apiUrl = `${vercelProjectUrl}/api/generate-background`;
+
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify({ prompt: prompt })
                 });
 
                 if (!response.ok) {
                     const errorData = await response.json().catch(() => ({}));
-                    throw new Error(errorData.error?.message || `API error (${response.status})`);
+                    throw new Error(errorData.error || `API error (${response.status})`);
                 }
 
                 const result = await response.json();
-                const base64Data = result.predictions?.[0]?.bytesBase64Encoded;
+                const base64Data = result.image;
 
                 if (base64Data) {
                     bgImage.src = `data:image/png;base64,${base64Data}`;
@@ -461,7 +456,7 @@
 
             } catch (error) {
                 console.error("Error generating dynamic background:", error);
-                bgLoader.innerHTML = `<p class="text-red-400 text-center px-4">Could not load dynamic background.</p>`;
+                bgLoader.innerHTML = `<p class=\"text-red-400 text-center px-4\">Could not load dynamic background.</p>`;
                 // Optional: Load a fallback static image
                 bgImage.src = 'https://placehold.co/1920x1080/020617/3B82F6?text=Macro+Insights';
                  bgImage.onload = () => {
