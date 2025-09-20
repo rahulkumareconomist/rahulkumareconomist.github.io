@@ -6,6 +6,8 @@
     <title>Mr. Rahul Kumar Thakur - PhD Scholar &amp; Quantitative Researcher</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+    <!-- Google Calendar Appointment Scheduling CSS -->
+    <link href="https://calendar.google.com/calendar/scheduling-button-script.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -331,9 +333,31 @@
     <section id="collaborate" class="py-16 md:py-24 bg-blue-600 text-white">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl font-bold mb-6">Let's Connect &amp; Collaborate</h2>
-            <p class="text-lg max-w-2xl mx-auto mb-8">
+            <p class="text-lg max-w-3xl mx-auto mb-10">
                 I am passionate about contributing to the field and welcome opportunities for joint research projects, guest lectures, workshops, advisory roles, and collaborations with academic institutions, research centers, universities, and government bodies worldwide. If you have an idea or project where my expertise can contribute, I'd love to hear from you.
             </p>
+
+            <!-- Google Calendar Button Start -->
+            <div class="mb-10">
+                <!-- Google Calendar Appointment Scheduling begin -->
+                <script src="https://calendar.google.com/calendar/scheduling-button-script.js" async></script>
+                <script>
+                (function() {
+                  var target = document.currentScript;
+                  window.addEventListener('load', function() {
+                    calendar.schedulingButton.load({
+                      url: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ059Z0MJmeWDgkYqn5wJCLvDlwRMhydusX1yvgyz7YqSI4tyvuZCf31khCBpwixG-0TOC6ZCmZs?gv=true',
+                      color: '#039BE5',
+                      label: 'Schedule a 30-Minute Meeting',
+                      target,
+                    });
+                  });
+                })();
+                </script>
+                <!-- end Google Calendar Appointment Scheduling -->
+            </div>
+            <!-- Google Calendar Button End -->
+
             <div class="mb-8">
                 <a href="mailto:p20230517@hyderabad.bits-pilani.ac.in" class="text-xl hover:underline">p20230517@hyderabad.bits-pilani.ac.in</a>
             </div>
