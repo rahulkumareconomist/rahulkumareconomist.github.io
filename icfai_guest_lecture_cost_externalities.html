@@ -1,0 +1,3689 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Microeconomics of Cost, Systemic Externalities & Evolutionary Mechanics | BITS PhD & ICFAI Research</title>
+  <meta name="description" content="Unified doctoral and MBA research laboratory synthesizing Managerial Cost Theory, Systemic Externalities, 44-Country Panel Econometrics, Indian Sovereign Crises, and Darwinian Replicator Dynamics." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+  <!-- KaTeX for Publication-Grade Equation Rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" onload="renderMathOnPage()"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ==========================================================================
+       CSS Design System: Tokens, Typography, and Layout
+       ========================================================================== */
+    :root {
+      --primary: #1F4E79;
+      --primary-dark: #0F2942;
+      --primary-light: #2F5597;
+      --primary-subtle: #EBF3FA;
+      --primary-border: #BFDBFE;
+      
+      --accent-red: #C00000;
+      --accent-red-subtle: #FDE8E8;
+      --accent-coral: #E26B57;
+      --accent-green: #198038;
+      --accent-green-subtle: #DEF8E9;
+      --accent-amber: #D97706;
+      --accent-amber-subtle: #FEF3C7;
+      --accent-purple: #7C3AED;
+      --accent-purple-subtle: #F3E8FF;
+      
+      --bg-body: #F8FAFC;
+      --bg-surface: #FFFFFF;
+      --bg-surface-raised: #FFFFFF;
+      --bg-surface-alt: #F1F5F9;
+      --bg-canvas: #F8FAFC;
+      --bg-subtle: #F1F5F9;
+      --bg-muted: #E2E8F0;
+      
+      --text-main: #0F172A;
+      --text-primary: #0F172A;
+      --text-secondary: #334155;
+      --text-muted: #475569;
+      --text-subtle: #64748B;
+      --border-color: #E2E8F0;
+      --border-subtle: #E2E8F0;
+      --border-strong: #CBD5E1;
+      --border-focus: #3B82F6;
+      
+      --danger: #DC2626;
+      --danger-light: #FEF2F2;
+      --danger-border: #FECACA;
+      --success: #15803D;
+      --success-light: #F0FDF4;
+      --success-border: #BBF7D0;
+      --purple: #6D28D9;
+      --purple-light: #FAF5FF;
+      --purple-border: #E9D5FF;
+      
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 22px;
+      --radius-full: 9999px;
+      
+      --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-serif: 'Lora', Georgia, serif;
+      --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+      --font-display: 'Cinzel', serif;
+      
+      --transition-base: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --header-height: 64px;
+      --sidebar-width: 290px;
+    }
+
+    [data-theme="dark"] {
+      --bg-body: #090D16;
+      --bg-canvas: #090D16;
+      --bg-surface: #111827;
+      --bg-surface-raised: #1A2234;
+      --bg-surface-alt: #1E293B;
+      --bg-subtle: #1E293B;
+      --bg-muted: #334155;
+      
+      --text-main: #F8FAFC;
+      --text-primary: #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted: #94A3B8;
+      --text-subtle: #64748B;
+      --border-color: #334155;
+      --border-subtle: #1E293B;
+      --border-strong: #334155;
+      
+      --primary: #3B82F6;
+      --primary-light: #60A5FA;
+      --primary-subtle: #1E293B;
+      --primary-border: rgba(59, 130, 246, 0.3);
+      
+      --accent-red: #EF4444;
+      --accent-red-subtle: #371B1B;
+      --accent-green: #22C55E;
+      --accent-green-subtle: #132E1F;
+      --accent-amber: #F59E0B;
+      --accent-amber-subtle: #33230C;
+      --accent-purple: #A855F7;
+      --accent-purple-subtle: #291B3D;
+      
+      --danger: #EF4444;
+      --danger-light: rgba(239, 68, 68, 0.15);
+      --danger-border: rgba(239, 68, 68, 0.3);
+      --success: #22C55E;
+      --success-light: rgba(34, 197, 94, 0.15);
+      --success-border: rgba(34, 197, 94, 0.3);
+      --purple: #A855F7;
+      --purple-light: rgba(168, 85, 247, 0.15);
+      --purple-border: rgba(168, 85, 247, 0.3);
+
+      --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* Reading Progress Bar */
+    #reading-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #1F4E79, #3B82F6, #7C3AED, #C00000);
+      z-index: 1200;
+      transition: width 0.1s ease;
+    }
+
+    /* ==========================================================================
+       Top App Header & Navigation
+       ========================================================================== */
+    .app-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      transition: var(--transition-base);
+    }
+    [data-theme="dark"] .app-header {
+      background: rgba(17, 24, 39, 0.94);
+    }
+
+    .header-inner {
+      max-width: 1520px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-badge {
+      background: linear-gradient(135deg, #1F4E79, #2F5597);
+      color: white;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(31, 78, 121, 0.25);
+    }
+
+    .brand-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-subtitle {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      background: var(--bg-surface-alt);
+      padding: 3px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+    }
+
+    .mode-btn {
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      transition: var(--transition-base);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .mode-btn.active {
+      background: var(--bg-surface);
+      color: var(--primary);
+      box-shadow: var(--shadow-sm);
+    }
+    [data-theme="dark"] .mode-btn.active {
+      color: #60A5FA;
+    }
+
+    .action-btn {
+      padding: 6px 13px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: var(--transition-base);
+    }
+    .action-btn:hover {
+      background: var(--bg-surface-alt);
+      border-color: var(--text-muted);
+    }
+    .action-btn.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .action-btn.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* ==========================================================================
+       Layout Containers
+       ========================================================================== */
+    .app-main {
+      max-width: 1520px;
+      margin: 0 auto;
+      padding: 20px 24px 60px;
+    }
+
+    /* Deck View Mode */
+    .deck-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .deck-viewport {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      min-height: 640px;
+      position: relative;
+    }
+
+    .deck-slide {
+      display: none;
+      padding: 36px 44px;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .deck-slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .slide-category {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--primary);
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+    [data-theme="dark"] .slide-category {
+      color: #60A5FA;
+    }
+
+    .slide-title {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .lead-text {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+      .deck-slide { padding: 24px 20px; }
+      .math-steps-grid { grid-template-columns: 1fr; }
+    }
+
+    .concept-card {
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+      transition: var(--transition-base);
+    }
+    .concept-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .concept-card.highlight {
+      border-left: 4px solid var(--primary);
+    }
+    .concept-card.danger {
+      border-left: 4px solid var(--accent-red);
+      background: var(--accent-red-subtle);
+    }
+    .concept-card.warning {
+      border-left: 4px solid var(--accent-amber);
+      background: var(--accent-amber-subtle);
+    }
+    .concept-card.success {
+      border-left: 4px solid var(--accent-green);
+      background: var(--accent-green-subtle);
+    }
+
+    .concept-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .concept-desc {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .callout {
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin-top: 16px;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      border-left: 4px solid var(--primary);
+      background: var(--primary-subtle);
+    }
+    .callout.alert {
+      border-left-color: var(--accent-red);
+      background: var(--accent-red-subtle);
+      color: #7F1D1D;
+    }
+    [data-theme="dark"] .callout.alert { color: #FCA5A5; }
+    .callout.tip {
+      border-left-color: var(--accent-green);
+      background: var(--accent-green-subtle);
+      color: #14532D;
+    }
+    [data-theme="dark"] .callout.tip { color: #86EFAC; }
+    .callout.warning {
+      border-left-color: var(--accent-amber);
+      background: var(--accent-amber-subtle);
+      color: #78350F;
+    }
+    [data-theme="dark"] .callout.warning { color: #FCD34D; }
+
+    .callout-title {
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Math Step Cards */
+    .math-block {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      margin: 14px 0;
+      overflow-x: auto;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .math-steps-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .math-step-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      overflow: hidden;
+    }
+    .math-step-card.danger { border-top: 3px solid var(--accent-red); }
+    .math-step-card.success { border-top: 3px solid var(--accent-green); }
+    .math-step-card.warning { border-top: 3px solid var(--accent-amber); }
+    .math-step-card.highlight { border-top: 3px solid var(--primary); }
+
+    .math-step-header {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-subtle);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .math-step-body {
+      overflow-x: auto;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+    .math-step-body .katex-display {
+      margin: 0.25em 0;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    /* Tables */
+    .data-table-container {
+      overflow-x: auto;
+      margin: 16px 0;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .custom-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      text-align: left;
+    }
+    .custom-table th {
+      background: var(--bg-surface-alt);
+      padding: 10px 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border-color);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .custom-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border-color);
+      color: var(--text-secondary);
+    }
+    .custom-table tr:last-child td {
+      border-bottom: none;
+    }
+    .custom-table tr:hover td {
+      background: var(--bg-surface-alt);
+    }
+
+    /* Deck Controls Bar */
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .slide-counter {
+      font-size: 0.84rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    .deck-nav-btns {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .deck-btn {
+      padding: 7px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+    .deck-btn:hover {
+      background: var(--bg-surface-alt);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .deck-btn.primary {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .deck-btn.primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Speaker Notes Drawer */
+    .notes-drawer {
+      background: var(--bg-surface-alt);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      font-size: 0.84rem;
+      color: var(--text-secondary);
+      display: none;
+    }
+    .notes-drawer.open {
+      display: block;
+    }
+
+    /* ==========================================================================
+       Document View Mode (Continuous Academic Reading)
+       ========================================================================== */
+    .doc-container {
+      display: none;
+      gap: 32px;
+      align-items: flex-start;
+    }
+
+    .doc-container.active {
+      display: flex;
+    }
+
+    .doc-sidebar {
+      width: var(--sidebar-width);
+      flex-shrink: 0;
+      position: sticky;
+      top: calc(var(--header-height) + 16px);
+      max-height: calc(100vh - var(--header-height) - 32px);
+      overflow-y: auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .doc-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .doc-sidebar::-webkit-scrollbar-thumb {
+      background: var(--border-strong);
+      border-radius: 4px;
+    }
+
+    .doc-toc-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .doc-toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .doc-toc-item a {
+      display: flex;
+      align-items: center;
+      padding: 5px 8px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      border-left: 2px solid transparent;
+      transition: var(--transition-base);
+      line-height: 1.35;
+    }
+    .doc-toc-item a:hover {
+      color: var(--primary);
+      background: var(--bg-surface-alt);
+    }
+    .doc-toc-item a.active {
+      color: var(--primary);
+      background: var(--primary-subtle);
+      border-left-color: var(--primary);
+      font-weight: 700;
+    }
+    .doc-toc-item.nested a {
+      padding-left: 18px;
+      font-size: 0.76rem;
+    }
+
+    .doc-content {
+      flex: 1;
+      min-width: 0;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+      box-shadow: var(--shadow-md);
+    }
+
+    @media (max-width: 960px) {
+      .doc-container { flex-direction: column; }
+      .doc-sidebar { width: 100%; position: static; max-height: none; }
+      .doc-content { padding: 24px 20px; }
+    }
+
+    /* Paper Hero Card */
+    .paper-hero-card {
+      background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-subtle) 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+    .paper-hero-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1F4E79, #3B82F6, #D97706, #C00000);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: var(--radius-full);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .badge-primary { background: var(--primary-subtle); color: var(--primary); border: 1px solid var(--primary-border); }
+    .badge-danger { background: var(--danger-light); color: var(--danger); border: 1px solid var(--danger-border); }
+    .badge-success { background: var(--success-light); color: var(--success); border: 1px solid var(--success-border); }
+    .badge-accent { background: var(--accent-amber-subtle); color: var(--accent-amber); border: 1px solid #FDE68A; }
+
+    .paper-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+    }
+
+    .paper-abstract-box {
+      background-color: var(--bg-surface);
+      border-left: 4px solid var(--primary);
+      padding: 1.15rem 1.4rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Document Sections */
+    section.doc-section {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      margin-bottom: 2.25rem;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+    section.doc-section:hover {
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-strong);
+    }
+
+    h2.section-heading {
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .heading-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--primary-subtle);
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    h3.sub-heading {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin: 1.75rem 0 0.85rem 0;
+    }
+
+    p {
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+
+    /* Systemic Wedge Visual Banner */
+    .systemic-wedge-banner {
+      background: linear-gradient(135deg, rgba(31, 78, 121, 0.05), rgba(192, 0, 0, 0.05));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .wedge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .wedge-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 1rem;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .wedge-card-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .wedge-card-val {
+      font-size: 1.35rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+    }
+    .wedge-card.private .wedge-card-val { color: var(--primary); }
+    .wedge-card.external .wedge-card-val { color: var(--accent-red); }
+    .wedge-card.social .wedge-card-val { color: var(--purple); }
+
+    /* ==========================================================================
+       Interactive Micro-Macro Wedge Simulator (SVG Engine)
+       ========================================================================== */
+    .interactive-lab {
+      background-color: var(--bg-surface);
+      border: 2px solid var(--primary-border);
+      border-radius: var(--radius-xl);
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .lab-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .lab-title-group h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .lab-title-group p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    .preset-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .preset-btn {
+      padding: 0.35rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 600;
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .preset-btn:hover {
+      background-color: var(--primary-subtle);
+      color: var(--primary);
+      border-color: var(--primary-border);
+    }
+    .preset-btn.active {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .lab-grid {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    @media (max-width: 960px) {
+      .lab-grid { grid-template-columns: 1fr; }
+    }
+
+    .controls-panel {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.15rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .control-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .control-val-badge {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      background-color: var(--bg-surface);
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--border-strong);
+      outline: none;
+      transition: background 0.15s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--primary);
+      cursor: pointer;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      transition: transform 0.1s ease;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.25);
+    }
+
+    .vis-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      min-width: 0;
+    }
+
+    .chart-wrapper {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      position: relative;
+    }
+
+    svg#costChart {
+      width: 100%;
+      height: 380px;
+      display: block;
+      overflow: visible;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .kpi-card {
+      background-color: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      text-align: center;
+      transition: transform 0.15s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+    }
+    .kpi-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .kpi-value {
+      font-family: var(--font-mono);
+      font-size: 1.12rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-top: 0.25rem;
+    }
+    .kpi-card.highlight { background-color: var(--danger-light); border-color: var(--danger-border); }
+    .kpi-card.highlight .kpi-value { color: var(--danger); }
+    .kpi-card.success { background-color: var(--success-light); border-color: var(--success-border); }
+    .kpi-card.success .kpi-value { color: var(--success); }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding-top: 0.5rem;
+    }
+
+    /* Simulation Status Banner */
+    .sim-status-banner {
+      padding: 10px 16px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.86rem;
+      text-align: center;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .sim-status-banner.healthy {
+      background: var(--accent-green-subtle);
+      color: var(--accent-green);
+      border: 1px solid var(--success-border);
+    }
+    .sim-status-banner.crisis {
+      background: var(--accent-red-subtle);
+      color: var(--accent-red);
+      border: 1px solid var(--danger-border);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    /* Canvas Containers for Chart.js */
+    .canvas-container {
+      position: relative;
+      width: 100%;
+      height: 240px;
+    }
+
+    /* Quiz Option Buttons */
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .quiz-opt-btn {
+      padding: 10px 16px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      text-align: left;
+      font-size: 0.85rem;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: var(--transition-base);
+    }
+    .quiz-opt-btn:hover:not(:disabled) {
+      background: var(--bg-surface-alt);
+      border-color: var(--primary);
+    }
+    .quiz-opt-btn.correct {
+      background: var(--accent-green-subtle);
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+    .quiz-opt-btn.wrong {
+      background: var(--accent-red-subtle);
+      border-color: var(--accent-red);
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    .quiz-feedback {
+      font-size: 0.82rem;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      margin-top: 8px;
+      display: none;
+    }
+
+    /* Metric Numbers */
+    .metric-num {
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 1.15rem;
+    }
+    .metric-num.danger { color: var(--accent-red); }
+    .metric-num.warning { color: var(--accent-amber); }
+    .metric-num.success { color: var(--accent-green); }
+    .metric-num.primary { color: var(--primary); }
+
+    /* Footer */
+    footer.app-footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 30px 24px;
+      background: var(--bg-surface);
+      text-align: center;
+      margin-top: 40px;
+    }
+    footer.app-footer p {
+      margin-bottom: 6px;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    @media print {
+      .app-header, .deck-container, .doc-sidebar, #reading-progress, .preset-toolbar, .controls-panel {
+        display: none !important;
+      }
+      .doc-container {
+        display: block !important;
+      }
+      .doc-content {
+        padding: 0 !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="reading-progress"></div>
+
+  <!-- ========================================================================
+       TOP APP HEADER & UNIFIED NAVIGATION
+       ======================================================================== -->
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="#" class="brand-group" onclick="switchMode('deck'); return false;">
+        <span class="brand-badge">Guest Lecture</span>
+        <div>
+          <div class="brand-title">
+            <span>Sectoral Capital Flows & Systemic Externalities</span>
+          </div>
+          <div class="brand-subtitle">Advanced Macroprudential Economics</div>
+        </div>
+      </a>
+
+      <div class="nav-controls">
+        <!-- Main Mode Switcher -->
+        <div class="mode-switch">
+          <button class="mode-btn active" id="btn-mode-deck" onclick="switchMode('deck')">
+            <span>🖥️</span> Presentation Deck
+          </button>
+          <button class="mode-btn" id="btn-mode-doc" onclick="switchMode('doc')">
+            <span>📖</span> Research Note & Text
+          </button>
+        </div>
+
+        <!-- Quick Action Jumpers -->
+        <button class="action-btn" onclick="jumpToLab()">
+          <span>⚡</span> Cost Simulator
+        </button>
+        <button class="action-btn" onclick="jumpToMacroSim()">
+          <span>📈</span> Macro Sim
+        </button>
+        <button class="action-btn" id="themeToggleBtn" onclick="toggleTheme()">
+          <span id="themeIcon">🌙</span> <span id="themeText">Theme</span>
+        </button>
+        <button class="action-btn" onclick="window.print()" title="Print / PDF">
+          <span>🖨️</span> PDF
+        </button>
+        <a href="index.html" class="action-btn" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px; font-weight:600; color:var(--primary);" title="Return to Main Portfolio Home">
+          <span>🏠</span> Home
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MAIN APPLICATION WORKSPACE
+       ======================================================================== -->
+  <main class="app-main">
+
+    <!-- ========================================================================
+         VIEW MODE 1: INTERACTIVE PRESENTATION DECK (11 Slides)
+         ======================================================================== -->
+    <section class="deck-container" id="deck-view">
+      <div class="deck-viewport">
+        
+        <!-- ------------------------------------------------------------------
+             SLIDE 1: Title & Executive Framing
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide active" data-slide="1" data-notes="Slide 1: Welcome MBA & Doctoral researchers. Bridge Managerial Economics (Cost Theory) and Macro-Finance (Systemic Externalities). Highlight that capital allocation is cost minimization, but markets fail when private cost excludes systemic fallout.">
+          <span class="slide-category">Executive Overview & Foundations</span>
+          <h1 class="slide-title">The Microeconomics of Cost, Systemic Externalities & Evolutionary Fragility</h1>
+          <p class="lead-text">
+            "Capital allocation across global markets is fundamentally an exercise in cost minimization. Market efficiency breaks down when private agents optimize strictly against Private Marginal Costs ($PMC$) while ignoring systemic collateral damage inflicted on the macroeconomic commons."
+          </p>
+
+          <div class="grid-3">
+            <div class="concept-card highlight">
+              <div class="concept-title"><span>📊</span> 1. Theory of Cost & Wedges</div>
+              <div class="concept-desc">
+                Accounting vs. Economic Profit, Sunk Cost Fallacy, and the divergence between <strong>Private Marginal Cost ($PMC = 4.20\%$)</strong> and <strong>Social Marginal Cost ($MSC = PMC + MEC$)</strong>.
+              </div>
+            </div>
+
+            <div class="concept-card danger">
+              <div class="concept-title"><span>⚠️</span> 2. Anatomy of Externalities</div>
+              <div class="concept-desc">
+                Pecuniary price-vector spirals vs. Physical common-pool depletion. How currency runs, debt rollover freezes, and fire-sales create massive <strong>Deadweight Loss ($DWL$)</strong>.
+              </div>
+            </div>
+
+            <div class="concept-card warning">
+              <div class="concept-title"><span>🧬</span> 3. Evolutionary Mechanics</div>
+              <div class="concept-desc">
+                Darwinian replicator dynamics: Why competitive selection forces banks to adopt carry trades ($RoE = 22\%$ vs $12\%$) and self-organize the banking system into critical fragility.
+              </div>
+            </div>
+          </div>
+
+          <div class="callout tip" style="margin-top: 20px;">
+            <div class="callout-title"><span>💡</span> Interactive Pedagogical Roadmap</div>
+            Seamlessly explore 11 interactive slides with live simulations, econometric panel findings, and crisis stress-testers, or toggle to the <strong>Comprehensive Research Note & Text</strong> view for complete formal mathematical derivations.
+          </div>
+
+          <div class="callout warning" style="margin-top: 14px; font-size: 0.82rem;">
+            <div class="callout-title" style="font-size: 0.85rem;"><span>⚖️</span> Academic Research Capacity & Institutional Disclaimer</div>
+            The views and opinions expressed in this lecture and research note, along with the underlying models, econometric panel findings, empirical estimates, and policy frameworks, are those of <strong>Rahul Kumar</strong> (BITS Pilani / Citi) in his personal academic research capacity. They do not represent or reflect the official positions or policies of Citi, BITS Pilani, or the Reserve Bank of India.
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 2: Microeconomic Foundations of Cost
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="2" data-notes="Slide 2: Emphasize Accounting Profit vs Economic Profit. Sunk costs are irrecoverable and should not influence forward-looking NPV decisions. Private cost is the direct contract price.">
+          <span class="slide-category">Part 1: The Microeconomics of Cost</span>
+          <h1 class="slide-title">Managerial Cost Theory: Beyond the Accounting Ledger</h1>
+          <p class="lead-text">
+            For future CEOs, CFOs, and policy leaders, rational decision-making requires distinguishing between what is recorded in accounting books versus the true economic cost of capital.
+          </p>
+
+          <div class="grid-2">
+            <div class="concept-card">
+              <div class="concept-title"><span>🧾</span> Accounting Cost vs. Economic Cost</div>
+              <div class="concept-desc">
+                <ul style="padding-left: 18px; margin-top: 6px;">
+                  <li><strong>Accounting Cost:</strong> Explicit out-of-pocket cash expenditures (wages, debt service, raw materials).</li>
+                  <li><strong>Economic Cost:</strong> Explicit Costs <em>plus</em> <strong>Opportunity Cost</strong> (highest-value return foregone from the next best alternative).</li>
+                  <li><strong>Economic Profit Equation:</strong></li>
+                </ul>
+                <div class="math-block" style="padding: 10px 16px; margin: 8px 0 0 0;">
+                  $$\Pi_{\text{econ}} = \text{Total Revenue} - (\text{Explicit Costs} + \text{Opportunity Costs})$$
+                  <div style="font-size:0.8rem; color:var(--text-subtle); text-align:center; margin-top:2px;">When $\Pi_{\text{econ}} = 0$, capital earns its exact normal competitive return.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="concept-card danger">
+              <div class="concept-title"><span>🛑</span> The Sunk Cost Fallacy</div>
+              <div class="concept-desc">
+                <ul style="padding-left: 18px; margin-top: 6px;">
+                  <li><strong>Sunk Costs</strong> are historical outlays that cannot be recovered regardless of future actions.</li>
+                  <li><strong>Core Economic Rule:</strong> <em>Sunk costs are strictly irrelevant to forward-looking NPV and capital allocation decisions.</em></li>
+                  <li><strong>Corporate Pitfall:</strong> Pouring good money after bad into unviable projects (e.g., continuing failing tech capex just because &dollar;100M was spent previously).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="concept-card highlight" style="margin-top: 14px;">
+            <div class="concept-title"><span>⚖️</span> Marginal Private Cost (PMC) vs. Social Marginal Cost (SMC)</div>
+            <div class="concept-desc">
+              When an individual commercial bank borrows &dollar;100M overseas at 4.20%, that 4.20% is its <strong>Private Marginal Cost ($PMC$)</strong>. But if that borrowing increases the vulnerability of the entire domestic banking system to a sudden currency crash, society bears an unpriced <strong>Marginal External Cost ($MEC$)</strong>.
+              <div class="math-block" style="margin-top: 10px;">
+                $$SMC(Q) = PMC(Q) + MEC(Q)$$
+                <div style="font-size:0.84rem; color:var(--text-muted); margin-top:4px; text-align:center;">
+                  $\text{Social Marginal Cost} = \text{Private Marginal Cost} + \text{Marginal External Cost (Systemic Spillover)}$
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 3: The Theory of Externalities & Market Failure
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="3" data-notes="Slide 3: Clearly define externalities. Distinguish Pecuniary (financial fire-sales, price spiral) from Non-pecuniary (pollution, space debris). In macro-finance, pecuniary externalities during crises create real resource misallocations.">
+          <span class="slide-category">Part 2: The Economics of Externalities</span>
+          <h1 class="slide-title">When the Invisible Hand Fails: Anatomy of Externalities</h1>
+          <p class="lead-text">
+            An externality occurs when an economic transaction between Party A and Party B imposes uncompensated costs or confers unpriced benefits onto third-party C.
+          </p>
+
+          <div class="grid-2">
+            <div class="concept-card danger">
+              <div class="concept-title"><span>📉</span> Pecuniary Externalities (Price-Vector Spillovers)</div>
+              <div class="concept-desc">
+                <strong>Mechanism:</strong> Transmitted entirely through market equilibrium prices.<br>
+                <strong>Macro-Finance Example:</strong> When a Shadow Bank liquidates bonds to meet redemptions, bond prices drop. This reduces collateral values for <em>all other institutions</em>, triggering margin calls and fire-sale spirals (Mendoza, 2010; Jeanne & Korinek, 2010).<br>
+                <em>Private borrowers fail to internalize how their leverage tightens aggregate credit constraints.</em>
+              </div>
+            </div>
+
+            <div class="concept-card warning">
+              <div class="concept-title"><span>🛰️</span> Non-Pecuniary / Physical Externalities</div>
+              <div class="concept-desc">
+                <strong>Mechanism:</strong> Bypasses prices; directly impacts third-party production or utility functions.<br>
+                <strong>Real-World Analog:</strong> <em>Kessler Syndrome</em> in Low Earth Orbit (satellite collisions create debris that increases collision hazards for all other satellites).<br>
+                <strong>Environmental Analog:</strong> Factory chemical emissions polluting groundwater without paying reparations.
+              </div>
+            </div>
+          </div>
+
+          <div class="data-table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Production Spillover</th>
+                  <th>Consumption Spillover</th>
+                  <th>Market Equilibrium Outcome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Negative ($MEC > 0$)</strong></td>
+                  <td>Chemical runoff polluting river fisheries; Unhedged NBFI foreign debt runs.</td>
+                  <td>Secondhand cigarette smoke; Gas-guzzling vehicle congestion.</td>
+                  <td><span style="color:var(--accent-red); font-weight:700;">Overproduction ($Q_m > Q_s$) & Underpricing</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Positive ($MEB > 0$)</strong></td>
+                  <td>R&D technology spillovers; Beehives pollinating adjacent orchards.</td>
+                  <td>Vaccinations creating herd immunity; Higher education benefits.</td>
+                  <td><span style="color:var(--accent-green); font-weight:700;">Underproduction ($Q_m < Q_s$)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 4: Pedagogical Algebra & Deadweight Loss Graph
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="4" data-notes="Slide 4: Walk through the exact algebra: Demand P = 100 - Q, PMC = 10 + 2Q, MEC = 1Q, SMC = 10 + 3Q. Show how private market sets Qm = 30, Pm = 70 while Social Optimum is Qs = 22.5, Ps = 77.5. The DWL area is 84.375.">
+          <span class="slide-category">Part 3: The Pedagogical Model</span>
+          <h1 class="slide-title">Mathematical Anatomy of Deadweight Loss (DWL)</h1>
+          <p class="lead-text">
+            Let us derive the exact algebraic wedge between the decentralized market equilibrium and the socially optimal allocation.
+          </p>
+
+          <div class="grid-2">
+            <div>
+              <div class="concept-card highlight">
+                <div class="concept-title"><span>📐</span> Theoretical Equation System</div>
+                <div class="concept-desc">
+                  <div class="math-block">
+                    $$\begin{aligned}
+                    \text{Market Demand (MPB = MSB):} \quad & P(Q) = 100 - Q \\
+                    \text{Private Marginal Cost (PMC):} \quad & PMC(Q) = 10 + 2Q \\
+                    \text{Marginal External Cost (MEC):} \quad & MEC(Q) = 1Q \\
+                    \text{Social Marginal Cost (SMC):} \quad & SMC(Q) = PMC(Q) + MEC(Q) = 10 + 3Q
+                    \end{aligned}$$
+                  </div>
+                  
+                  <div class="math-steps-grid">
+                    <div class="math-step-card danger">
+                      <div class="math-step-header"><span>1️⃣</span> Private Market Equilibrium</div>
+                      <div class="math-step-body">
+                        $$\text{Demand} = PMC$$
+                        $$100 - Q = 10 + 2Q \implies \mathbf{Q_m = 30}, \; \mathbf{P_m = 70}$$
+                      </div>
+                    </div>
+
+                    <div class="math-step-card success">
+                      <div class="math-step-header"><span>2️⃣</span> Socially Optimal Optimum</div>
+                      <div class="math-step-body">
+                        $$\text{Demand} = SMC$$
+                        $$100 - Q = 10 + 3Q \implies \mathbf{Q_s = 22.5}, \; \mathbf{P_s = 77.5}$$
+                      </div>
+                    </div>
+
+                    <div class="math-step-card warning">
+                      <div class="math-step-header"><span>3️⃣</span> Pigouvian Tax ($t^*$)</div>
+                      <div class="math-step-body">
+                        $$t^* = MEC(Q_s) = 1 \times 22.5 = \mathbf{22.5}$$
+                        <span style="font-size:0.75rem; color:var(--text-subtle);">Internalizes the systemic collateral damage.</span>
+                      </div>
+                    </div>
+
+                    <div class="math-step-card highlight">
+                      <div class="math-step-header"><span>4️⃣</span> Deadweight Loss (DWL)</div>
+                      <div class="math-step-body">
+                        $$DWL = \frac{1}{2} (Q_m - Q_s)[SMC(Q_m) - P_m]$$
+                        $$DWL = \frac{1}{2} \times 7.5 \times 30 = \mathbf{84.375}$$
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <!-- Interactive Live DWL Canvas -->
+              <div class="concept-card">
+                <div class="concept-title"><span>📈</span> Interactive DWL Market Graph</div>
+                <div class="canvas-container" style="height: 280px;">
+                  <canvas id="chart-dwl-pedagogy"></canvas>
+                </div>
+                <div style="margin-top: 10px; display: flex; gap: 12px; align-items: center;">
+                  <span style="font-size: 0.8rem; font-weight: 600;">Pigouvian Tax Slider ($t$):</span>
+                  <input type="range" class="control-slider" id="dwl-tax-slider" min="0" max="30" step="0.5" value="0" oninput="updatePedagogicalDWL()" style="flex:1;">
+                  <span class="control-value" id="dwl-tax-val" style="font-family:var(--font-mono); font-weight:700;">t = 0.0</span>
+                </div>
+                <div style="font-size: 0.75rem; color: var(--text-subtle); margin-top: 4px;">
+                  Slide $t$ up to 22.5 to see the tax internalize the externality and reduce Deadweight Loss to 0!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 5: 44-Country Panel Evidence & Sectoral Wedges
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="5" data-notes="Slide 5: Explain the 44-country econometric panel. Driscoll-Kraay robust standard errors resolve spatial and serial correlation. The SUR Wald test strongly rejects uniformity (Chi-sq = 48.72, p < 0.0001). NBFIs impose the largest wedge.">
+          <span class="slide-category">Part 4: Empirical Panel Evidence</span>
+          <h1 class="slide-title">Sectoral Asymmetry: 44-Country Econometric Evidence</h1>
+          <p class="lead-text">
+            Traditional macroprudential policy treats capital flows uniformly. Our empirical 44-country panel model proves that systemic risk is intensely sector-dependent.
+          </p>
+
+          <div class="data-table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Sector Identifier</th>
+                  <th>Private Cost ($r^P$)</th>
+                  <th>Base MEC ($MEC_b$)</th>
+                  <th>Stressed MEC ($MEC_s$)</th>
+                  <th>Base Social Cost ($r^S_b$)</th>
+                  <th>Stressed Social Cost ($r^S_s$)</th>
+                  <th>Flow Elasticity ($\eta$)</th>
+                  <th>Systemic DWL (% GDP)</th>
+                  <th>Pigouvian Buffer ($t^*$)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Commercial Banks ($B$)</strong></td>
+                  <td>4.20%</td>
+                  <td>2.60%</td>
+                  <td>3.250%</td>
+                  <td>6.80%</td>
+                  <td>7.450%</td>
+                  <td>0.50</td>
+                  <td>0.2925%</td>
+                  <td><span class="metric-num warning" style="font-size:0.95rem;">325.0 bps</span></td>
+                </tr>
+                <tr style="background: var(--accent-red-subtle);">
+                  <td><strong>NBFI / Shadow Banks ($N$)</strong></td>
+                  <td>5.80%</td>
+                  <td>3.60%</td>
+                  <td>4.500%</td>
+                  <td>9.40%</td>
+                  <td>10.300%</td>
+                  <td>0.70</td>
+                  <td><strong>0.6300%</strong></td>
+                  <td><span class="metric-num danger" style="font-size:0.95rem;">450.0 bps</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Non-Financial Corps ($C$)</strong></td>
+                  <td>6.50%</td>
+                  <td>1.70%</td>
+                  <td>2.125%</td>
+                  <td>8.20%</td>
+                  <td>8.625%</td>
+                  <td>0.40</td>
+                  <td>0.1488%</td>
+                  <td><span class="metric-num warning" style="font-size:0.95rem;">212.5 bps</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Central Bank Reserves ($G$)</strong></td>
+                  <td>2.50%</td>
+                  <td>0.30%</td>
+                  <td>0.375%</td>
+                  <td>2.80%</td>
+                  <td>2.875%</td>
+                  <td>0.20</td>
+                  <td>0.0150%</td>
+                  <td><span class="metric-num success" style="font-size:0.95rem;">37.5 bps</span></td>
+                </tr>
+                <tr style="background: var(--primary-subtle); font-weight: 800;">
+                  <td><strong>Aggregate Economy Total</strong></td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td><span style="color:var(--accent-red);">1.0863% of GDP</span></td>
+                  <td><span style="color:var(--primary);">1025.0 bps</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="grid-2">
+            <div class="concept-card">
+              <div class="concept-title"><span>🔬</span> Driscoll-Kraay Econometric Specification</div>
+              <div class="concept-desc">
+                <div class="math-block" style="padding: 10px 14px; margin: 8px 0;">
+                  $$y_{i,s,t} = \alpha_{i,s} + \beta_{1,s} \ln(\text{VIX}_t) + \beta_{2,s}[\ln(\text{VIX}_t) \times \text{Post-GFC}_t] + \mathbf{\Gamma}_s \mathbf{X}_{i,t-1} + \varepsilon_{i,s,t}$$
+                </div>
+                Driscoll-Kraay nonparametric covariance matrix estimation fully corrects for cross-sectional spatial dependence and temporal autocorrelation ($m=4$).
+              </div>
+            </div>
+
+            <div class="concept-card danger">
+              <div class="concept-title"><span>📊</span> SUR Wald Test for Cross-Sectoral Symmetry</div>
+              <div class="concept-desc">
+                <div class="math-block" style="padding: 10px 14px; margin: 8px 0;">
+                  $$H_0: \beta_{1,B} = \beta_{1,N} = \beta_{1,C} = \beta_{1,G}$$
+                  $$\text{Wald Test Result: } \chi^2(3) = \mathbf{48.72} \quad (p < 0.0001)$$
+                </div>
+                <strong>Key Takeaway:</strong> The null hypothesis of uniform behavioral symmetry is overwhelmingly rejected. Regulators must target sector-specific risk wedges rather than blanket capital controls.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 6: India Macroeconomic Crises Case Studies
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="6" data-notes="Slide 6: Detail the 4 Indian crisis episodes: 1991 BoP, 2013 Taper Tantrum, 2020 COVID, and 2026 FAR inclusion. Trace the structural evolution of FX reserves from 3 weeks to 18.5 months import cover.">
+          <span class="slide-category">Part 5: Indian Macroeconomic Trajectory</span>
+          <h1 class="slide-title">Four Decades of Indian Shocks: From Crisis to Buffer Shield</h1>
+          <p class="lead-text">
+            India's economic history provides an extraordinary real-world laboratory proving how unpriced systemic externalities inflict macroeconomic deadweight loss.
+          </p>
+
+          <div class="grid-4">
+            <div class="concept-card danger">
+              <div class="concept-title"><span>🔥</span> 1. 1991 BoP Crisis</div>
+              <div class="concept-desc">
+                <strong>Shock:</strong> Twin deficits + Gulf crude spike (+100%).<br>
+                <strong>FX Cover:</strong> 0.75 mo (3 weeks; &dollar;1.2B).<br>
+                <strong>Wedge:</strong> $r^P = 5.5\%, MEC = 6.8\% \implies r^S = 12.3\%$.<br>
+                <strong>DWL:</strong> 1.35% GDP ($t^* = 680\text{ bps}$).<br>
+                <strong>Resolution:</strong> 19% rupee devaluation, gold pledged, License Raj abolished.
+              </div>
+            </div>
+
+            <div class="concept-card warning">
+              <div class="concept-title"><span>⚡</span> 2. 2013 Taper Tantrum</div>
+              <div class="concept-desc">
+                <strong>Shock:</strong> Bernanke Fed taper signal; CAD at 4.8%.<br>
+                <strong>FX Cover:</strong> 6.8 mo (&dollar;275B).<br>
+                <strong>Wedge:</strong> $r^P = 6.8\%, MEC = 4.2\% \implies r^S = 11.0\%$.<br>
+                <strong>DWL:</strong> 0.88% GDP ($t^* = 420\text{ bps}$).<br>
+                <strong>Resolution:</strong> OMC FX swaps, FCNR(B) deposits, statutory FIT enacted.
+              </div>
+            </div>
+
+            <div class="concept-card success">
+              <div class="concept-title"><span>🛡️</span> 3. 2020 COVID Shock</div>
+              <div class="concept-desc">
+                <strong>Shock:</strong> Global lockdowns; VIX = 82.69.<br>
+                <strong>FX Cover:</strong> 18.5 mo (&dollar;580B+).<br>
+                <strong>Wedge:</strong> $r^P = 4.5\%, MEC = 3.25\% \implies r^S = 7.75\%$.<br>
+                <strong>DWL:</strong> 0.42% GDP ($t^* = 325\text{ bps}$).<br>
+                <strong>Resolution:</strong> ₹3.74L Cr liquidity injection, CRR cuts, loan moratoriums.
+              </div>
+            </div>
+
+            <div class="concept-card highlight">
+              <div class="concept-title"><span>🌐</span> 4. 2026 FAR Index Route</div>
+              <div class="concept-desc">
+                <strong>Shock:</strong> EM bond inclusion brings $30B+ debt flows.<br>
+                <strong>FX Cover:</strong> 12.0 mo (&dollar;650B+).<br>
+                <strong>Wedge:</strong> $r^P = 6.2\%, MEC = 1.85\% \implies r^S = 8.05\%$.<br>
+                <strong>DWL:</strong> 0.15% GDP ($t^* = 185\text{ bps}$).<br>
+                <strong>Resolution:</strong> RBI excluded 14y/30y bonds from FAR; dynamic FX buffer.
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px;">
+            <div class="canvas-container" style="height: 200px;">
+              <canvas id="chart-india-timeline"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 7: Dynamic Simulation Lab
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="7" data-notes="Slide 7: Dynamic 30-year macroeconomic trajectory simulator. Demonstrates how underpricing private borrowing cost (PMC) leads to unhedged debt accumulation, hitting non-linear systemic tipping points and pecuniary balance-sheet externalities across 10 historical presets.">
+          <span class="slide-category">Part 6: Dynamic Macroeconomic Simulation</span>
+          <h1 class="slide-title">Interactive Simulation Lab: Capital Externalities, Debt Tipping Points & Balance-Sheet Busts</h1>
+          <p class="lead-text">
+            Simulate a 30-year macroeconomic trajectory. Observe how underpricing the private cost of foreign debt ($PMC$) triggers unhedged liabilities, rapid capital obsolescence ($\kappa$), tipping points, and systemic balance-sheet crises when hit by global volatility shocks.
+          </p>
+
+          <div id="macro-sim-status" class="sim-status-banner healthy">
+            ✅ Status: Sustainable Macro-Capital Trajectory
+          </div>
+
+          <!-- Preset Pills Toolbar -->
+          <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px;">
+            <span style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); align-self: center; margin-right: 4px;">Presets:</span>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('A', this)">Sustainable</button>
+            <button class="preset-pill action-btn active" onclick="loadSimPreset('B', this)">Default Fragile</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('1991', this)">1991 BoP Crisis</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('TAPER', this)">2013 Taper Tantrum</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('COVID', this)">2020 COVID Shock</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('FAR2026', this)">2026 FAR Surge</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('DOTCOM', this)">2000 Dot-Com</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('GFC', this)">2008 GFC</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('INFLATION', this)">2022 Stagflation</button>
+            <button class="preset-pill action-btn" onclick="loadSimPreset('GEOPOL', this)">Geopolitical Blockade</button>
+          </div>
+
+          <!-- Simulation Grid: Sliders Left, 4 Charts Right -->
+          <div class="grid-2" style="align-items: start;">
+            <div class="controls-panel">
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Periphery Friction ($F_P$):</span>
+                  <span class="control-val-badge" id="disp-fp">9.0</span>
+                </div>
+                <input type="range" id="sim-fp" min="0" max="15" step="0.5" value="9.0" oninput="runMacroSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Asset Depreciation / Obsolescence ($\kappa$):</span>
+                  <span class="control-val-badge" id="disp-kappa">0.22</span>
+                </div>
+                <input type="range" id="sim-kappa" min="0.01" max="0.50" step="0.01" value="0.22" oninput="runMacroSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Foreign Debt Rate ($r_D$):</span>
+                  <span class="control-val-badge" id="disp-rd">0.07</span>
+                </div>
+                <input type="range" id="sim-rd" min="0.01" max="0.15" step="0.005" value="0.07" oninput="runMacroSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Amortization Rate ($\alpha_D$):</span>
+                  <span class="control-val-badge" id="disp-alphad">0.10</span>
+                </div>
+                <input type="range" id="sim-alphad" min="0.02" max="0.30" step="0.01" value="0.10" oninput="runMacroSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Core Diffusion Rate ($\sigma_C$):</span>
+                  <span class="control-val-badge" id="disp-sigmac">0.15</span>
+                </div>
+                <input type="range" id="sim-sigmac" min="0.02" max="0.40" step="0.01" value="0.15" oninput="runMacroSim()">
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="chart-wrapper" style="height: 180px;">
+                <canvas id="chart-sim-claims"></canvas>
+              </div>
+              <div class="chart-wrapper" style="height: 180px;">
+                <canvas id="chart-sim-diffusion"></canvas>
+              </div>
+              <div class="chart-wrapper" style="height: 180px;">
+                <canvas id="chart-sim-profits"></canvas>
+              </div>
+              <div class="chart-wrapper" style="height: 180px;">
+                <canvas id="chart-sim-gdp"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 8: Indian Sovereign Stress Tester & Sandbox
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="8" data-notes="Slide 8: Policy Sandbox for MBA students. Simulate how a sudden global shock hits India based on reserve levels, CAD, and counter-cyclical buffers.">
+          <span class="slide-category">Part 7: Policy Sandbox</span>
+          <h1 class="slide-title">Indian Sovereign Stress-Testing Laboratory</h1>
+          <p class="lead-text">
+            Test Indian macroeconomic resilience against extreme global liquidity shocks. Calibrate foreign reserves, current account deficit, and macroprudential buffers.
+          </p>
+
+          <div class="grid-2" style="align-items: start;">
+            <div class="controls-panel">
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Gross FX Reserves (&dollar;B):</span>
+                  <span class="control-val-badge" id="sandbox-fx-disp">$650B</span>
+                </div>
+                <input type="range" id="sandbox-fx" min="50" max="900" step="25" value="650" oninput="runSandboxSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Monthly Imports (&dollar;B/month):</span>
+                  <span class="control-val-badge" id="sandbox-import-disp">$55B/mo</span>
+                </div>
+                <input type="range" id="sandbox-import" min="20" max="90" step="5" value="55" oninput="runSandboxSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Current Account Deficit (% GDP):</span>
+                  <span class="control-val-badge" id="sandbox-cad-disp">1.8%</span>
+                </div>
+                <input type="range" id="sandbox-cad" min="0.0" max="6.0" step="0.2" value="1.8" oninput="runSandboxSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Global Volatility Shock (VIX):</span>
+                  <span class="control-val-badge" id="sandbox-vix-disp">20.0</span>
+                </div>
+                <input type="range" id="sandbox-vix" min="10" max="85" step="2.5" value="20" oninput="runSandboxSim()">
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Counter-Cyclical Pigouvian Buffer:</span>
+                  <span class="control-val-badge" id="sandbox-buffer-disp">250 bps</span>
+                </div>
+                <input type="range" id="sandbox-buffer" min="0" max="600" step="25" value="250" oninput="runSandboxSim()">
+              </div>
+            </div>
+
+            <div>
+              <div class="chart-wrapper" style="height: 240px; margin-bottom: 12px;">
+                <canvas id="chart-sandbox-radar"></canvas>
+              </div>
+
+              <div class="kpi-row">
+                <div class="kpi-card">
+                  <div class="kpi-label">Import Cover</div>
+                  <div class="kpi-value" id="res-import-cover">11.8 mo</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">INR Stress Risk</div>
+                  <div class="kpi-value" id="res-inr-press">2.4%</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Macro Resilience</div>
+                  <div class="kpi-value success" id="res-resilience">Rock Solid</div>
+                </div>
+                <div class="kpi-card highlight">
+                  <div class="kpi-label">Systemic DWL</div>
+                  <div class="kpi-value" id="res-dwl-est">0.12% GDP</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 9: Evolutionary Mechanics & Darwinian Fragility
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="9" data-notes="Slide 9: Explain evolutionary game theory in banking. Aggressive carry traders generate 22% RoE vs 12% for conservative banks. Darwinian sorting eliminates prudent managers until the entire banking ecosystem is saturated with unhedged debt, triggering an extinction wave.">
+          <span class="slide-category">Part 8: Evolutionary Finance & Complex Systems</span>
+          <h1 class="slide-title">Evolutionary Mechanics: Darwinian Selection into Systemic Fragility</h1>
+          <p class="lead-text">
+            Why do rational bank executives systematically over-borrow foreign currency? Evolutionary game theory proves that competitive selection punishes prudence and rewards tail-risk exploitation.
+          </p>
+
+          <div class="grid-3">
+            <div class="concept-card danger">
+              <div class="concept-title"><span>🧬</span> 1. Replicator Dynamics</div>
+              <div class="concept-desc">
+                $$\dot{p}_t = p_t(1 - p_t)[\Phi(RoE_{\mathbf{A}}) - \Phi(RoE_{\mathbf{C}})]$$
+                When aggressive carry-trade banks earn 22% RoE vs 12% for conservative banks, capital migrates to aggressive banks. Prudent executives are fired for "underperformance."
+              </div>
+            </div>
+
+            <div class="concept-card warning">
+              <div class="concept-title"><span>🌾</span> 2. Commons Degradation</div>
+              <div class="concept-desc">
+                Individual banks treat the sovereign FX reserve pool ($\mathcal{R}_t$) as an inexhaustible common good. Each \$100M unhedged loan raises national run hazard:
+                $$\lambda(F_t, \mathcal{R}_t) = \lambda_0 \exp(\theta F_t / \mathcal{R}_t)$$
+              </div>
+            </div>
+
+            <div class="concept-card danger">
+              <div class="concept-title"><span>💥</span> 3. Extinction Wave</div>
+              <div class="concept-desc">
+                <strong>Phase Shift:</strong> When saturation $p_t \to 1.0$, a minor shock triggers currency collapse. Thin equity is wiped out, debt rollover freezes, and downside losses are socialized onto taxpayers.
+              </div>
+            </div>
+          </div>
+
+          <div class="callout alert" style="margin-top: 18px;">
+            <strong>Systemic Parasitism:</strong> The private carry trader captures 100% of the upside in tranquil years ($4.20\%$ USD vs $8.50\%$ domestic yield), while 100% of the catastrophic tail-risk is socialized onto public balance sheets during crises.
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 10: Strategic Policy Takeaways
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="10" data-notes="Slide 10: Strategic takeaways for MBA candidates. Highlight the 5 key policy pillars: differentiated surcharges, swing pricing, tech debt ring-fencing, FX public goods, and perimeter regulation.">
+          <span class="slide-category">Part 9: Macroprudential Architecture</span>
+          <h1 class="slide-title">Executive Takeaways: 5 Pillars of Macro-Financial Resilience</h1>
+          <p class="lead-text">
+            To prevent recurrent systemic collapses, central banks and corporate treasuries must internalize systemic externalities through structural policy design.
+          </p>
+
+          <div class="grid-3">
+            <div class="concept-card highlight">
+              <div class="concept-title"><span>🏛️</span> 1. Differentiated Pigouvian Levies</div>
+              <div class="concept-desc">
+                Calibrate capital surcharges directly to sectoral risk wedges ($\tau_N^* = 450\text{ bps}, \tau_B^* = 325\text{ bps}, \tau_C^* = 212.5\text{ bps}$) to eliminate regulatory arbitrage.
+              </div>
+            </div>
+
+            <div class="concept-card success">
+              <div class="concept-title"><span>🌊</span> 2. Mandatory Swing Pricing</div>
+              <div class="concept-desc">
+                Impose dynamic redemption haircuts on wholesale funds during stress events to eliminate first-mover liquidation advantages and stop run spirals.
+              </div>
+            </div>
+
+            <div class="concept-card warning">
+              <div class="concept-title"><span>🛡️</span> 3. Sovereign FX Reserve Shields</div>
+              <div class="concept-desc">
+                Maintain deep central bank foreign exchange reserves (minimum 12–14 months of import cover) as an irreplaceable public good against global liquidity freezes.
+              </div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-top: 14px;">
+            <div class="concept-card">
+              <div class="concept-title"><span>🔒</span> 4. Currency Matching & Hedging Mandates</div>
+              <div class="concept-desc">
+                Strict limits on Net Open Foreign Currency Positions ($|FX_A - FX_L| \le \gamma \cdot \text{Tier 1}$). Forward contract pricing naturally eliminates artificial carry spreads.
+              </div>
+            </div>
+
+            <div class="concept-card danger">
+              <div class="concept-title"><span>🌐</span> 5. Regulatory Perimeter Enforcement</div>
+              <div class="concept-desc">
+                Regulate institutions by economic function rather than legal charter to prevent shadow banking migration and regulatory blind spots.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ------------------------------------------------------------------
+             SLIDE 11: Interactive Classroom Quiz
+             ------------------------------------------------------------------ -->
+        <div class="deck-slide" data-slide="11" data-notes="Slide 11: Interactive classroom quiz to test student comprehension. Walk through the questions and let students click their answers to check their understanding.">
+          <span class="slide-category">Part 10: Classroom Assessment</span>
+          <h1 class="slide-title">Interactive Knowledge Check: Testing Managerial Comprehension</h1>
+          <p class="lead-text">
+            Test your understanding of cost wedges, pecuniary externalities, and optimal macroprudential policies.
+          </p>
+
+          <div class="grid-3">
+            <!-- Question 1 -->
+            <div class="concept-card">
+              <div class="concept-title"><span>❓</span> Question 1: Private vs Social Cost</div>
+              <div class="concept-desc">
+                When a commercial bank borrows \$100M unhedged overseas at 4.20%, why is the market equilibrium socially inefficient?
+                <div class="quiz-options">
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, false, 'fb1', 'Accounting profit includes all explicit and implicit interest charges.')">A) The bank fails to calculate accounting depreciation.</button>
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, true, 'fb1', 'Correct! The bank optimizes against PMC=4.20% while ignoring its incremental contribution to systemic currency run hazard (MEC).')">B) The bank optimizes against PMC, ignoring systemic currency fragility (MEC).</button>
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, false, 'fb1', 'Private marginal cost is positive and equal to the contractual interest rate.')">C) The private marginal cost of borrowing is zero.</button>
+                </div>
+                <div class="quiz-feedback" id="fb1"></div>
+              </div>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="concept-card">
+              <div class="concept-title"><span>❓</span> Question 2: Econometric Sectoral Wedges</div>
+              <div class="concept-desc">
+                In our 44-country econometric panel, which sector imposed the highest Marginal External Cost ($MEC$) and Deadweight Loss?
+                <div class="quiz-options">
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, false, 'fb2', 'Commercial banks have high regulation, resulting in MEC=3.25%.')">A) Commercial Banks ($B$)</button>
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, true, 'fb2', 'Correct! Shadow Banks / NBFIs generated MEC=4.50% and DWL=0.63% of GDP due to high leverage and lack of central bank lender-of-last-resort access.')">B) Shadow Banks / NBFIs ($N$)</button>
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, false, 'fb2', 'Non-financial corporates had lower elasticity (0.40) and MEC=2.125%.')">C) Non-Financial Corporates ($C$)</button>
+                </div>
+                <div class="quiz-feedback" id="fb2"></div>
+              </div>
+            </div>
+
+            <!-- Question 3 -->
+            <div class="concept-card">
+              <div class="concept-title"><span>❓</span> Question 3: Corrective Policy</div>
+              <div class="concept-desc">
+                What is the primary economic function of an optimal Pigouvian macroprudential tax ($\tau^* = MEC$)?
+                <div class="quiz-options">
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, false, 'fb3', 'The tax is designed to internalize spillovers, not maximize fiscal revenue.')">A) Maximize government tax revenue from foreign investors.</button>
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, true, 'fb3', 'Correct! Levying tau*=MEC shifts the private cost curve upward to match MSC, reducing over-borrowing from Q_priv to Q_soc.')">B) Shift private cost upward to equal MSC, eliminating Deadweight Loss.</button>
+                  <button class="quiz-opt-btn" onclick="checkQuiz(this, false, 'fb3', 'A Pigouvian tax reduces volume to the socially optimal level, rather than shutting down all capital flows.')">C) Completely prohibit all cross-border financial transactions.</button>
+                </div>
+                <div class="quiz-feedback" id="fb3"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Slide Deck Navigation Bar -->
+      <div class="deck-controls">
+        <div class="slide-counter">
+          Slide <span id="slide-num-current">1</span> of <span id="slide-num-total">11</span>
+        </div>
+
+        <div class="deck-nav-btns">
+          <button class="deck-btn" onclick="prevSlide()" id="btn-prev-slide">◀ Previous</button>
+          <button class="deck-btn primary" onclick="nextSlide()" id="btn-next-slide">Next ▶</button>
+          <button class="deck-btn" onclick="toggleNotesDrawer()" id="btn-notes-toggle">📝 Speaker Notes</button>
+          <button class="deck-btn" onclick="toggleFullScreen()">⛶ Fullscreen</button>
+        </div>
+      </div>
+
+      <!-- Notes Drawer -->
+      <div class="notes-drawer" id="notes-drawer">
+        <strong>🎙️ Lecturer Notes:</strong> <span id="notes-content">Welcome MBA students. Introduce the bridge between Managerial Economics (Cost) and Macro-Finance (Systemic Externalities).</span>
+      </div>
+    </section>
+
+
+    <!-- ========================================================================
+         VIEW MODE 2: COMPREHENSIVE RESEARCH NOTE & TEXT (Continuous Reading)
+         ======================================================================== -->
+    <section class="doc-container" id="doc-view">
+      
+      <!-- Sticky Sidebar Table of Contents -->
+      <aside class="doc-sidebar">
+        <div class="doc-toc-title">Document Outline</div>
+        <ul class="doc-toc-list">
+          <li class="doc-toc-item"><a href="#doc-sec-1" class="active">1. Executive Summary & Paradox</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-2">2. Foundations of Cost Theory</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-3">3. Theory of Externalities</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-4">4. Micro-Foundational Math</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-5">5. Interactive Cost & DWL Lab</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-6">6. Evolutionary Fragility</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-7">7. Analogies & 1997 Crisis</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-8">8. 44-Country Econometric Panel</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-9">9. Four Decades of Indian Crises</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-10">10. Dynamic Simulation Lab</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-11">11. Corrective Policy Architecture</a></li>
+          <li class="doc-toc-item"><a href="#doc-sec-12">12. Cost Matrix & References</a></li>
+        </ul>
+
+        <div style="background-color: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); margin-top: 8px;">
+          <div style="font-size: 0.72rem; font-weight: 800; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px;">
+            The Systemic Wedge
+          </div>
+          <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--primary); font-weight: 700;">
+            $$MSC = PMC + MEC$$
+          </div>
+          <p style="font-size: 0.74rem; color: var(--text-muted); margin-top: 4px; margin-bottom: 0; line-height: 1.4;">
+            Decentralized banks equate $PMB = PMC$, creating systemic over-borrowing ($Q_{\text{priv}} > Q_{\text{soc}}$) and deadweight loss.
+          </p>
+        </div>
+      </aside>
+
+      <!-- Main Reading Content -->
+      <article class="doc-content">
+        
+        <!-- Hero Header -->
+        <div class="paper-hero-card">
+          <h1 class="paper-title">
+            The Microeconomics of Cost, Systemic Externalities, and Evolutionary Mechanics in Capital Flows
+          </h1>
+          <div class="paper-abstract-box">
+            <strong>Analytical Focus:</strong> Dissecting the Micro-Macro Wedge ($PMC$ vs. $MEC$) in Unhedged Foreign Currency Liabilities, Darwinian Replicator Dynamics in Banking Systems, 44-Country Panel Econometrics, and Sector-Differentiated Macroprudential Policy.
+          </div>
+          <div style="font-size: 0.82rem; color: var(--text-subtle); margin-top: 12px; font-style: italic; line-height: 1.5;">
+            <strong>Author:</strong> Rahul Kumar (BITS Pilani / Citi) &bull; August 2026<br>
+            <strong>Disclaimer:</strong> The views and opinions expressed in this lecture and research note, along with the underlying models, econometric panel findings, empirical estimates, and policy frameworks, are those of Rahul Kumar (BITS Pilani / Citi) in his personal academic research capacity. They do not represent or reflect the official positions or policies of Citi, BITS Pilani, or the Reserve Bank of India.
+          </div>
+        </div>
+
+        <!-- SECTION 1 -->
+        <section id="doc-sec-1" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">1</span> Executive Summary & The Micro-Macro Paradox</h2>
+          <p>
+            When an individual commercial bank borrows \$100M in wholesale foreign credit markets at 4.20%, that 4.20% reflects only its <strong>Private Marginal Cost ($PMC$)</strong>. From the narrow perspective of the bank's treasury desk, the transaction is commercially rational, highly accretive to equity returns, and fully compliant with micro-prudential capital rules.
+          </p>
+          <p>
+            However, cross-border financial transactions do not occur within an inert macroeconomic vacuum. When thousands of individual borrowing decisions aggregate across the financial system, they collectively alter the aggregate risk profile of the entire economy. Specifically, as unhedged foreign-currency liabilities accumulate on domestic balance sheets, they exhaust the central bank's foreign exchange reserve buffer and elevate the structural probability of a catastrophic currency depreciation.
+          </p>
+          <p>
+            Society bears an unpriced <strong>Marginal External Cost ($MEC$)</strong>—a systemic tail-risk externality that the borrowing bank neither pays for nor internalizes.
+          </p>
+
+          <!-- Systemic Wedge Visual Banner -->
+          <div class="systemic-wedge-banner">
+            <div style="font-weight: 700; font-size: 0.95rem; text-align: center; color: var(--text-primary);">
+              THE SYSTEMIC COST DECOMPOSITION
+            </div>
+            <div class="wedge-grid">
+              <div class="wedge-card private">
+                <div class="wedge-card-title">Private Marginal Cost (PMC)</div>
+                <div class="wedge-card-val">4.20%</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Contract Interest Rate (USD Wholesale)</div>
+              </div>
+              <div class="wedge-card external">
+                <div class="wedge-card-title">Marginal External Cost (MEC)</div>
+                <div class="wedge-card-val">+3.45%</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">Unpriced Currency Fragility & Run Hazard</div>
+              </div>
+              <div class="wedge-card social">
+                <div class="wedge-card-title">Marginal Social Cost (MSC)</div>
+                <div class="wedge-card-val">7.65%</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.25rem;">True Macroeconomic Opportunity Cost</div>
+              </div>
+            </div>
+            <p style="text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--danger); margin-top: 1rem; margin-bottom: 0;">
+              Market Equilibrium: $Q_{\text{private}} > Q_{\text{social}} \implies \text{Severe Deadweight Loss } (DWL)$
+            </p>
+          </div>
+
+          <p>
+            Mechanically, the free market produces an excessive volume of short-term external debt because private agents optimize against $PMC$ rather than the true <strong>Marginal Social Cost ($MSC = PMC + MEC$)</strong>. To understand why commercial banks systematically engage in this behavior, we must trace both the micro-foundational economics and the <strong>evolutionary mechanics</strong> of competitive financial ecosystems.
+          </p>
+        </section>
+
+        <!-- SECTION 2 -->
+        <section id="doc-sec-2" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">2</span> Microeconomic Foundations of Cost & Opportunity Cost</h2>
+          <p>
+            In managerial economics, the distinction between accounting cost and economic cost dictates the baseline of rational choice. <strong>Accounting cost</strong> captures explicit monetary outlays recorded on financial statements. <strong>Economic cost</strong> incorporates Opportunity Cost—the highest-valued alternative return foregone.
+          </p>
+          
+          <div class="grid-2">
+            <div class="concept-card">
+              <div class="concept-title"><span>🧾</span> Explicit vs. Implicit Costs</div>
+              <div class="concept-desc">
+                $$\text{Economic Cost} = \text{Explicit Cash Outlays} + \text{Implicit Opportunity Costs}$$
+                When capital is deployed into carry-trade assets, the economic cost includes the shadow price of liquidity hoarding during systemic tail events.
+              </div>
+            </div>
+
+            <div class="concept-card danger">
+              <div class="concept-title"><span>🛑</span> The Sunk Cost Fallacy</div>
+              <div class="concept-desc">
+                Sunk costs are historical outlays that cannot be recovered. Forward-looking NPV and risk-management decisions must strictly evaluate marginal revenues against forward-looking marginal costs.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 3 -->
+        <section id="doc-sec-3" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">3</span> The Economics of Externalities: Pecuniary vs. Non-Pecuniary</h2>
+          <p>
+            An externality manifests whenever an economic decision by Party A directly affects Party B's well-being or productive capacity without an explicit market transaction.
+          </p>
+          <ul style="padding-left: 20px; line-height: 1.8; margin-bottom: 16px;">
+            <li><strong>Pecuniary Externalities:</strong> Transmitted entirely through market prices. When financial intermediaries liquidate assets during a sudden stop, falling asset prices depress collateral valuations for all market participants, tightening aggregate borrowing constraints (Mendoza, 2010; Jeanne & Korinek, 2010; Bianchi, 2011).</li>
+            <li><strong>Non-Pecuniary Externalities:</strong> Directly impact physical production functions without passing through the price vector (e.g., industrial pollution or orbital debris in the Kessler syndrome).</li>
+          </ul>
+
+          <div class="data-table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Production Spillover</th>
+                  <th>Consumption Spillover</th>
+                  <th>Market Equilibrium Outcome</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Negative ($MEC > 0$)</strong></td>
+                  <td>Chemical runoff polluting river fisheries; Unhedged NBFI foreign debt runs.</td>
+                  <td>Secondhand cigarette smoke; Gas-guzzling vehicle congestion.</td>
+                  <td><span style="color:var(--accent-red); font-weight:700;">Overproduction ($Q_m > Q_s$) & Underpricing</span></td>
+                </tr>
+                <tr>
+                  <td><strong>Positive ($MEB > 0$)</strong></td>
+                  <td>R&D technology spillovers; Beehives pollinating adjacent orchards.</td>
+                  <td>Vaccinations creating herd immunity; Higher education benefits.</td>
+                  <td><span style="color:var(--accent-green); font-weight:700;">Underproduction ($Q_m < Q_s$)</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- SECTION 4 -->
+        <section id="doc-sec-4" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">4</span> Micro-Foundational Decomposition: Step-by-Step Economic Mechanics</h2>
+          <p>
+            We formalize the economic divergence between private optimization and social welfare through a three-step mathematical framework.
+          </p>
+
+          <h3 id="doc-sec-4-1" class="sub-heading">Step 1: The Private Optimization Problem ($PMC$)</h3>
+          <p>
+            Consider an economy with $N$ competitive commercial banks, indexed by $i \in \{1, \dots, N\}$. Bank $i$ funds domestic loans $L_i$ yielding nominal domestic interest rate $R^L = 8.50\%$ by raising domestic retail deposits $D_i$ at rate $R^D = 7.00\%$ or borrowing wholesale foreign currency funds $f_i$ (denominated in USD) at international rate $i^* = 4.20\%$.
+          </p>
+          <div class="math-block">
+            $$\max_{f_i, L_i} \quad \mathbb{E}_t \left[ R^L L_i - R^D D_i - \left( i^* + \mathbb{E}_t [\Delta S_{t+1}] \right) f_i - \frac{c_i}{2} f_i^2 \right] \quad \text{s.t.} \quad L_i \le D_i + f_i + E_i$$
+          </div>
+          <p>
+            In a tranquil macroeconomic regime with a managed exchange rate, expected short-term depreciation is negligible ($\mathbb{E}_t [\Delta S_{t+1}] \approx 0$). The bank's Private Marginal Cost of foreign borrowing is:
+          </p>
+          <div class="math-block">
+            $$PMC_i \equiv \frac{\partial \text{Total Private Cost}_i}{\partial f_i} = i^* + c_i f_i = 4.20\% + c_i f_i$$
+            $$R^L = PMC_i = 4.20\% + c_i f_i^* \implies f_i^* = \frac{R^L - i^*}{c_i} > 0$$
+          </div>
+
+          <h3 id="doc-sec-4-2" class="sub-heading">Step 2: The Genesis of Marginal External Cost ($MEC$)</h3>
+          <p>
+            While individual bank $i$ borrows $f_i = \$100\text{M}$, total banking system foreign currency liabilities equal the sum of all individual exposures: $F_t = \sum_{j=1}^N f_{jt}$.
+            As aggregate indebtedness $F_t$ grows relative to central bank gross foreign exchange reserves ($\mathcal{R}_t$), the structural hazard rate of a sudden stop rises exponentially:
+          </p>
+          <div class="math-block">
+            $$\lambda(F_t, \mathcal{R}_t) = \lambda_0 \cdot \exp\left( \theta \cdot \frac{F_t}{\mathcal{R}_t} \right), \quad \theta > 0$$
+            $$\text{Total Social Cost} = \sum_{j=1}^N \left( i^* f_j + \frac{c_j}{2} f_j^2 \right) + \lambda\left( \sum_{j=1}^N f_j, \mathcal{R}_t \right) \cdot \mathcal{L}_{\text{social}}$$
+          </div>
+          <p>
+            Differentiating total social cost with respect to bank $i$'s foreign borrowing yields:
+          </p>
+          <div class="math-block">
+            $$MSC_i = \underbrace{i^* + c_i f_i}_{PMC_i} + \underbrace{\frac{\partial \lambda(F_t, \mathcal{R}_t)}{\partial F_t} \cdot \mathcal{L}_{\text{social}}}_{MEC_i}$$
+            $$MEC_i = \frac{\theta}{\mathcal{R}_t} \cdot \lambda(F_t, \mathcal{R}_t) \cdot \mathcal{L}_{\text{social}} > 0$$
+          </div>
+
+          <h3 id="doc-sec-4-3" class="sub-heading">Step 3: Analytical Derivation of Deadweight Loss</h3>
+          <p>
+            Because banks equate $PMB = PMC_i$ rather than $PMB = MSC_i$, the unregulated market generates an equilibrium borrowing volume $Q_{\text{private}}^*$ that substantially exceeds the socially optimal volume $Q_{\text{social}}^*$, creating a deadweight welfare loss triangle:
+          </p>
+          <div class="math-steps-grid">
+            <div class="math-step-card danger">
+              <div class="math-step-header"><span>1️⃣</span> Private Equilibrium</div>
+              <div class="math-step-body">
+                $$Demand = PMC \implies Q_m = 30, \; P_m = 70$$
+              </div>
+            </div>
+            <div class="math-step-card success">
+              <div class="math-step-header"><span>2️⃣</span> Social Optimum</div>
+              <div class="math-step-body">
+                $$Demand = SMC \implies Q_s = 22.5, \; P_s = 77.5$$
+              </div>
+            </div>
+            <div class="math-step-card warning">
+              <div class="math-step-header"><span>3️⃣</span> Optimal Pigouvian Tax</div>
+              <div class="math-step-body">
+                $$t^* = MEC(Q_s) = \mathbf{22.5}$$
+              </div>
+            </div>
+            <div class="math-step-card highlight">
+              <div class="math-step-header"><span>4️⃣</span> Deadweight Loss (DWL)</div>
+              <div class="math-step-body">
+                $$DWL = \frac{1}{2} (30 - 22.5) \times (100 - 70) = \mathbf{84.375}$$
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 5: INTERACTIVE SVG LAB -->
+        <section id="doc-sec-5" class="interactive-lab">
+          <div class="lab-header">
+            <div class="lab-title-group">
+              <h3><span class="heading-num">5</span> Interactive Lab: Micro-Macro Wedge & Dynamic Cost Curves</h3>
+              <p>Manipulate parameter sliders to observe the real-time divergence between $PMC$ and $MSC$, deadweight loss triangles, and optimal Pigouvian taxation.</p>
+            </div>
+            <div class="preset-toolbar">
+              <button class="preset-btn active" onclick="applyCostPreset('baseline', event)">Tranquil Baseline</button>
+              <button class="preset-btn" onclick="applyCostPreset('crisis1997', event)">1997 Asian Crisis</button>
+              <button class="preset-btn" onclick="applyCostPreset('fedtightening', event)">Fed Tightening</button>
+              <button class="preset-btn" onclick="applyCostPreset('pigouvian', event)">Pigouvian Optimal Tax</button>
+              <button class="preset-btn" onclick="resetCostSliders()">Reset</button>
+            </div>
+          </div>
+
+          <div class="lab-grid">
+            <!-- Controls Left -->
+            <div class="controls-panel">
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Foreign Interest Rate ($i^*$):</span>
+                  <span class="control-val-badge" id="val_i_star">4.20%</span>
+                </div>
+                <input type="range" id="slider_i_star" min="1.0" max="10.0" step="0.1" value="4.20" oninput="updateCostSimulation()">
+                <div class="control-hint">Wholesale international USD benchmark borrowing cost (PMC intercept).</div>
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Domestic Lending Yield ($R^L$):</span>
+                  <span class="control-val-badge" id="val_r_l">10.50%</span>
+                </div>
+                <input type="range" id="slider_r_l" min="6.0" max="16.0" step="0.25" value="10.50" oninput="updateCostSimulation()">
+                <div class="control-hint">Domestic loan return (Demand / PMB intercept).</div>
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Systemic Fragility Slope ($MEC$):</span>
+                  <span class="control-val-badge" id="val_mec_slope">0.045</span>
+                </div>
+                <input type="range" id="slider_mec_slope" min="0.005" max="0.120" step="0.005" value="0.045" oninput="updateCostSimulation()">
+                <div class="control-hint">Wedge steepness: reflects national reserve depletion & currency fragility.</div>
+              </div>
+
+              <div class="control-group">
+                <div class="control-header">
+                  <span>Pigouvian Macroprudential Tax ($\tau$):</span>
+                  <span class="control-val-badge" id="val_tax">0.00%</span>
+                </div>
+                <input type="range" id="slider_tax" min="0.0" max="8.0" step="0.1" value="0.00" oninput="updateCostSimulation()">
+                <div class="control-hint">Regulatory levy on wholesale foreign debt to shift PMC toward MSC.</div>
+              </div>
+
+              <button class="btn btn-primary" onclick="setOptimalTax()" style="width:100%; justify-content:center; padding:8px;">
+                🎯 Snap to Exact Optimal Pigouvian Tax ($\tau^*$)
+              </button>
+            </div>
+
+            <!-- Visualization Right -->
+            <div class="vis-panel">
+              <div class="chart-wrapper">
+                <svg id="costChart" viewBox="0 0 700 380" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 380px; display: block; overflow: visible;">
+                  <defs>
+                    <linearGradient id="dwlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#dc2626" stop-opacity="0.55" />
+                      <stop offset="100%" stop-color="#ef4444" stop-opacity="0.25" />
+                    </linearGradient>
+                  </defs>
+
+                  <!-- Grid Lines -->
+                  <g id="gridLines" style="stroke: var(--border-subtle); stroke-width: 1; stroke-dasharray: 3,3;">
+                    <line x1="143.75" y1="330" x2="143.75" y2="40" />
+                    <line x1="217.5" y1="330" x2="217.5" y2="40" />
+                    <line x1="291.25" y1="330" x2="291.25" y2="40" />
+                    <line x1="365" y1="330" x2="365" y2="40" />
+                    <line x1="438.75" y1="330" x2="438.75" y2="40" />
+                    <line x1="512.5" y1="330" x2="512.5" y2="40" />
+                    <line x1="586.25" y1="330" x2="586.25" y2="40" />
+                    <line x1="70" y1="293.75" x2="660" y2="293.75" />
+                    <line x1="70" y1="257.5" x2="660" y2="257.5" />
+                    <line x1="70" y1="221.25" x2="660" y2="221.25" />
+                    <line x1="70" y1="185" x2="660" y2="185" />
+                    <line x1="70" y1="148.75" x2="660" y2="148.75" />
+                    <line x1="70" y1="112.5" x2="660" y2="112.5" />
+                    <line x1="70" y1="76.25" x2="660" y2="76.25" />
+                  </g>
+
+                  <!-- Coordinate Axes -->
+                  <g id="axes" style="stroke: var(--border-strong); stroke-width: 1.5;">
+                    <line x1="70" y1="330" x2="660" y2="330" />
+                    <line x1="70" y1="40" x2="70" y2="330" />
+                  </g>
+
+                  <!-- Deadweight Loss Triangle -->
+                  <polygon id="dwlPolygon" points="252.2,186.6 396.1,133.7 396.1,223.8" fill="url(#dwlGrad)" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="4,2" style="display:block;" />
+                  
+                  <!-- Drop Lines -->
+                  <g id="dropLines">
+                    <line x1="396.1" y1="223.8" x2="396.1" y2="330" stroke="#059669" />
+                    <line x1="396.1" y1="223.8" x2="70" y2="223.8" stroke="#059669" />
+                    <line x1="252.2" y1="186.6" x2="252.2" y2="330" stroke="#dc2626" />
+                    <line x1="252.2" y1="186.6" x2="70" y2="186.6" stroke="#dc2626" />
+                  </g>
+
+                  <!-- Economic Cost & Demand Curves -->
+                  <path id="curveDemand" d="M 70 139.7 L 660 291.9" fill="none" stroke="#2563eb" stroke-width="3" />
+                  <path id="curvePMC" d="M 70 253.9 L 660 199.5" fill="none" stroke="#059669" stroke-width="3" />
+                  <path id="curvePMCTax" d="M 70 253.9 L 660 199.5" fill="none" stroke="#d97706" stroke-width="2.5" stroke-dasharray="6,3" style="display:none;" />
+                  <path id="curveMSC" d="M 70 253.9 L 660 36.4" fill="none" stroke="#7c3aed" stroke-width="3" />
+
+                  <!-- Equilibrium Markers -->
+                  <circle id="markerPrivate" cx="396.1" cy="223.8" r="6" fill="#059669" stroke="#ffffff" stroke-width="2" />
+                  <circle id="markerSocial" cx="252.2" cy="186.6" r="6" fill="#7c3aed" stroke="#ffffff" stroke-width="2" />
+                  <circle id="markerRegulated" cx="396.1" cy="223.8" r="6" fill="#d97706" stroke="#ffffff" stroke-width="2" style="display:none;" />
+
+                  <!-- Axis Numerical Ticks -->
+                  <g id="axisTicks" font-size="10" fill="var(--text-muted)">
+                    <!-- Y Ticks (%) -->
+                    <text x="62" y="334" text-anchor="end">0%</text>
+                    <text x="62" y="261.5" text-anchor="end">4%</text>
+                    <text x="62" y="189" text-anchor="end">8%</text>
+                    <text x="62" y="116.5" text-anchor="end">12%</text>
+                    <text x="62" y="44" text-anchor="end">16%</text>
+                    
+                    <!-- X Ticks (Volume $B) -->
+                    <text x="70" y="346" text-anchor="middle">0</text>
+                    <text x="217.5" y="346" text-anchor="middle">50</text>
+                    <text x="365" y="346" text-anchor="middle">100</text>
+                    <text x="512.5" y="346" text-anchor="middle">150</text>
+                    <text x="660" y="346" text-anchor="middle">200</text>
+                  </g>
+
+                  <!-- Dynamic Labels -->
+                  <text id="lblDemand" x="553.8" y="254.5" fill="#2563eb" font-weight="700" font-size="12">Demand (PMB = SMB)</text>
+                  <text id="lblPMC" x="553.8" y="227.4" fill="#059669" font-weight="700" font-size="12">PMC (Private Cost)</text>
+                  <text id="lblMSC" x="471.2" y="103.8" fill="#7c3aed" font-weight="700" font-size="12">MSC = PMC + MEC</text>
+                  <text id="lblDWL" x="345.7" y="160.2" fill="#dc2626" font-weight="800" font-size="12" text-anchor="middle" style="display:block;">DWL: $119M</text>
+
+                  <text x="655" y="362" style="fill: var(--text-muted);" font-size="11" text-anchor="end">Borrowing Volume (Q, $B)</text>
+                  <text x="60" y="24" style="fill: var(--text-muted);" font-size="11" text-anchor="start">Interest Rate (%)</text>
+                  <text id="lblQsoc" x="252.2" y="324" fill="#7c3aed" font-size="11" font-weight="700" text-anchor="middle">Q_soc (62B)</text>
+                  <text id="lblQpriv" x="396.1" y="324" fill="#059669" font-size="11" font-weight="700" text-anchor="middle">Q_priv (111B)</text>
+                  <text id="lblQreg" x="396.1" y="348" fill="#d97706" font-size="11" font-weight="700" text-anchor="middle" style="display:none;">Q_reg</text>
+                </svg>
+
+                <div class="chart-legend">
+                  <span style="color:#2563eb;">● Demand (PMB)</span>
+                  <span style="color:#059669;" id="legend-pmc">● PMC (4.20% Base)</span>
+                  <span id="legend-pmc-tax" style="color:#d97706; display:none;">┅ PMC + Tax (τ)</span>
+                  <span style="color:#7c3aed;" id="legend-msc">● MSC (Social Cost)</span>
+                  <span style="color:#dc2626;" id="legend-dwl">■ Deadweight Loss Area</span>
+                </div>
+              </div>
+
+              <!-- HUD Metric Cards -->
+              <div class="kpi-row">
+                <div class="kpi-card">
+                  <div class="kpi-label">Private Volume ($Q_{\text{priv}}$)</div>
+                  <div class="kpi-value" id="kpi_q_priv">$110.5 B</div>
+                </div>
+                <div class="kpi-card success">
+                  <div class="kpi-label">Social Optimum ($Q_{\text{soc}}$)</div>
+                  <div class="kpi-value" id="kpi_q_soc">$61.8 B</div>
+                </div>
+                <div class="kpi-card highlight">
+                  <div class="kpi-label">Over-Borrowing</div>
+                  <div class="kpi-value" id="kpi_overborrow">+78.9%</div>
+                </div>
+                <div class="kpi-card highlight">
+                  <div class="kpi-label">Systemic DWL</div>
+                  <div class="kpi-value" id="kpi_dwl">$119.3 M</div>
+                </div>
+                <div class="kpi-card">
+                  <div class="kpi-label">Optimal Tax ($\tau^*$)</div>
+                  <div class="kpi-value" id="kpi_optimal_tax">2.78%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SECTION 6 -->
+        <section id="doc-sec-6" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">6</span> Evolutionary Mechanics: Why Competitive Banking Systems Self-Organize into Fragility</h2>
+          <p>
+            Why do rational bank executives systematically over-borrow foreign currency, even when aware of systemic historical crises? The answer lies in <strong>evolutionary game theory, replicator dynamics, and competitive selection pressure</strong>.
+          </p>
+
+          <h3 class="sub-heading">Stage 1: Individual Selection Pressure & Asymmetric Payoffs</h3>
+          <p>
+            In a competitive financial market, bank management is judged on short-horizon quarterly metrics: Return on Equity ($RoE$), net interest margins, and stock price performance.
+            Consider two competing bank strategies in a population of financial institutions:
+          </p>
+          <ul style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>Strategy $\mathbf{A}$ (Aggressive Carry Trader):</strong> Borrows heavily in USD at 4.20% and lends domestically at 8.50%. Generates an annualized $RoE = 22\%$.</li>
+            <li><strong>Strategy $\mathbf{C}$ (Conservative Hedger):</strong> Relies on domestic deposits at 7.00% or pays a 2.50% forward premium to fully hedge currency risk. Generates an annualized $RoE = 12\%$.</li>
+          </ul>
+          <p>
+            During tranquil macroeconomic regimes ($t < T_{\text{crash}}$), Strategy $\mathbf{A}$ strictly dominates Strategy $\mathbf{C}$ in every observable accounting metric: $\mathbb{E}[\Pi_{\text{Aggressive}} \mid \text{Tranquil}] \gg \mathbb{E}[\Pi_{\text{Conservative}} \mid \text{Tranquil}]$.
+          </p>
+
+          <h3 class="sub-heading">Stage 2: Replicator Dynamics & The Darwinian Elimination of Prudence</h3>
+          <p>
+            In corporate banking, capital allocation follows <strong>replicator dynamics</strong>:
+          </p>
+          <div class="math-block">
+            $$\dot{p}_t = p_t (1 - p_t) \Big[ \Phi(RoE_{\mathbf{A}}) - \Phi(RoE_{\mathbf{C}}) \Big]$$
+          </div>
+          <p>
+            where $p_t$ represents the market share of aggressive banks. When Strategy $\mathbf{A}$ produces a 22% $RoE$ while Strategy $\mathbf{C}$ yields only 12%:
+          </p>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>Capital Migration:</strong> Institutional investors reallocate equity capital away from conservative banks toward aggressive carry-trade banks.</li>
+            <li><strong>Executive Turnover:</strong> CEOs of conservative banks face activist shareholder revolts, board scrutiny, and compensation cuts for "underperforming" peers.</li>
+            <li><strong>Competitive Envy:</strong> To survive career risk, conservative executives abandon prudent hedging and adopt wholesale foreign borrowing.</li>
+          </ol>
+
+          <h3 class="sub-heading">Stage 3 & 4: Niche Construction & Frequency-Dependent Fragility</h3>
+          <div class="data-table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Population State ($p_t$)</th>
+                  <th>Ecosystem Properties</th>
+                  <th>$PMC$</th>
+                  <th>$MEC$</th>
+                  <th>Systemic Fragility</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Low ($p_t \approx 0.05$)</strong></td>
+                  <td>Few banks borrow overseas. Central bank reserves easily cover all claims.</td>
+                  <td>4.20%</td>
+                  <td>$\approx 0.00\%$</td>
+                  <td><strong>Resilient:</strong> Localized failures absorbed without macro contagion.</td>
+                </tr>
+                <tr>
+                  <td><strong>Moderate ($p_t \approx 0.40$)</strong></td>
+                  <td>Carry trade spreads across major money-center banks. Reserve coverage tightens.</td>
+                  <td>4.20%</td>
+                  <td>$+1.80\%$</td>
+                  <td><strong>Vulnerable:</strong> Shocks require central bank liquidity intervention.</td>
+                </tr>
+                <tr style="background: var(--accent-red-subtle);">
+                  <td><strong>High ($p_t \to 1.00$)</strong></td>
+                  <td>Entire banking system is funded via wholesale foreign liabilities. Mismatch is total.</td>
+                  <td>4.20%</td>
+                  <td>$+8.50\%$</td>
+                  <td><strong>Self-Organized Criticality:</strong> A tiny external perturbation triggers catastrophic collapse.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-heading">Stage 5 & 6: The Tipping Point & Evolutionary Parasitism</h3>
+          <p>
+            When $p_t \to 1.0$, a 50 bps Fed rate hike triggers depreciation. Thin bank equity erodes, foreign creditors refuse debt rollover, banks rush to spot FX markets to buy USD, and the depreciation spirals into systemic bank insolvency.
+          </p>
+          <div class="callout alert">
+            $$\text{Upside Payoff (Tranquil Regime)} \implies \text{Captured 100\% Privately by Bank Shareholders \& Executives}$$
+            $$\text{Downside Loss (Crisis Regime)} \implies \text{Socialized 100\% onto Taxpayers, Workers, and Depositors}$$
+          </div>
+        </section>
+
+        <!-- SECTION 7 -->
+        <section id="doc-sec-7" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">7</span> Real-World Analogies & The 1997 Asian Financial Crisis Archetype</h2>
+          
+          <div class="grid-3">
+            <div class="concept-card">
+              <div class="concept-title"><span>🐄</span> Analogy 1: Tragedy of the Commons</div>
+              <div class="concept-desc">
+                A pastoralist adds a cow to a shared public pasture. The private benefit is 100% of the milk ($PMC$), while the soil degradation is shared across all herders ($MEC$). Every herder adds cows until the pasture collapses. <strong>The common pasture is the national FX reserve pool; the cow is the \$100M unhedged loan.</strong>
+              </div>
+            </div>
+
+            <div class="concept-card">
+              <div class="concept-title"><span>🏟️</span> Analogy 2: Stadium Standee Paradox</div>
+              <div class="concept-desc">
+                A spectator stands up to get a better view. This forces the rows behind to stand. Soon the entire stadium of 80,000 is standing with no better view and severe discomfort. <strong>Standing is borrowing abroad at 4.20%; sitting is prudent domestic deposit funding.</strong>
+              </div>
+            </div>
+
+            <div class="concept-card">
+              <div class="concept-title"><span>💊</span> Analogy 3: Superbug Antibiotic Overuse</div>
+              <div class="concept-desc">
+                Cheap antibiotic overuse breeds drug-resistant superbugs that kill third parties who never took the drug. <strong>Antibiotic overuse is unhedged short-term foreign debt; the superbug is uncontrollable systemic currency contagion.</strong>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="sub-heading" style="margin-top:24px;">The 1997 East Asian Financial Crisis (Bangkok & Seoul Archetype)</h3>
+          <p>
+            Between 1993 and 1996, Thai finance companies borrowed billions in short-term USD at 4.0%–5.0% and lent domestically to real estate at 12.0%–15.0%. Because the Baht was pegged at 25 Baht/\$, banks treated exchange rate risk as zero. Short-term external debt reached 180% of reserves. In July 1997, the peg collapsed, the Baht plunged to 56/\$, 56 finance companies folded, real GDP contracted 10.5%, and a \$17.2B IMF bailout was required.
+          </p>
+        </section>
+
+        <!-- SECTION 8 -->
+        <section id="doc-sec-8" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">8</span> Econometric Methodology & 44-Country Panel Evidence</h2>
+          <p>
+            We estimate a multi-sector panel econometric model across 44 emerging and advanced economies with country fixed effects using <strong>Driscoll and Kraay (1998)</strong> robust standard errors:
+          </p>
+          <div class="math-block">
+            $$y_{i,s,t} = \alpha_{i,s} + \beta_{1,s} \ln(\text{VIX}_t) + \beta_{2,s} [\ln(\text{VIX}_t) \times \text{Post-GFC}_t] + \mathbf{\Gamma}_s \mathbf{X}_{i,t-1} + \varepsilon_{i,s,t}$$
+          </div>
+          <div class="math-block">
+            $$H_0: \beta_{1,B} = \beta_{1,N} = \beta_{1,C} = \beta_{1,G} \implies \text{SUR Wald Test: } \chi^2(3) = \mathbf{48.72} \quad (p < 0.0001)$$
+          </div>
+          <p>
+            The null hypothesis of cross-sectoral symmetry is overwhelmingly rejected ($p < 0.0001$). Non-Bank Financial Intermediaries (NBFIs) generate the largest marginal external cost wedge ($MEC = 4.50\%$) and deadweight loss ($DWL = 0.6300\%$ of GDP).
+          </p>
+        </section>
+
+        <!-- SECTION 9 -->
+        <section id="doc-sec-9" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">9</span> Empirical Application: Four Decades of Indian Crises</h2>
+          <ol style="padding-left: 20px; line-height: 1.8;">
+            <li><strong>1991 Balance of Payments Crisis:</strong> Reserves plummeted to 0.75 months import cover (3 weeks). Required a 19% rupee devaluation and pledging 47 tonnes of gold. Systemic DWL: 1.35% of GDP ($t^* = 680\text{ bps}$).</li>
+            <li><strong>2013 Taper Tantrum:</strong> CAD widened to 4.8% of GDP; Rupee depreciated by 27%. The RBI deployed an OMC FX swap window and enacted the statutory Flexible Inflation Targeting (FIT) framework. Systemic DWL: 0.88% of GDP ($t^* = 420\text{ bps}$).</li>
+            <li><strong>2020 COVID-19 Twin Shock:</strong> VIX spiked to 82.69, but India entered with \$580B+ reserves (18.5 months cover). The RBI injected ₹3.74 lakh crore. DWL was contained to 0.42% of GDP ($t^* = 325\text{ bps}$).</li>
+            <li><strong>2026 FAR Global Bond Inclusion:</strong> \$30B+ in passive foreign debt. The RBI excluded 14y/30y bonds from FAR to prevent duration volatility. DWL: 0.15% of GDP ($t^* = 185\text{ bps}$).</li>
+          </ol>
+        </section>
+
+        <!-- SECTION 10 -->
+        <section id="doc-sec-10" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">10</span> Dynamic Macroeconomic Simulation: Capital Externalities & Debt Tipping Points</h2>
+          <p>
+            Our structural simulation tracks capital accumulation ($K_A$), unhedged external debt ($D_A$), technological diffusion ($\theta_C, \theta_P$), operating profit, and foreign debt service over a 30-year horizon. It demonstrates the multi-period macroeconomic realization of the <strong>Micro-Macro Wedge ($PMC < MSC$)</strong>:
+          </p>
+          <ul>
+            <li><strong>Private Cost Underpricing ($PMC = i^*$):</strong> When domestic firms borrow cheap foreign credit without internalizing currency risk, they aggressively expand technology capex.</li>
+            <li><strong>Sunk Capital & Obsolescence Fallacy ($\kappa$):</strong> Rapid technology obsolescence diminishes cash flows over time, yet fixed foreign debt obligations remain invariant.</li>
+            <li><strong>Non-Linear Debt Tipping Points:</strong> When aggregate debt service crosses sovereign debt-to-GDP thresholds, the country risk premium spikes, triggering the classic <em>Pecuniary & Balance-Sheet Externality</em> (Mendoza 2010; Jeanne & Korinek 2010) and systemic insolvency.</li>
+          </ul>
+          <div class="callout tip">
+            <strong>Interactive Simulation Lab:</strong> To run live scenario stress tests across 10 historical presets (1991 BoP, 2000 Dot-Com, 2008 GFC, 2013 Taper Tantrum, 2020 COVID, 2026 FAR Surge), toggle to the <a href="#" onclick="switchMode('deck'); goToSlide(7); return false;" style="color:var(--primary); font-weight:700;">Interactive Simulation Lab (Slide 7)</a>.
+          </div>
+        </section>
+
+        <!-- SECTION 11 -->
+        <section id="doc-sec-11" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">11</span> Corrective Policy Architecture: Internalizing the External Cost</h2>
+          <p>
+            Because private markets cannot self-correct an unpriced evolutionary externality, regulatory intervention must structurally align private incentives with social welfare.
+          </p>
+
+          <h3 class="sub-heading">1. Sector-Differentiated Pigouvian Levies ($\tau^* = MEC$)</h3>
+          <div class="math-block">
+            $$\tau_t^*(F_t) = MEC_i^* = \frac{\theta}{\mathcal{R}_t} \cdot \lambda(F_t, \mathcal{R}_t) \cdot \mathcal{L}_{\text{social}}$$
+            $$PMC_i' = 4.20\% + \tau_t^* = MSC_i \implies Q_{\text{private}} \to Q_{\text{social}}$$
+          </div>
+
+          <h3 class="sub-heading">2. Mandatory Structural Currency Matching & Hedging Mandates</h3>
+          <div class="math-block">
+            $$\left| \text{FX Assets}_{it} - \text{FX Liabilities}_{it} \right| \le \gamma \cdot \text{Tier 1 Capital}_{it}$$
+          </div>
+
+          <h3 class="sub-heading">3. Dynamic Counter-Cyclical FX Reserve Requirements</h3>
+          <div class="math-block">
+            $$\delta_{\text{FX}}(F_t) = \delta_0 + \kappa \left( \frac{F_t}{\mathcal{R}_t} \right) \implies PMC_i = \frac{i^*}{1 - \delta_{\text{FX}}}$$
+          </div>
+        </section>
+
+        <!-- SECTION 12 -->
+        <section id="doc-sec-12" class="doc-section">
+          <h2 class="section-heading"><span class="heading-num">12</span> Mathematical Cost Matrix, Synthesis & Academic References</h2>
+          
+          <div class="data-table-container">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Economic Dimension</th>
+                  <th>Private Agent Level (Bank $i$)</th>
+                  <th>Social / Macroeconomic Level (Society)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Primary Objective</strong></td>
+                  <td>Maximize expected equity profit $\mathbb{E}[\Pi_i]$</td>
+                  <td>Maximize aggregate social welfare $\mathcal{W}$</td>
+                </tr>
+                <tr>
+                  <td><strong>Funding Metric</strong></td>
+                  <td>Contract borrowing rate $i^* = 4.20\%$</td>
+                  <td>Expected social opportunity cost $MSC = PMC + MEC$</td>
+                </tr>
+                <tr>
+                  <td><strong>Marginal Cost Formula</strong></td>
+                  <td>$PMC_i = i^* + c_i f_i$</td>
+                  <td>$MSC_i = i^* + c_i f_i + \frac{\partial \lambda(F)}{\partial F} \mathcal{L}_{\text{social}}$</td>
+                </tr>
+                <tr>
+                  <td><strong>Risk Boundary</strong></td>
+                  <td>Micro-prudential capital adequacy ($\text{VaR}_i \le E_i$)</td>
+                  <td>National reserve adequacy ($F_t / \mathcal{R}_t \le \Omega^*$)</td>
+                </tr>
+                <tr>
+                  <td><strong>Equilibrium Condition</strong></td>
+                  <td>$PMB_i = PMC_i \implies Q_{\text{private}}^*$</td>
+                  <td>$SMB = MSC \implies Q_{\text{social}}^*$</td>
+                </tr>
+                <tr>
+                  <td><strong>Welfare Outcome</strong></td>
+                  <td>Short-term profit maximization ($RoE \uparrow$)</td>
+                  <td>Market failure: Systemic over-borrowing & deadweight loss</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="sub-heading" style="margin-top:28px;">Academic References</h3>
+          <ul style="padding-left: 20px; font-size: 0.88rem; color: var(--text-muted); line-height: 1.8;">
+            <li>Acharya, V. V., Pedersen, L. H., Philippon, T., & Richardson, M. (2017). Measuring systemic risk. <em>The Review of Financial Studies</em>, 30(1), 2–47.</li>
+            <li>Bianchi, J. (2011). Overborrowing and systemic externalities in the business cycle. <em>American Economic Review</em>, 101(7), 3400–3426.</li>
+            <li>Bruno, V., & Shin, H. S. (2015). Cross-border banking and global liquidity. <em>The Review of Economic Studies</em>, 82(2), 535–564.</li>
+            <li>Driscoll, J. C., & Kraay, A. C. (1998). Consistent covariance matrix estimation with spatially dependent panel data. <em>Review of Economics and Statistics</em>, 80(4), 549–560.</li>
+            <li>Hardin, G. (1968). The tragedy of the commons. <em>Science</em>, 162(3859), 1243–1248.</li>
+            <li>Jeanne, O., & Korinek, A. (2010). Excessive volatility in capital flows: A pigouvian taxation approach. <em>American Economic Review</em>, 100(2), 403–407.</li>
+            <li>Korinek, A. (2018). Regulating capital flows to manage macro-financial vulnerabilities. <em>Journal of International Economics</em>, 112, 61–76.</li>
+            <li>Mendoza, E. G. (2010). Sudden stops, financial crises, and leverage. <em>American Economic Review</em>, 100(5), 1941–1966.</li>
+            <li>Minsky, H. P. (1986). <em>Stabilizing an Unstable Economy</em>. Yale University Press.</li>
+            <li>Rey, H. (2015). Dilemma not trilemma: The global financial cycle and monetary policy independence. <em>NBER Working Paper No. 21162</em>.</li>
+            <li>Shin, H. S. (2012). Global banking glut and loan risk pricing. <em>IMF Economic Review</em>, 60(2), 155–192.</li>
+          </ul>
+
+          <div class="callout tip" style="margin-top: 24px;">
+            <strong>📄 Working Paper:</strong> Kumar, R., &amp; Kumari, S. (2026). <em>Sectoral Capital Flows &amp; Systemic Externalities: A Macroprudential Cost–Benefit Framework.</em> Working Paper, BITS Pilani &amp; ICFAI Business School.
+          </div>
+        </section>
+
+      </article>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="app-footer">
+    <div style="max-width: 1200px; margin: 0 auto;">
+      <p style="font-weight: 700; color: var(--text-primary);">
+        BITS Pilani &amp; ICFAI Business School Bangalore &bull; Macroeconomic Policy &amp; Financial Systems Series
+      </p>
+      <p>
+        Prepared for the Advanced Macroprudential Economics Guest Lecture &bull; Authored August 2026 by Rahul Kumar
+      </p>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       APPLICATION LOGIC & DYNAMIC SIMULATION JAVASCRIPT
+       ======================================================================== -->
+  <script>
+    /* ==========================================================================
+       Global State & Mode Management
+       ========================================================================== */
+    let currentSlide = 1;
+    const totalSlides = 11;
+    let currentMode = 'deck';
+    let charts = {};
+    let isDarkMode = false;
+    let slidesInitialized = new Set();
+
+    function switchMode(mode) {
+      currentMode = mode;
+      const deckView = document.getElementById('deck-view');
+      const docView = document.getElementById('doc-view');
+      const btnDeck = document.getElementById('btn-mode-deck');
+      const btnDoc = document.getElementById('btn-mode-doc');
+
+      if (mode === 'deck') {
+        deckView.style.display = 'flex';
+        docView.style.display = 'none';
+        deckView.classList.add('active');
+        docView.classList.remove('active');
+        btnDeck.classList.add('active');
+        btnDoc.classList.remove('active');
+        resizeAllCharts();
+      } else {
+        deckView.style.display = 'none';
+        docView.style.display = 'flex';
+        deckView.classList.remove('active');
+        docView.classList.add('active');
+        btnDeck.classList.remove('active');
+        btnDoc.classList.add('active');
+        updateCostSimulation();
+        setTimeout(updateCostSimulation, 50);
+      }
+      setTimeout(renderMathOnPage, 50);
+    }
+
+    function jumpToLab() {
+      switchMode('doc');
+      const target = document.getElementById('doc-sec-5');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function jumpToMacroSim() {
+      switchMode('deck');
+      goToSlide(7);
+    }
+
+    // KaTeX Auto-Renderer
+    function renderMathOnPage() {
+      if (typeof renderMathInElement === 'function') {
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '\\[', right: '\\]', display: true },
+            { left: '\\(', right: '\\)', display: false },
+            { left: '$', right: '$', display: false }
+          ],
+          ignoredTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code', 'option', 'svg'],
+          throwOnError: false
+        });
+      }
+    }
+
+    // Theme Switcher
+    function setTheme(theme) {
+      isDarkMode = (theme === 'dark');
+      document.documentElement.setAttribute('data-theme', theme);
+      localStorage.setItem('theme', theme);
+      const icon = document.getElementById('themeIcon');
+      const text = document.getElementById('themeText');
+      if (icon) icon.textContent = isDarkMode ? '☀️' : '🌙';
+      if (text) text.textContent = isDarkMode ? 'Light' : 'Dark';
+      updateCostSimulation();
+      resizeAllCharts();
+    }
+
+    function toggleTheme() {
+      setTheme(isDarkMode ? 'light' : 'dark');
+    }
+
+    const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(savedTheme);
+
+    // Reading Progress & TOC ScrollSpy
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const prog = document.getElementById('reading-progress');
+      if (prog) prog.style.width = scrolled + '%';
+
+      if (currentMode === 'doc') {
+        const sections = document.querySelectorAll('.doc-section, .interactive-lab');
+        const navLinks = document.querySelectorAll('.doc-toc-item a');
+        let current = '';
+
+        sections.forEach(sec => {
+          const secTop = sec.offsetTop - 140;
+          if (pageYOffset >= secTop) {
+            current = sec.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === '#' + current) {
+            link.classList.add('active');
+          }
+        });
+      }
+    });
+
+    /* ==========================================================================
+       Deck Slide Navigation Engine
+       ========================================================================== */
+    function goToSlide(n) {
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+      currentSlide = n;
+
+      document.querySelectorAll('.deck-slide').forEach(slide => {
+        slide.classList.remove('active');
+      });
+
+      const target = document.querySelector(`.deck-slide[data-slide="${n}"]`);
+      if (target) {
+        target.classList.add('active');
+        document.getElementById('slide-num-current').innerText = n;
+
+        const notes = target.getAttribute('data-notes') || 'No specific speaker notes for this slide.';
+        document.getElementById('notes-content').innerText = notes;
+      }
+
+      document.getElementById('btn-prev-slide').disabled = (n === 1);
+      document.getElementById('btn-next-slide').disabled = (n === totalSlides);
+
+      /* ---- Lazy chart initialization: create charts only on first visit ---- */
+      setTimeout(() => {
+        if (n === 4 && !slidesInitialized.has(4)) {
+          initPedagogicalDWLChart();
+          slidesInitialized.add(4);
+        } else if (n === 4 && charts.dwlPedagogy) {
+          charts.dwlPedagogy.resize();
+        }
+
+        if (n === 6 && !slidesInitialized.has(6)) {
+          initIndiaCharts();
+          slidesInitialized.add(6);
+        } else if (n === 6 && charts.indiaTimeline) {
+          charts.indiaTimeline.resize();
+        }
+
+        if (n === 7 && !slidesInitialized.has(7)) {
+          const initSimData = executeSimulation(9.0, 0.22, 0.07, 0.10, 0.15, 0.10);
+          initMacroSimCharts(initSimData);
+          runMacroSim();
+          slidesInitialized.add(7);
+        } else if (n === 7) {
+          resizeSimCharts();
+        }
+
+        if (n === 8 && !slidesInitialized.has(8)) {
+          initSandboxRadar();
+          runSandboxSim();
+          slidesInitialized.add(8);
+        } else if (n === 8 && charts.sandboxRadar) {
+          charts.sandboxRadar.resize();
+        }
+      }, 80);
+
+      setTimeout(renderMathOnPage, 50);
+    }
+
+    function prevSlide() { if (currentSlide > 1) goToSlide(currentSlide - 1); }
+    function nextSlide() { if (currentSlide < totalSlides) goToSlide(currentSlide + 1); }
+
+    function toggleNotesDrawer() {
+      const drawer = document.getElementById('notes-drawer');
+      if (drawer) drawer.classList.toggle('open');
+    }
+
+    function toggleFullScreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (currentMode === 'deck') {
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+      }
+    });
+
+    function resizeAllCharts() {
+      if (charts.dwlPedagogy) { charts.dwlPedagogy.resize(); charts.dwlPedagogy.update('none'); }
+      if (charts.indiaTimeline) { charts.indiaTimeline.resize(); charts.indiaTimeline.update('none'); }
+      if (charts.sandboxRadar) { charts.sandboxRadar.resize(); charts.sandboxRadar.update('none'); }
+      resizeSimCharts();
+    }
+
+    /* ==========================================================================
+       Chart.js Pedagogical DWL Chart (Slide 4)
+       ========================================================================== */
+    function initPedagogicalDWLChart() {
+      const ctx = document.getElementById('chart-dwl-pedagogy');
+      if (!ctx) return;
+
+      const qVals = Array.from({length: 45}, (_, i) => i);
+      const demand = qVals.map(q => 100 - q);
+      const pmc = qVals.map(q => 10 + 2 * q);
+      const smc = qVals.map(q => 10 + 3 * q);
+
+      charts.dwlPedagogy = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: qVals,
+          datasets: [
+            { label: 'Demand (MSB)', data: demand, borderColor: '#2563EB', borderWidth: 2.5, pointRadius: 0 },
+            { label: 'PMC (Private Cost)', data: pmc, borderColor: '#059669', borderWidth: 2.5, pointRadius: 0 },
+            { label: 'PMC + Tax', data: pmc, borderColor: '#D97706', borderWidth: 2, borderDash: [4, 4], pointRadius: 0, hidden: true },
+            { label: 'SMC (Social Cost)', data: smc, borderColor: '#7C3AED', borderWidth: 2.5, pointRadius: 0 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } },
+          scales: {
+            x: { title: { display: true, text: 'Quantity (Q)', font: { size: 10 } }, min: 0, max: 40 },
+            y: { title: { display: true, text: 'Price / Cost (P)', font: { size: 10 } }, min: 0, max: 110 }
+          }
+        }
+      });
+    }
+
+    function updatePedagogicalDWL() {
+      const tax = parseFloat(document.getElementById('dwl-tax-slider').value);
+      document.getElementById('dwl-tax-val').innerText = `t = ${tax.toFixed(1)}`;
+
+      if (charts.dwlPedagogy) {
+        const qVals = Array.from({length: 45}, (_, i) => i);
+        const pmcTax = qVals.map(q => 10 + 2 * q + tax);
+
+        charts.dwlPedagogy.data.datasets[2].data = pmcTax;
+        charts.dwlPedagogy.data.datasets[2].hidden = (tax === 0);
+        charts.dwlPedagogy.update('none');
+      }
+    }
+
+    /* ==========================================================================
+       Chart.js India Crisis Timeline (Slide 6)
+       ========================================================================== */
+    function initIndiaCharts() {
+      const ctx = document.getElementById('chart-india-timeline');
+      if (!ctx) return;
+
+      charts.indiaTimeline = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['1991 BoP Crisis', '2013 Taper Tantrum', '2020 COVID Shock', '2026 FAR Index Route'],
+          datasets: [
+            { label: 'Systemic DWL (% of GDP)', data: [1.35, 0.88, 0.42, 0.15], backgroundColor: '#C00000', borderRadius: 4 },
+            { label: 'Pigouvian Buffer (bps / 100)', data: [6.80, 4.20, 3.25, 1.85], backgroundColor: '#1F4E79', borderRadius: 4 },
+            { label: 'FX Reserves Import Cover (Months)', data: [0.75, 6.80, 18.50, 12.00], backgroundColor: '#198038', borderRadius: 4 }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+
+    /* ==========================================================================
+       Dynamic Macroeconomic Simulation Engine (Slide 7)
+       ========================================================================== */
+    function executeSimulation(F_P, kappa, r_D, alpha_D, sigma_C, sigma_P) {
+      const T_SIM = 30;
+      let K_A = new Array(T_SIM).fill(0);
+      let D_A = new Array(T_SIM).fill(0);
+      let V_A = new Array(T_SIM).fill(0);
+      let theta_C = new Array(T_SIM).fill(0);
+      let theta_P = new Array(T_SIM).fill(0);
+      let K_T = new Array(T_SIM).fill(0);
+      let Y = new Array(T_SIM).fill(0);
+      let Y_A = new Array(T_SIM).fill(0);
+      let Profit = new Array(T_SIM).fill(0);
+      let DebtService = new Array(T_SIM).fill(0);
+
+      K_A[0] = 10.0;
+      D_A[0] = 5.0;
+      V_A[0] = 15.0;
+      theta_C[0] = 0.05;
+      theta_P[0] = 0.01;
+      K_T[0] = 100.0;
+
+      let bust_year = -1;
+      let in_crisis = false;
+
+      for (let t = 0; t < T_SIM; t++) {
+        Y_A[t] = 1.2 * Math.pow(K_A[t], 0.3) * Math.pow(15.0, 0.7);
+        const Y_T = 0.8 * Math.pow(K_T[t], 0.4) * Math.pow(85.0, 0.6);
+        const NetDiffusion = 0.6 * theta_C[t] + 0.4 * theta_P[t];
+        Y[t] = (Y_A[t] + Y_T) * (1.0 + 0.15 * NetDiffusion);
+
+        Profit[t] = 0.25 * Y_A[t];
+        DebtService[t] = (r_D + alpha_D) * D_A[t];
+
+        if (DebtService[t] > Profit[t] * 1.2 && !in_crisis) {
+          bust_year = t;
+          in_crisis = true;
+        }
+
+        if (t < T_SIM - 1) {
+          const I_A = in_crisis ? 0.2 : (0.4 * Profit[t] + 0.1 * V_A[t]);
+          const I_A_debt = in_crisis ? 0.0 : 0.6 * I_A;
+
+          K_A[t + 1] = Math.max(0.1, (1 - kappa) * K_A[t] + I_A);
+          V_A[t + 1] = in_crisis ? Math.max(1.0, V_A[t] * 0.7) : (Profit[t] / (0.05 + 0.02 * (D_A[t] / Math.max(1, K_A[t]))));
+          
+          if (in_crisis) {
+            D_A[t + 1] = Math.max(0.0, D_A[t] * (1 - alpha_D * 1.5));
+          } else {
+            D_A[t + 1] = Math.max(0.0, D_A[t] + I_A_debt - DebtService[t]);
+          }
+          K_T[t + 1] = (1 - 0.03) * K_T[t] + 3.0;
+          theta_C[t + 1] = theta_C[t] + sigma_C * (1 - theta_C[t]);
+          theta_P[t + 1] = theta_P[t] + sigma_P * (1 / (1 + F_P) - theta_P[t]);
+        }
+      }
+
+      return {
+        time: Array.from({length: T_SIM}, (_, i) => `Yr ${i+1}`),
+        K_A, D_A, V_A, theta_C, theta_P, Y, Y_A, Profit, DebtService, bust_year
+      };
+    }
+
+    function initMacroSimCharts(data) {
+      const ctx1 = document.getElementById('chart-sim-claims');
+      if (ctx1) {
+        charts.simClaims = new Chart(ctx1, {
+          type: 'line',
+          data: {
+            labels: data.time,
+            datasets: [
+              { label: 'Capital (K_A)', data: data.K_A, borderColor: '#0f62fe', pointRadius: 2 },
+              { label: 'Debt (D_A)', data: data.D_A, borderColor: '#da1e28', borderDash: [4, 4], pointRadius: 2 },
+              { label: 'Valuation (V_A)', data: data.V_A, borderColor: '#198038', borderDash: [2, 2], pointRadius: 2 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: 'Capital & Financial Claims', font: { size: 10, weight: 'bold' } }, legend: { position: 'bottom', labels: { boxWidth: 8, font: { size: 8 } } } },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+      }
+
+      const ctx2 = document.getElementById('chart-sim-diffusion');
+      if (ctx2) {
+        charts.simDiffusion = new Chart(ctx2, {
+          type: 'line',
+          data: {
+            labels: data.time,
+            datasets: [
+              { label: 'Core Diffusion (θ_C)', data: data.theta_C, borderColor: '#8a3ffc', pointRadius: 2 },
+              { label: 'Periphery Diffusion (θ_P)', data: data.theta_P, borderColor: '#007d79', pointRadius: 2 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: 'Technology Diffusion', font: { size: 10, weight: 'bold' } }, legend: { position: 'bottom', labels: { boxWidth: 8, font: { size: 8 } } } },
+            scales: { y: { min: 0, max: 1.1 } }
+          }
+        });
+      }
+
+      const ctx3 = document.getElementById('chart-sim-profits');
+      if (ctx3) {
+        charts.simProfits = new Chart(ctx3, {
+          type: 'line',
+          data: {
+            labels: data.time,
+            datasets: [
+              { label: 'Sector Profit', data: data.Profit, borderColor: '#002d9c', pointRadius: 2 },
+              { label: 'Debt Service', data: data.DebtService, borderColor: '#a2191f', borderDash: [4, 4], pointRadius: 2 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: 'Operating Profit vs Debt Service', font: { size: 10, weight: 'bold' } }, legend: { position: 'bottom', labels: { boxWidth: 8, font: { size: 8 } } } },
+            scales: { y: { beginAtZero: false } }
+          }
+        });
+      }
+
+      const ctx4 = document.getElementById('chart-sim-gdp');
+      if (ctx4) {
+        charts.simGDP = new Chart(ctx4, {
+          type: 'line',
+          data: {
+            labels: data.time,
+            datasets: [
+              { label: 'GDP (Y)', data: data.Y, borderColor: '#161616', pointRadius: 2 },
+              { label: 'Tech Output (Y_A)', data: data.Y_A, borderColor: '#118dff', borderDash: [3, 3], pointRadius: 2 }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { title: { display: true, text: 'Macroeconomic Output', font: { size: 10, weight: 'bold' } }, legend: { position: 'bottom', labels: { boxWidth: 8, font: { size: 8 } } } },
+            scales: { y: { beginAtZero: false } }
+          }
+        });
+      }
+    }
+
+    function runMacroSim() {
+      const F_P = parseFloat(document.getElementById('sim-fp').value);
+      const kappa = parseFloat(document.getElementById('sim-kappa').value);
+      const r_D = parseFloat(document.getElementById('sim-rd').value);
+      const alpha_D = parseFloat(document.getElementById('sim-alphad').value);
+      const sigma_C = parseFloat(document.getElementById('sim-sigmac').value);
+      const sigma_P = 0.10;
+
+      document.getElementById('disp-fp').innerText = F_P.toFixed(1);
+      document.getElementById('disp-kappa').innerText = kappa.toFixed(2);
+      document.getElementById('disp-rd').innerText = r_D.toFixed(3);
+      document.getElementById('disp-alphad').innerText = alpha_D.toFixed(2);
+      document.getElementById('disp-sigmac').innerText = sigma_C.toFixed(2);
+
+      const res = executeSimulation(F_P, kappa, r_D, alpha_D, sigma_C, sigma_P);
+
+      if (charts.simClaims) {
+        charts.simClaims.data.datasets[0].data = res.K_A;
+        charts.simClaims.data.datasets[1].data = res.D_A;
+        charts.simClaims.data.datasets[2].data = res.V_A;
+        charts.simClaims.update('none');
+
+        charts.simDiffusion.data.datasets[0].data = res.theta_C;
+        charts.simDiffusion.data.datasets[1].data = res.theta_P;
+        charts.simDiffusion.update('none');
+
+        charts.simProfits.data.datasets[0].data = res.Profit;
+        charts.simProfits.data.datasets[1].data = res.DebtService;
+        charts.simProfits.update('none');
+
+        charts.simGDP.data.datasets[0].data = res.Y;
+        charts.simGDP.data.datasets[1].data = res.Y_A;
+        charts.simGDP.update('none');
+      }
+
+      const banner = document.getElementById('macro-sim-status');
+      if (res.bust_year !== -1) {
+        banner.innerText = `⚠️ Systemic Sudden Stop / Bust Triggered in Year ${res.bust_year + 1}!`;
+        banner.className = 'sim-status-banner crisis';
+      } else {
+        banner.innerText = '✅ Status: Sustainable Macro-Capital Trajectory';
+        banner.className = 'sim-status-banner healthy';
+      }
+    }
+
+    function resizeSimCharts() {
+      if (charts.simClaims) { charts.simClaims.resize(); charts.simClaims.update('none'); }
+      if (charts.simDiffusion) { charts.simDiffusion.resize(); charts.simDiffusion.update('none'); }
+      if (charts.simProfits) { charts.simProfits.resize(); charts.simProfits.update('none'); }
+      if (charts.simGDP) { charts.simGDP.resize(); charts.simGDP.update('none'); }
+    }
+
+    function loadSimPreset(presetKey, el) {
+      document.querySelectorAll('.preset-pill').forEach(btn => btn.classList.remove('active'));
+      if (el) el.classList.add('active');
+
+      const presets = {
+        'A': { fp: 1.0, kappa: 0.01, rd: 0.02, alphad: 0.05, sigmac: 0.15 },
+        'B': { fp: 9.0, kappa: 0.22, rd: 0.07, alphad: 0.10, sigmac: 0.15 },
+        '1991': { fp: 12.0, kappa: 0.30, rd: 0.12, alphad: 0.12, sigmac: 0.08 },
+        'TAPER': { fp: 4.0, kappa: 0.03, rd: 0.07, alphad: 0.06, sigmac: 0.12 },
+        'COVID': { fp: 3.5, kappa: 0.15, rd: 0.005, alphad: 0.14, sigmac: 0.28 },
+        'FAR2026': { fp: 2.0, kappa: 0.02, rd: 0.065, alphad: 0.07, sigmac: 0.18 },
+        'DOTCOM': { fp: 5.0, kappa: 0.05, rd: 0.06, alphad: 0.08, sigmac: 0.25 },
+        'GFC': { fp: 2.0, kappa: 0.02, rd: 0.05, alphad: 0.15, sigmac: 0.10 },
+        'INFLATION': { fp: 5.0, kappa: 0.20, rd: 0.06, alphad: 0.05, sigmac: 0.12 },
+        'GEOPOL': { fp: 9.5, kappa: 0.25, rd: 0.075, alphad: 0.06, sigmac: 0.12 }
+      };
+
+      const cfg = presets[presetKey] || presets['B'];
+      document.getElementById('sim-fp').value = cfg.fp;
+      document.getElementById('sim-kappa').value = cfg.kappa;
+      document.getElementById('sim-rd').value = cfg.rd;
+      document.getElementById('sim-alphad').value = cfg.alphad;
+      document.getElementById('sim-sigmac').value = cfg.sigmac;
+
+      runMacroSim();
+    }
+
+    /* ==========================================================================
+       Indian Sovereign Stress Tester (Slide 8)
+       ========================================================================== */
+    function initSandboxRadar() {
+      const ctx = document.getElementById('chart-sandbox-radar');
+      if (!ctx) return;
+
+      charts.sandboxRadar = new Chart(ctx, {
+        type: 'radar',
+        data: {
+          labels: ['FX Reserve Cushion', 'CAD Sustainability', 'Exchange Stability', 'Buffer Adequacy', 'Growth Insulation'],
+          datasets: [
+            {
+              label: 'Indian Macro Resilience Score',
+              data: [85, 75, 80, 70, 85],
+              backgroundColor: 'rgba(31, 78, 121, 0.2)',
+              borderColor: '#1F4E79',
+              pointBackgroundColor: '#1F4E79',
+              borderWidth: 2
+            },
+            {
+              label: 'Vulnerability Threshold',
+              data: [40, 40, 40, 40, 40],
+              borderColor: '#C00000',
+              borderDash: [4, 4],
+              pointRadius: 0,
+              backgroundColor: 'transparent'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 9 } } } },
+          scales: { r: { min: 0, max: 100, ticks: { stepSize: 20, display: false } } }
+        }
+      });
+    }
+
+    function runSandboxSim() {
+      const fx = parseFloat(document.getElementById('sandbox-fx').value);
+      const monthlyImport = parseFloat(document.getElementById('sandbox-import').value);
+      const cad = parseFloat(document.getElementById('sandbox-cad').value);
+      const vix = parseFloat(document.getElementById('sandbox-vix').value);
+      const buffer = parseFloat(document.getElementById('sandbox-buffer').value);
+
+      document.getElementById('sandbox-fx-disp').innerText = `$${fx}B`;
+      document.getElementById('sandbox-import-disp').innerText = `$${monthlyImport}B/mo`;
+      document.getElementById('sandbox-cad-disp').innerText = `${cad.toFixed(1)}%`;
+      document.getElementById('sandbox-vix-disp').innerText = vix.toFixed(1);
+      document.getElementById('sandbox-buffer-disp').innerText = `${buffer} bps`;
+
+      const importCover = fx / monthlyImport;
+      const rawInrPressure = Math.max(0, (vix - 15) * 0.45 + cad * 2.2 - (importCover * 0.6) - (buffer / 100) * 1.5);
+      const dwlEst = Math.max(0.05, (rawInrPressure * 0.05) + (cad > 3 ? (cad - 3) * 0.2 : 0) - (buffer / 1000) * 0.1);
+
+      document.getElementById('res-import-cover').innerText = `${importCover.toFixed(1)} mo`;
+      document.getElementById('res-inr-press').innerText = `${rawInrPressure.toFixed(1)}%`;
+      document.getElementById('res-dwl-est').innerText = `${dwlEst.toFixed(2)}% GDP`;
+
+      const resilienceEl = document.getElementById('res-resilience');
+      if (importCover < 3.0 || rawInrPressure > 15.0) {
+        resilienceEl.innerText = 'High Crisis';
+        resilienceEl.className = 'kpi-value highlight';
+      } else if (importCover < 6.0 || rawInrPressure > 8.0) {
+        resilienceEl.innerText = 'Vulnerable';
+        resilienceEl.className = 'kpi-value';
+      } else {
+        resilienceEl.innerText = 'Rock Solid';
+        resilienceEl.className = 'kpi-value success';
+      }
+
+      if (charts.sandboxRadar) {
+        const scoreFX = Math.min(100, (importCover / 15) * 100);
+        const scoreCAD = Math.max(0, Math.min(100, 100 - cad * 15));
+        const scoreFXStab = Math.max(0, Math.min(100, 100 - rawInrPressure * 3));
+        const scoreBuffer = Math.min(100, (buffer / 500) * 100);
+        const scoreGrowth = Math.max(0, Math.min(100, 100 - dwlEst * 50));
+
+        charts.sandboxRadar.data.datasets[0].data = [scoreFX, scoreCAD, scoreFXStab, scoreBuffer, scoreGrowth];
+        charts.sandboxRadar.update('none');
+      }
+    }
+
+    /* ==========================================================================
+       Interactive Micro-Macro Wedge Simulator (SVG Engine)
+       ========================================================================== */
+    const svgWidth = 700;
+    const svgHeight = 380;
+    const padding = { left: 70, right: 40, top: 40, bottom: 50 };
+    const chartW = svgWidth - padding.left - padding.right;
+    const chartH = svgHeight - padding.top - padding.bottom;
+    const maxQ = 200;
+    const maxR = 16;
+
+    function mapX(q) { return padding.left + (q / maxQ) * chartW; }
+    function mapY(r) { return padding.top + (1 - r / maxR) * chartH; }
+
+    function updateCostSimulation() {
+      try {
+        const slider_i_star = document.getElementById('slider_i_star');
+        const slider_r_l = document.getElementById('slider_r_l');
+        const slider_mec_slope = document.getElementById('slider_mec_slope');
+        const slider_tax = document.getElementById('slider_tax');
+
+        if (!slider_i_star || !slider_r_l || !slider_mec_slope || !slider_tax) return;
+
+        const i_star = parseFloat(slider_i_star.value);
+        const r_l = parseFloat(slider_r_l.value);
+        const mec_slope = parseFloat(slider_mec_slope.value);
+        const tax = parseFloat(slider_tax.value);
+
+        // Update slider value badges
+        const elValIStar = document.getElementById('val_i_star');
+        const elValRl = document.getElementById('val_r_l');
+        const elValMec = document.getElementById('val_mec_slope');
+        const elValTax = document.getElementById('val_tax');
+
+        if (elValIStar) elValIStar.textContent = i_star.toFixed(2) + '%';
+        if (elValRl) elValRl.textContent = r_l.toFixed(2) + '%';
+        if (elValMec) elValMec.textContent = mec_slope.toFixed(3);
+        if (elValTax) elValTax.textContent = tax.toFixed(2) + '%';
+
+        // ── Economic Model Constants ──
+        const b = 0.042;   // Demand slope (PMB)
+        const c = 0.015;   // PMC slope (private cost)
+
+        // ── Equilibrium Calculations ──
+        const Q_priv = (r_l - i_star) / (b + c);
+        const R_priv = r_l - b * Q_priv;
+
+        const Q_soc = (r_l - i_star) / (b + c + mec_slope);
+        const R_soc = r_l - b * Q_soc;
+        const MEC_at_Qsoc = mec_slope * Q_soc;
+
+        const Q_reg = (r_l - i_star - tax) / (b + c);
+        const effective_Q = Math.max(Q_soc, Math.min(Q_priv, Q_reg));
+
+        // ── Deadweight Loss Computation ──
+        // DWL = ½ × ΔQ × height, where height = wedge between MSC and PMB at effective_Q
+        const deltaQ = Math.max(0, effective_Q - Q_soc);
+        const msc_at_eff = i_star + (c + mec_slope) * effective_Q;
+        const pmb_at_eff = r_l - b * effective_Q;
+        const dwl_height = Math.max(0, msc_at_eff - pmb_at_eff);
+        // Rates are in percentage points, Q in $B. DWL in $B = 0.5 * deltaQ * (dwl_height/100)
+        const dwl_value_billions = 0.5 * deltaQ * dwl_height * 0.01;
+
+        // ── KPI HUD Cards ──
+        const elKpiQpriv = document.getElementById('kpi_q_priv');
+        const elKpiQsoc = document.getElementById('kpi_q_soc');
+        const elKpiOverborrow = document.getElementById('kpi_overborrow');
+        const elKpiDwl = document.getElementById('kpi_dwl');
+        const elKpiOptTax = document.getElementById('kpi_optimal_tax');
+
+        if (elKpiQpriv) elKpiQpriv.textContent = '$' + Math.max(0, Q_priv).toFixed(1) + ' B';
+        if (elKpiQsoc) elKpiQsoc.textContent = '$' + Math.max(0, Q_soc).toFixed(1) + ' B';
+
+        const overborrow_pct = Q_soc > 0 ? ((Q_priv - Q_soc) / Q_soc) * 100 : 0;
+        if (elKpiOverborrow) elKpiOverborrow.textContent = (overborrow_pct >= 0 ? '+' : '') + overborrow_pct.toFixed(1) + '%';
+        if (elKpiDwl) elKpiDwl.textContent = '$' + (dwl_value_billions * 1000).toFixed(0) + ' M';
+        if (elKpiOptTax) elKpiOptTax.textContent = MEC_at_Qsoc.toFixed(2) + '%';
+
+        // ══════════════════════════════════════════════════════════════════
+        // SVG CURVE UPDATES (using setAttribute — cross-browser safe)
+        // ══════════════════════════════════════════════════════════════════
+
+        const elDemand = document.getElementById('curveDemand');
+        const elPMC = document.getElementById('curvePMC');
+        const elPMCTax = document.getElementById('curvePMCTax');
+        const elMSC = document.getElementById('curveMSC');
+
+        if (elDemand) elDemand.setAttribute('d', 'M ' + mapX(0) + ' ' + mapY(r_l) + ' L ' + mapX(maxQ) + ' ' + mapY(Math.max(0, r_l - b * maxQ)));
+        if (elPMC) elPMC.setAttribute('d', 'M ' + mapX(0) + ' ' + mapY(i_star) + ' L ' + mapX(maxQ) + ' ' + mapY(i_star + c * maxQ));
+
+        if (elPMCTax) {
+          if (tax > 0.05) {
+            elPMCTax.style.display = 'block';
+            elPMCTax.setAttribute('d', 'M ' + mapX(0) + ' ' + mapY(i_star + tax) + ' L ' + mapX(maxQ) + ' ' + mapY(i_star + tax + c * maxQ));
+          } else {
+            elPMCTax.style.display = 'none';
+          }
+        }
+
+        if (elMSC) elMSC.setAttribute('d', 'M ' + mapX(0) + ' ' + mapY(i_star) + ' L ' + mapX(maxQ) + ' ' + mapY(i_star + (c + mec_slope) * maxQ));
+
+        // ── Marker Updates ──
+        const markerPriv = document.getElementById('markerPrivate');
+        if (markerPriv) {
+          markerPriv.setAttribute('cx', mapX(Math.max(0, Q_priv)));
+          markerPriv.setAttribute('cy', mapY(Math.max(0, R_priv)));
+        }
+
+        const markerSoc = document.getElementById('markerSocial');
+        if (markerSoc) {
+          markerSoc.setAttribute('cx', mapX(Math.max(0, Q_soc)));
+          markerSoc.setAttribute('cy', mapY(Math.max(0, R_soc)));
+        }
+
+        const markerReg = document.getElementById('markerRegulated');
+        if (markerReg) {
+          if (tax > 0.05 && effective_Q < Q_priv - 0.2) {
+            markerReg.style.display = 'block';
+            markerReg.setAttribute('cx', mapX(effective_Q));
+            markerReg.setAttribute('cy', mapY(r_l - b * effective_Q));
+          } else {
+            markerReg.style.display = 'none';
+          }
+        }
+
+        // ══════════════════════════════════════════════════════════════════
+        // DYNAMIC DWL POLYGON + CENTROID LABEL (fully reactive)
+        // ══════════════════════════════════════════════════════════════════
+
+        const dwlPoly = document.getElementById('dwlPolygon');
+        const dwlLbl = document.getElementById('lblDWL');
+        const elLegendDWL = document.getElementById('legend-dwl');
+
+        if (effective_Q > Q_soc + 0.3) {
+          var px1 = mapX(Q_soc), py1 = mapY(R_soc);
+          var px2 = mapX(effective_Q), py2 = mapY(msc_at_eff);
+          var px3 = mapX(effective_Q), py3 = mapY(pmb_at_eff);
+          var polyStr = px1.toFixed(1) + ',' + py1.toFixed(1) + ' ' + px2.toFixed(1) + ',' + py2.toFixed(1) + ' ' + px3.toFixed(1) + ',' + py3.toFixed(1);
+
+          if (dwlPoly) {
+            dwlPoly.style.display = 'block';
+            dwlPoly.setAttribute('points', polyStr);
+          }
+
+          if (dwlLbl) {
+            var cx = (px1 + px2 + px3) / 3;
+            var cy = (py1 + py2 + py3) / 3;
+            dwlLbl.style.display = 'block';
+            dwlLbl.setAttribute('x', cx.toFixed(1));
+            dwlLbl.setAttribute('y', cy.toFixed(1));
+            dwlLbl.setAttribute('fill', '#dc2626');
+            dwlLbl.textContent = 'DWL: $' + (dwl_value_billions * 1000).toFixed(0) + 'M';
+          }
+
+          if (elLegendDWL) {
+            elLegendDWL.textContent = '\u25A0 Deadweight Loss ($' + (dwl_value_billions * 1000).toFixed(0) + 'M)';
+          }
+        } else {
+          if (dwlPoly) dwlPoly.style.display = 'none';
+          if (dwlLbl) {
+            dwlLbl.style.display = 'block';
+            dwlLbl.setAttribute('x', mapX(Q_soc).toFixed(1));
+            dwlLbl.setAttribute('y', (mapY(R_soc) - 15).toFixed(1));
+            dwlLbl.setAttribute('fill', '#16a34a');
+            dwlLbl.textContent = '\uD83C\uDFAF DWL = $0 (Optimal)';
+          }
+          if (elLegendDWL) {
+            elLegendDWL.textContent = '\u25A0 Deadweight Loss: $0 (Eliminated)';
+          }
+        }
+
+        // ══════════════════════════════════════════════════════════════════
+        // DROP LINES (SVG-namespace safe — no innerHTML!)
+        // ══════════════════════════════════════════════════════════════════
+
+        var SVG_NS = 'http://www.w3.org/2000/svg';
+        var dropLines = document.getElementById('dropLines');
+        if (dropLines) {
+          // Clear existing children (cross-browser safe)
+          while (dropLines.firstChild) dropLines.removeChild(dropLines.firstChild);
+
+          // Helper to create SVG line
+          function makeLine(x1, y1, x2, y2, color, sw, dash) {
+            var ln = document.createElementNS(SVG_NS, 'line');
+            ln.setAttribute('x1', x1); ln.setAttribute('y1', y1);
+            ln.setAttribute('x2', x2); ln.setAttribute('y2', y2);
+            ln.setAttribute('stroke', color);
+            ln.setAttribute('stroke-width', sw || '1.5');
+            if (dash) ln.setAttribute('stroke-dasharray', dash);
+            return ln;
+          }
+
+          // Social Optimum drop lines (purple dashed)
+          dropLines.appendChild(makeLine(mapX(Q_soc), mapY(R_soc), mapX(Q_soc), mapY(0), '#7c3aed', '1.5', '4,4'));
+          dropLines.appendChild(makeLine(mapX(Q_soc), mapY(R_soc), mapX(0), mapY(R_soc), '#7c3aed', '1.5', '4,4'));
+
+          // Private Equilibrium drop lines (green dashed)
+          dropLines.appendChild(makeLine(mapX(Q_priv), mapY(R_priv), mapX(Q_priv), mapY(0), '#059669', '1.5', '4,4'));
+          dropLines.appendChild(makeLine(mapX(Q_priv), mapY(R_priv), mapX(0), mapY(R_priv), '#059669', '1.5', '4,4'));
+
+          // Regulated Equilibrium drop lines (amber, visible only when tax active)
+          if (tax > 0.05 && effective_Q < Q_priv - 0.5) {
+            var R_reg = r_l - b * effective_Q;
+            dropLines.appendChild(makeLine(mapX(effective_Q), mapY(R_reg), mapX(effective_Q), mapY(0), '#d97706', '2', '4,2'));
+            dropLines.appendChild(makeLine(mapX(effective_Q), mapY(R_reg), mapX(0), mapY(R_reg), '#d97706', '2', '4,2'));
+          }
+        }
+
+        // ── Text Label Updates ──
+        var elLblDemand = document.getElementById('lblDemand');
+        var elLblPMC = document.getElementById('lblPMC');
+        var elLblMSC = document.getElementById('lblMSC');
+        var elLblQpriv = document.getElementById('lblQpriv');
+        var elLblQsoc = document.getElementById('lblQsoc');
+        var elLblQreg = document.getElementById('lblQreg');
+
+        if (elLblDemand) {
+          elLblDemand.setAttribute('x', mapX(maxQ * 0.82));
+          elLblDemand.setAttribute('y', mapY(r_l - b * (maxQ * 0.82)) - 10);
+        }
+
+        if (elLblPMC) {
+          elLblPMC.setAttribute('x', mapX(maxQ * 0.82));
+          elLblPMC.setAttribute('y', mapY(i_star + c * (maxQ * 0.82)) + 18);
+        }
+
+        if (elLblMSC) {
+          elLblMSC.setAttribute('x', mapX(maxQ * 0.68));
+          elLblMSC.setAttribute('y', mapY(i_star + (c + mec_slope) * (maxQ * 0.68)) - 12);
+        }
+
+        if (elLblQpriv) {
+          elLblQpriv.setAttribute('x', mapX(Math.max(0, Q_priv)));
+          elLblQpriv.textContent = 'Q_priv (' + Q_priv.toFixed(0) + 'B)';
+        }
+
+        if (elLblQsoc) {
+          elLblQsoc.setAttribute('x', mapX(Math.max(0, Q_soc)));
+          elLblQsoc.textContent = 'Q_soc (' + Q_soc.toFixed(0) + 'B)';
+        }
+
+        if (elLblQreg) {
+          if (tax > 0.05 && effective_Q < Q_priv - 0.5) {
+            elLblQreg.style.display = 'block';
+            elLblQreg.setAttribute('x', mapX(effective_Q));
+            elLblQreg.textContent = 'Q_reg (' + effective_Q.toFixed(0) + 'B)';
+          } else {
+            elLblQreg.style.display = 'none';
+          }
+        }
+
+        // ── Dynamic Legend Updates ──
+        var elLegendPMC = document.getElementById('legend-pmc');
+        if (elLegendPMC) elLegendPMC.textContent = '\u25CF PMC (' + i_star.toFixed(2) + '% Base)';
+
+        var elLegendTax = document.getElementById('legend-pmc-tax');
+        if (elLegendTax) {
+          if (tax > 0.05) {
+            elLegendTax.style.display = 'inline';
+            elLegendTax.textContent = '\u2505 PMC + Tax (' + (i_star + tax).toFixed(2) + '%)';
+          } else {
+            elLegendTax.style.display = 'none';
+          }
+        }
+
+        var elLegendMSC = document.getElementById('legend-msc');
+        if (elLegendMSC) elLegendMSC.textContent = '\u25CF MSC (Wedge: ' + mec_slope.toFixed(3) + ')';
+
+        // ── Grid Lines (SVG-namespace safe — no innerHTML!) ──
+        var grid = document.getElementById('gridLines');
+        if (grid) {
+          while (grid.firstChild) grid.removeChild(grid.firstChild);
+          for (var q = 25; q < maxQ; q += 25) {
+            var gl = document.createElementNS(SVG_NS, 'line');
+            gl.setAttribute('x1', mapX(q)); gl.setAttribute('y1', mapY(0));
+            gl.setAttribute('x2', mapX(q)); gl.setAttribute('y2', mapY(maxR));
+            grid.appendChild(gl);
+          }
+          for (var r = 2; r < maxR; r += 2) {
+            var gl2 = document.createElementNS(SVG_NS, 'line');
+            gl2.setAttribute('x1', mapX(0)); gl2.setAttribute('y1', mapY(r));
+            gl2.setAttribute('x2', mapX(maxQ)); gl2.setAttribute('y2', mapY(r));
+            grid.appendChild(gl2);
+          }
+        }
+
+      } catch (err) {
+        console.error('[updateCostSimulation] Error:', err.message, err.stack);
+      }
+    }
+
+    function applyCostPreset(presetName, ev) {
+      document.querySelectorAll('.preset-toolbar .preset-btn').forEach(b => b.classList.remove('active'));
+      if (ev && ev.target) ev.target.classList.add('active');
+
+      const s_istar = document.getElementById('slider_i_star');
+      const s_rl = document.getElementById('slider_r_l');
+      const s_mec = document.getElementById('slider_mec_slope');
+      const s_tax = document.getElementById('slider_tax');
+
+      if (presetName === 'baseline') {
+        s_istar.value = 4.2; s_rl.value = 10.5; s_mec.value = 0.045; s_tax.value = 0.0;
+      } else if (presetName === 'crisis1997') {
+        s_istar.value = 3.8; s_rl.value = 13.0; s_mec.value = 0.085; s_tax.value = 0.0;
+      } else if (presetName === 'pigouvian') {
+        s_istar.value = 4.2; s_rl.value = 10.5; s_mec.value = 0.045;
+        const b = 0.042, c = 0.015, mec_slope = 0.045;
+        const Q_soc = (10.5 - 4.2) / (b + c + mec_slope);
+        s_tax.value = (mec_slope * Q_soc).toFixed(2);
+      } else if (presetName === 'fedtightening') {
+        s_istar.value = 6.2; s_rl.value = 10.5; s_mec.value = 0.045; s_tax.value = 0.0;
+      }
+      updateCostSimulation();
+    }
+
+    function setOptimalTax() {
+      const i_star = parseFloat(document.getElementById('slider_i_star').value);
+      const r_l = parseFloat(document.getElementById('slider_r_l').value);
+      const mec_slope = parseFloat(document.getElementById('slider_mec_slope').value);
+      const b = 0.042, c = 0.015;
+      const Q_soc = (r_l - i_star) / (b + c + mec_slope);
+      const optimal_tax = mec_slope * Q_soc;
+      document.getElementById('slider_tax').value = optimal_tax.toFixed(2);
+      updateCostSimulation();
+    }
+
+    function resetCostSliders() {
+      document.getElementById('slider_i_star').value = 4.2;
+      document.getElementById('slider_r_l').value = 10.5;
+      document.getElementById('slider_mec_slope').value = 0.045;
+      document.getElementById('slider_tax').value = 0.0;
+      updateCostSimulation();
+    }
+
+    // Attach simulation listeners
+    ['slider_i_star', 'slider_r_l', 'slider_mec_slope', 'slider_tax'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.addEventListener('input', updateCostSimulation);
+    });
+
+    /* ==========================================================================
+       Classroom Quiz Checker (Slide 11)
+       ========================================================================== */
+    function checkQuiz(btn, isCorrect, feedbackId, explanation) {
+      const parent = btn.closest('.quiz-options');
+      parent.querySelectorAll('.quiz-opt-btn').forEach(b => {
+        b.disabled = true;
+        b.classList.remove('correct', 'wrong');
+      });
+
+      const fb = document.getElementById(feedbackId);
+      fb.style.display = 'block';
+
+      if (isCorrect) {
+        btn.classList.add('correct');
+        fb.style.background = 'var(--accent-green-subtle)';
+        fb.style.color = 'var(--accent-green)';
+        fb.innerHTML = `<strong>✅ Correct!</strong> ${explanation}`;
+      } else {
+        btn.classList.add('wrong');
+        fb.style.background = 'var(--accent-red-subtle)';
+        fb.style.color = 'var(--accent-red)';
+        fb.innerHTML = `<strong>❌ Not quite.</strong> ${explanation}`;
+      }
+    }
+
+    /* ==========================================================================
+       Initialization on DOM Load
+       ========================================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const modeParam = urlParams.get('mode');
+      const hash = window.location.hash;
+
+      if (modeParam === 'doc' || (hash && hash.includes('doc'))) {
+        switchMode('doc');
+      } else {
+        updateCostSimulation();
+        goToSlide(1);
+      }
+
+      renderMathOnPage();
+      setTimeout(renderMathOnPage, 300);
+    });
+  </script>
+</body>
+</html>
